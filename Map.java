@@ -1,3 +1,5 @@
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 
 /**
@@ -8,12 +10,30 @@ import java.util.LinkedList;
  */
 public class Map
 {
-    private final Location AULA = new Location("Aula", new NonPlayerCharacter("Frau Thies"), new LinkedList<Item>()
-    , new LinkedList<Passage>()) 
-    {
-        public String getGeneralDescription() {
-            return "Hier steht Frau Thieß mmmmmh...";
-        }
-    };
+    private Location AULA;
+    private Location SCHULHOF;
+
+    public Map() {
+        AULA = new Location(
+                "Aula",
+                new NonPlayerCharacter("Frau Thies"),
+                new LinkedList<Item>(),
+                new LinkedList<Passage>(Collections.singleton(new Passage("Schulhof", SCHULHOF))))
+        {
+            public String getGeneralDescription() {
+                return "Hier steht Frau Thieß mmmmmh...";
+            }
+        };
+        SCHULHOF = new Location(
+                "Aula",
+                new NonPlayerCharacter("Frau Thies"),
+                new LinkedList<Item>(),
+                new LinkedList<Passage>(Collections.singleton(new Passage("Aula", AULA))))
+        {
+            public String getGeneralDescription() {
+                return "Hier steht Frau Thieß mmmmmh...";
+            }
+        };
+    }
 
 }
