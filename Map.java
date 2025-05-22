@@ -15,20 +15,20 @@ public class Map
 
     public Map() {
         AULA = new Location(
-                "Aula",
-                new NonPlayerCharacter("Frau Thies"),
-                new LinkedList<Item>(),
-                new LinkedList<Passage>(Collections.singleton(new Passage("Schulhof", SCHULHOF))))
+            "Aula",
+            new NonPlayerCharacter("Frau Thies"),
+            new LinkedList<Item>(),
+            new LinkedList<Passage>(Collections.singleton(new Passage("Schulhof", SCHULHOF))))
         {
             public String getGeneralDescription() {
                 return "Hier steht Frau Thieß mmmmmh...";
             }
         };
         SCHULHOF = new Location(
-                "Aula",
-                new NonPlayerCharacter("Frau Thies"),
-                new LinkedList<Item>(),
-                new LinkedList<Passage>(Collections.singleton(new Passage("Aula", AULA))))
+            "Aula",
+            new NonPlayerCharacter("Frau Thies"),
+            new LinkedList<Item>(),
+            new LinkedList<Passage>(Collections.singleton(new Passage("Aula", AULA))))
         {
             public String getGeneralDescription() {
                 return "Hier steht Frau Thieß mmmmmh...";
