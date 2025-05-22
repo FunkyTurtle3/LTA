@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=Location
+comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Location.\r\n\ \r\n\ @author\ (LTA)\ \r\n\ @version\ (1.0.0)\r\n
+comment1.params=name\ npc\ items\ passages
+comment1.target=Location(java.lang.String,\ NonPlayerCharacter,\ java.util.LinkedList,\ java.util.LinkedList)
+comment2.params=
+comment2.target=java.lang.String\ getDescription()
+comment3.params=
+comment3.target=java.util.LinkedList\ getPassages()
+comment4.params=
+comment4.target=java.util.LinkedList\ getItems()
+comment5.params=
+comment5.target=java.lang.String\ getGeneralDescription()
+comment6.params=name
+comment6.target=Location\ hasPassageTo(java.lang.String)
+comment7.params=name
+comment7.target=Item\ hasItem(java.lang.String)
+comment8.params=name
+comment8.target=NonPlayerCharacter\ hasNPC(java.lang.String)
+numComments=9

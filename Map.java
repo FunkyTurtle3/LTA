@@ -8,8 +8,8 @@ import java.util.LinkedList;
  */
 public class Map
 {
-    private final Location AULA = new Location("Aula", new NonPlayerCharacter(), new LinkedList<Item>()
-    , new LinkedList<Exit>()) 
+    private final Location AULA = new Location("Aula", new NonPlayerCharacter("Frau Thies"), new LinkedList<Item>()
+    , new LinkedList<Passage>()) 
     {
         public String getGeneralDescription() {
             return "Hier steht Frau Thieß mmmmmh...";

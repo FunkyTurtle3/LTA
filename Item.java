@@ -7,27 +7,16 @@
  */
 public class Item
 {
-    // Instanzvariablen - ersetzen Sie das folgende Beispiel mit Ihren Variablen
-    private int x;
-
-    /**
-     * Konstruktor für Objekte der Klasse Item
-     */
-    public Item()
-    {
-        // Instanzvariable initialisieren
-        x = 0;
+    private String name;
+    private int type;
+    public static final Item EMPTY = new Item("", -1);
+    public Item(String name, int type) {
+       this.name = name;
+       this.type = type;
     }
-
-    /**
-     * Ein Beispiel einer Methode - ersetzen Sie diesen Kommentar mit Ihrem eigenen
-     * 
-     * @param  y    ein Beispielparameter für eine Methode
-     * @return        die Summe aus x und y
-     */
-    public int beispielMethode(int y)
+    
+    public String getName()
     {
-        // tragen Sie hier den Code ein
-        return x + y;
+        return name;
     }
 }
