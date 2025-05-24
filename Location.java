@@ -48,14 +48,14 @@ public abstract class Location
     
     public Location hasPassageTo(String name) {
         for(int i = 0; i < passages.size(); i++) {
-            if(passages.get(i).name().equals(name)) return passages.get(i).location();
+            if(passages.get(i).name().toLowerCase().equals(name.toLowerCase())) return passages.get(i).location();
         }
         return this;
     }
 
     public Item hasItemAndDelete(String name) {
         for(int i = 0; i < items.size(); i++) {
-            if(items.get(i).getName().equals(name)) return items.remove(i);
+            if(items.get(i).getName().toLowerCase().equals(name.toLowerCase())) return items.remove(i);
         }
         return Item.EMPTY;
     }
