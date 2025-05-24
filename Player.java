@@ -9,14 +9,14 @@ public class Player
 {
     private LinkedList<Item> inventory; 
     private Location location;
-    private Parser parser;
+    //private Parser parser;
     /**
      * Konstruktor für Objekte der Klasse SpielerIn
      */
     public Player(Location location)
     {
         this.location = location; 
-        parser = new Parser(this);
+        //parser = new Parser(this);
     }
 
     //public int getNumberKeys()

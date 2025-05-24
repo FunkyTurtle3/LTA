@@ -1,10 +1,18 @@
 #BlueJ class context
 comment0.target=Map
-comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Map.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
+comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Map.\r\n\ \r\n\ @author\ (LTA)\r\n\ @version\ (1.0.0)\r\n
 comment1.params=
 comment1.target=Map()
 comment2.params=
 comment2.target=java.lang.String\ getGeneralDescription()
 comment3.params=
-comment3.target=java.lang.String\ getGeneralDescription()
-numComments=4
+comment3.target=void\ initPassages()
+comment4.params=
+comment4.target=java.lang.String\ getGeneralDescription()
+comment5.params=
+comment5.target=void\ initPassages()
+comment6.params=
+comment6.target=java.lang.String\ getGeneralDescription()
+comment7.params=
+comment7.target=void\ initPassages()
+numComments=8
