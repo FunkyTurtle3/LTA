@@ -14,33 +14,37 @@ public abstract class Location
     private final LinkedList<Item> items;
     private final LinkedList<Passage> passages; //Exit = Record
 
-    public Location(String name, NonPlayerCharacter npc, LinkedList<Item> items, LinkedList<Passage> passages) {
+    public Location(String name, NonPlayerCharacter npc, LinkedList<Item> items) {
         this.name = name;
         this.npc = npc;
         this.items = items;
-        this.passages = passages;
-    }
-
-    public String getDescription() {
-        String description = "";
-        return getGeneralDescription() + "\n\n" + description;
+        this.passages = new LinkedList<>();
     }
     
     public LinkedList<Passage> getPassages()
     {
         return passages;
     }
-    
+
+    public void addPassage(Passage passage) {
+        passages.add(passage);
+    }
+
     public LinkedList<Item> getItems()
     {
         return items;
+    }
+
+    public String getDescription() {
+        String description = "";
+        return getGeneralDescription() + "\n\n" + description;
     }
 
     protected abstract String getGeneralDescription();
     
     public Location hasPassageTo(String name) {
         for(int i = 0; i < passages.size(); i++) {
-            if(passages.get(i).name() == name) return passages.get(i).location();
+            if(passages.get(i).name().equals(name)) return passages.get(i).location();
         }
         return this;
     }
@@ -54,10 +58,16 @@ public abstract class Location
     
     public NonPlayerCharacter hasNPC(String name)
     {
-        if(npc.getName() == name)
+        if(npc.getName().equals(name))
         {
             return npc;
         }
         return NonPlayerCharacter.EMPTY;
     }
+
+    public void onEnter() {
+        initPassages();
+    }
+
+    protected abstract void initPassages();
 }

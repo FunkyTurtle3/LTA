@@ -1,37 +1,58 @@
-import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedList;
 
 /**
  * Beschreiben Sie hier die Klasse Map.
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author (LTA)
+ * @version (1.0.0)
  */
 public class Map
 {
-    private Location AULA;
-    private Location SCHULHOF;
+    public final Location AULA;
+    public final Location SCHULHOF;
+    public final Location CAFETERIA;
 
     public Map() {
         AULA = new Location(
             "Aula",
             new NonPlayerCharacter("Frau Thies"),
-            new LinkedList<Item>(),
-            new LinkedList<Passage>(Collections.singleton(new Passage("Schulhof", SCHULHOF))))
+            new LinkedList<>())
         {
             public String getGeneralDescription() {
                 return "Hier steht Frau Thieß mmmmmh...";
             }
+
+            public void initPassages() {
+                addPassage(new Passage("Schulhof", SCHULHOF));
+            }
         };
+
         SCHULHOF = new Location(
-            "Aula",
-            new NonPlayerCharacter("Frau Thies"),
-            new LinkedList<Item>(),
-            new LinkedList<Passage>(Collections.singleton(new Passage("Aula", AULA))))
+            "Schulhof",
+            new NonPlayerCharacter("Herr Alik"),
+            new LinkedList<>())
         {
             public String getGeneralDescription() {
-                return "Hier steht Frau Thieß mmmmmh...";
+                return "Alles grün hier";
+            }
+
+            public void initPassages() {
+                addPassage(new Passage("Aula", AULA));
+            }
+        };
+
+        CAFETERIA = new Location(
+                "Cafeteria",
+                new NonPlayerCharacter("Ablas Schwester oder so"),
+                new LinkedList<>())
+        {
+            public String getGeneralDescription() {
+                return "Schade, dass Abla weg ist";
+            }
+
+            public void initPassages() {
+                addPassage(new Passage("Aula", AULA));
+                addPassage(new Passage("Schulhof", SCHULHOF));
             }
         };
     }
