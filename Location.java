@@ -8,11 +8,11 @@ import java.util.LinkedList;
  */
 public abstract class Location
 {
-    private String name;
-    private NonPlayerCharacter npc;
+    private final String name;
+    private final NonPlayerCharacter npc;
 
-    private LinkedList<Item> items;
-    private LinkedList<Passage> passages; //Exit = Record
+    private final LinkedList<Item> items;
+    private final LinkedList<Passage> passages; //Exit = Record
 
     public Location(String name, NonPlayerCharacter npc, LinkedList<Item> items, LinkedList<Passage> passages) {
         this.name = name;
@@ -47,7 +47,7 @@ public abstract class Location
     
     public Item hasItem(String name) {
         for(int i = 0; i < items.size(); i++) {
-            if(items.get(i).getName() == name) return items.get(i);
+            if(items.get(i).getName().equals(name)) return items.get(i);
         }
         return Item.EMPTY;
     }
@@ -58,6 +58,6 @@ public abstract class Location
         {
             return npc;
         }
-        return npc.EMPTY;
+        return NonPlayerCharacter.EMPTY;
     }
 }
