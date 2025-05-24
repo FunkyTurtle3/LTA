@@ -8,9 +8,9 @@ import java.util.LinkedList;
 public class Player
 {
     private final Map map;
-    private LinkedList<Item> inventory; 
+    private final LinkedList<Item> inventory;
     private Location location;
-    private Parser parser;
+    private final Parser parser;
 
     /**
      * Konstruktor für Objekte der Klasse SpielerIn
@@ -35,7 +35,7 @@ public class Player
         if(item != Item.EMPTY) {
             inventory.addLast(item);
             return "Ok!";
-        } else return "Da ist kein solches Item!";
+        } else return "Da ist kein solcher Gegenstand!";
     }
 
     public String toLocation(String name) {
