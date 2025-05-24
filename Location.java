@@ -30,6 +30,10 @@ public abstract class Location
         passages.add(passage);
     }
 
+    public void addItem(Item item) {
+        items.add(item);
+    }
+    
     public LinkedList<Item> getItems()
     {
         return items;
@@ -48,10 +52,10 @@ public abstract class Location
         }
         return this;
     }
-    
-    public Item hasItem(String name) {
+
+    public Item hasItemAndDelete(String name) {
         for(int i = 0; i < items.size(); i++) {
-            if(items.get(i).getName().equals(name)) return items.get(i);
+            if(items.get(i).getName().equals(name)) return items.remove(i);
         }
         return Item.EMPTY;
     }

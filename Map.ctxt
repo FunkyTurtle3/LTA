@@ -15,4 +15,6 @@ comment6.params=
 comment6.target=java.lang.String\ getGeneralDescription()
 comment7.params=
 comment7.target=void\ initPassages()
-numComments=8
+comment8.params=
+comment8.target=Location\ getStartLocation()
+numComments=9

@@ -9,7 +9,9 @@ public class Item
 {
     private final String name;
     private final int type;
+
     public static final Item EMPTY = new Item("", -1);
+
     public Item(String name, int type) {
        this.name = name;
        this.type = type;

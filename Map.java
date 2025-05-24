@@ -42,9 +42,9 @@ public class Map
         };
 
         CAFETERIA = new Location(
-                "Cafeteria",
-                new NonPlayerCharacter("Ablas Schwester oder so"),
-                new LinkedList<>())
+            "Cafeteria",
+            new NonPlayerCharacter("Ablas Schwester oder so"),
+            new LinkedList<>())
         {
             public String getGeneralDescription() {
                 return "Schade, dass Abla weg ist";
@@ -55,6 +55,11 @@ public class Map
                 addPassage(new Passage("Schulhof", SCHULHOF));
             }
         };
+        AULA.initPassages();
+        AULA.addItem(new Item("Capri-Sonne", 3));
     }
 
+    public Location getStartLocation() {
+        return AULA;
+    }
 }

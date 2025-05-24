@@ -7,35 +7,57 @@ import java.util.LinkedList;
  */
 public class Player
 {
+    private final Map map;
     private LinkedList<Item> inventory; 
     private Location location;
-    //private Parser parser;
+    private Parser parser;
+
     /**
      * Konstruktor für Objekte der Klasse SpielerIn
      */
-    public Player(Location location)
+    public Player()
     {
-        this.location = location; 
-        //parser = new Parser(this);
+        this.map = new Map();
+        this.location = map.getStartLocation();
+        this.inventory = new LinkedList<>();
+        parser = new Parser();
     }
 
-    //public int getNumberKeys()
-    //{
-    //    return inventory.getCount();
-    //}
-    
-    private void setLocation(Location newLoc)
-    {
-        location = newLoc;
+    public void input(String input) {
+        System.out.println("\nDu: " + input + "\n"); 
+        Command command = parser.createCommand(input);
+        System.out.println("Spiel: " + command.command().execute(this, command.input()));
     }
-    
-    public void takeItem(Item newItem)
+
+    public String takeItem(String name)
     {
-        inventory.addLast(newItem);
+        Item item = location.hasItemAndDelete(name);
+        if(item != Item.EMPTY) {
+            inventory.addLast(item);
+            return "Ok!";
+        } else return "Da ist kein solches Item!";
     }
-    
-    public void removeItem(Item oldItem)
-    {
-        inventory.remove(oldItem);
+
+    public String toLocation(String name) {
+        Location location = this.location.hasPassageTo(name);
+        if(this.location != location ) {
+            this.location = location;
+            this.location.initPassages();
+            return location.getDescription();
+        } else return "Das geht leider nicht!";
+    }
+
+    public String dropItem(String name) {
+        for(int i = 0; i < inventory.size(); i++) {
+            if(inventory.get(i).getName().equals(name)) {
+                location.addItem(inventory.remove(i));
+                return "Ok!";
+            }
+        }
+        return "Du hast keinen solchen Gegenstand in deinem Inventar!";
+    }
+
+    public String invalidInput(String input) {
+        return "Das verstehe ich nicht";
     }
 }
