@@ -36,12 +36,7 @@ public class GUI {
         inputPanel.add(inputField);
 
         JButton inputButton = new JButton("Enter");
-        inputButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                executeInput();
-            }
-        });
+        inputButton.addActionListener(e -> executeInput());
         inputPanel.add(inputButton);
 
         return inputPanel;
