@@ -7,13 +7,12 @@ import java.util.LinkedList;
  */
 public class GameEngine
 {
-    private final Map map;
     private final LinkedList<Item> inventory;
     private Location location;
     private final Parser parser;
 
     public GameEngine() {
-        this.map = new Map();
+        Map map = new Map();
         this.location = map.getStartLocation();
         this.inventory = new LinkedList<>();
         parser = new Parser();
