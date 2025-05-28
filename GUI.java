@@ -1,13 +1,10 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.*;
 import javax.swing.*;
 public class GUI {
-    private JFrame frame;
     private GameEngine gameEngine;
     private JTextField inputField;
     private JTextArea outputField;
-    private JButton inputButton;
 
     public GUI(){
         generateWindow();
@@ -15,7 +12,7 @@ public class GUI {
 
     private void generateWindow(){
         gameEngine = new GameEngine();
-        frame = new JFrame("Leibniz Text Adventure");
+        JFrame frame = new JFrame("Leibniz Text Adventure");
         frame.setSize(1000, 1000);
         frame.setResizable(true);
 
@@ -31,14 +28,14 @@ public class GUI {
 
     private JPanel generateInputField(){
         JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new BoxLayout(inputPanel, 2));
+        inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.LINE_AXIS));
 
         inputField = new JTextField();
         inputField.setSize(500, 60);
         inputField.setToolTipText("Eingabe");
         inputPanel.add(inputField);
 
-        inputButton = new JButton("Enter");
+        JButton inputButton = new JButton("Enter");
         inputButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
