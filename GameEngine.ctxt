@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=GameEngine
+comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ SpielerIn.\r\n\ \r\n\ @author\ LTA\r\n\ @version\ 1.0.0\r\n
+comment1.params=
+comment1.target=GameEngine()
+comment2.params=input
+comment2.target=void\ input(java.lang.String)
+comment3.params=name
+comment3.target=java.lang.String\ takeItem(java.lang.String)
+comment4.params=name
+comment4.target=java.lang.String\ toLocation(java.lang.String)
+comment5.params=name
+comment5.target=java.lang.String\ dropItem(java.lang.String)
+numComments=6

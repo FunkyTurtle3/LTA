@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Player
+comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ SpielerIn.\r\n\ \r\n\ @author\ Mila\ D.\ und\ Ella\ S.\ \r\n\ @version\ 1.1\r\n
+comment1.params=location
+comment1.target=Player(Location)
+comment1.text=\r\n\ Konstruktor\ f\u00FCr\ Objekte\ der\ Klasse\ SpielerIn\r\n
+comment2.params=newLoc
+comment2.target=void\ setLocation(Location)
+comment3.params=newItem
+comment3.target=void\ takeItem(Item)
+comment4.params=oldItem
+comment4.target=void\ removeItem(Item)
+numComments=5

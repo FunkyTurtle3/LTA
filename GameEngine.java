@@ -19,17 +19,16 @@ public class GameEngine
         parser = new Parser();
     }
 
-    public void input(String input) {
-        System.out.println("\nDu: " + input + "\n"); 
+    public String input(String input) {
         Command command = parser.createCommand(input);
-        System.out.println("Spiel: " + command.command().execute(this, command.input()));
+        return "\nDu: " + input + "\n \n" + command.command().execute(this, command.input());
     }
 
     public String takeItem(String name) {
         Item item = location.takeItem(name);
         if(item != Item.EMPTY) {
             inventory.addLast(item);
-            return "Ok!";
+            return "Ok!\n";
         } else return "Da ist kein solcher Gegenstand!";
     }
 
@@ -39,16 +38,16 @@ public class GameEngine
             this.location = location;
             this.location.initPassages();
             return location.getDescription();
-        } else return "Das geht leider nicht!";
+        } else return "Das geht leider nicht!\n";
     }
 
     public String dropItem(String name) {
         for(int i = 0; i < inventory.size(); i++) {
             if(inventory.get(i).getName().equals(name)) {
                 location.addItem(inventory.remove(i));
-                return "Ok!";
+                return "Ok!\n";
             }
         }
-        return "Du hast keinen solchen Gegenstand in deinem Inventar!";
+        return "Du hast keinen solchen Gegenstand in deinem Inventar!\n";
     }
 }
