@@ -49,7 +49,6 @@ public class GUI {
 
     private JPanel generateOutputField(){
         JPanel outputPanel = new JPanel();
-        outputPanel.setLayout(new BoxLayout(outputPanel, 1));
 
         outputField = new JTextArea();
         outputField.setSize(500, 60);
