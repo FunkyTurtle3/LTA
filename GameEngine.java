@@ -2,21 +2,17 @@ import java.util.LinkedList;
 /**
  * Beschreiben Sie hier die Klasse SpielerIn.
  * 
- * @author Mila D. und Ella S. 
- * @version 1.1
+ * @author LTA
+ * @version 1.0.0
  */
-public class Player
+public class GameEngine
 {
     private final Map map;
     private final LinkedList<Item> inventory;
     private Location location;
     private final Parser parser;
 
-    /**
-     * Konstruktor für Objekte der Klasse SpielerIn
-     */
-    public Player()
-    {
+    public GameEngine() {
         this.map = new Map();
         this.location = map.getStartLocation();
         this.inventory = new LinkedList<>();
@@ -29,9 +25,8 @@ public class Player
         System.out.println("Spiel: " + command.command().execute(this, command.input()));
     }
 
-    public String takeItem(String name)
-    {
-        Item item = location.hasItemAndDelete(name);
+    public String takeItem(String name) {
+        Item item = location.takeItem(name);
         if(item != Item.EMPTY) {
             inventory.addLast(item);
             return "Ok!";
@@ -55,9 +50,5 @@ public class Player
             }
         }
         return "Du hast keinen solchen Gegenstand in deinem Inventar!";
-    }
-
-    public String invalidInput(String input) {
-        return "Das verstehe ich nicht";
     }
 }

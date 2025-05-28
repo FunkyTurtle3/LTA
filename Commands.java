@@ -1,8 +1,8 @@
 public enum Commands {
-    ZU((player,input) -> player.toLocation(input)),
-    NIMM((player, input) -> player.takeItem(input)),
-    GIB((player, input) -> player.dropItem(input)),
-    INVALIDINPUT((player, input) -> player.invalidInput(input));
+    ZU((gameEngine, input) -> gameEngine.toLocation(input)),
+    NIMM((gameEngine, input) -> gameEngine.takeItem(input)),
+    GIB((gameEngine, input) -> gameEngine.dropItem(input)),
+    INVALIDINPUT((gameEngine, input) -> "Das verstehe ich nicht");
 
     private final Playable playable;
 
@@ -10,7 +10,7 @@ public enum Commands {
         this.playable = playable;
     }
 
-    public String execute(Player player, String input){
-        return playable.execute(player, input);
+    public String execute(GameEngine gameEngine, String input){
+        return playable.execute(gameEngine, input);
     }
 }

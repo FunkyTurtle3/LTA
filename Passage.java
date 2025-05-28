@@ -1,8 +1,8 @@
 /**
  * Beschreiben Sie hier die Klasse Exit.
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author (LTA)
+ * @version (1.0.0)
  */
 public record Passage(String name, Location location)
 {

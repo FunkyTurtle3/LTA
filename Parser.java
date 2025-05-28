@@ -1,5 +1,5 @@
 public class Parser {
-    private String input;
+
     private String adress;
     private String command;
 

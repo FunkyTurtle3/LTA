@@ -1,4 +1,4 @@
 @FunctionalInterface
 public interface Playable {
-    String execute(Player player, String input);
+    String execute(GameEngine gameEngine, String input);
 }

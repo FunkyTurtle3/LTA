@@ -53,7 +53,7 @@ public abstract class Location
         return this;
     }
 
-    public Item hasItemAndDelete(String name) {
+    public Item takeItem(String name) {
         for(int i = 0; i < items.size(); i++) {
             if(items.get(i).getName().toLowerCase().equals(name.toLowerCase())) return items.remove(i);
         }
