@@ -45,6 +45,7 @@ public class GUI {
         JPanel outputPanel = new JPanel();
 
         outputField = new JTextArea();
+        outputField.setEditable(false);
         outputField.setSize(500, 60);
         outputPanel.add(outputField);
 
@@ -53,6 +54,7 @@ public class GUI {
 
     private void executeInput(){
         String input = inputField.getText();
+        inputField.setText("");
         outputField.setText(outputField.getText() + gameEngine.input(input));
     }
 }
