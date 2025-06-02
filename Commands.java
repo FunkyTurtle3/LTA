@@ -2,7 +2,7 @@ public enum Commands {
     ZU((gameEngine, input) -> gameEngine.toLocation(input)),
     NIMM((gameEngine, input) -> gameEngine.takeItem(input)),
     GIB((gameEngine, input) -> gameEngine.dropItem(input)),
-    INVALIDINPUT((gameEngine, input) -> "Das verstehe ich nicht");
+    INVALIDINPUT((gameEngine, input) -> "Das verstehe ich nicht\n");
 
     private final Playable playable;
 

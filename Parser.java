@@ -12,8 +12,8 @@ public class Parser {
     }
 
     public Command createCommand(String input){
-        parse(input);
-        try{
+        try {
+            parse(input);
             return new Command(Commands.valueOf(command.toUpperCase()), adress);
         } catch (Exception e){
             return new Command(Commands.INVALIDINPUT, adress);
