@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=GUI
+comment1.params=
+comment1.target=GUI()
+comment2.params=
+comment2.target=void\ generateWindow()
+comment3.params=
+comment3.target=javax.swing.JPanel\ generateInputField()
+comment4.params=
+comment4.target=javax.swing.JPanel\ generateOutputField()
+comment5.params=
+comment5.target=void\ executeInput()
+numComments=6
