@@ -19,14 +19,6 @@ public class GameEngine
         parser = new Parser();
     }
 
-    public String getInventoryDescription() {
-        StringBuilder des = new StringBuilder();
-        for (Item item : inventory) {
-            des.append(item.getName()).append("\n");
-        }
-        return des.toString();
-    }
-
     public String input(String input) {
         Command command = parser.createCommand(input.toLowerCase());
         String output = "";
@@ -36,17 +28,46 @@ public class GameEngine
             case GIB -> output = dropItem(command.input());
             case NIMM -> output = takeItem(command.input());
             case STARTE -> output = reset(command.input());
+            case INFO -> output = getInfo();
             case INVALIDINPUT -> output = "Das verstehe ich nicht!\n";
         }
 
         return "\nDu: " + input + "\n \n" + output;
     }
 
+    public String getInfo() {
+        return """
+                
+                Du befindest dich am Leibniz-Gymnasium,
+                hier musst du ein Quiz abschließen um den großen Preis zu gewinnen.
+                
+                Die Befehle die du nutzen kannst lauten:\
+                
+                "Starte neu": um das Spiel von vorne zu beginnen\
+                
+                "Info": um Informationen über die Spielweise zu erhalten\
+                
+                "Zu <Raum>": um zu einem anderen Ort zu gehen\
+                
+                "Nimm <Gegenstand>": um einen Gegenstand aufzuheben\
+                
+                "Gib <Gegenstand>": um einen Gegenstand abzulegen""";
+    }
+
+    public String getInventoryDescription() {
+        StringBuilder des = new StringBuilder();
+        for (Item item : inventory) {
+            des.append(item.getName()).append("\n");
+        }
+        return des.toString();
+    }
+
     public String reset(String input) {
         if(input.equalsIgnoreCase("neu")) {
             Map map = new Map();
             this.location = map.getStartLocation();
-            return location.getDescription();
+            this.location.onEnter();
+            return "";
         } else return "Gebe \"Starte neu\" ein um erneut zu beginnen!";
     }
 

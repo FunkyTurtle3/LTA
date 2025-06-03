@@ -3,5 +3,6 @@ public enum Commands {
     NIMM,
     GIB,
     INVALIDINPUT,
-    STARTE;
+    STARTE,
+    INFO;
 }

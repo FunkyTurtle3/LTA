@@ -179,8 +179,9 @@ public class GUI {
     private void executeInput() {
         if (!this.inputField.getText().isEmpty()) {
             this.outputField.setText(this.outputField.getText() + this.gameEngine.input(this.inputField.getText()));
-            this.inputField.setText("");
         }
+        if (this.inputField.getText().equalsIgnoreCase("starte neu")) this.outputField.setText("\nWillkommen zum Leibniz Text Abenteuer! \n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Zu Aula\" in das Feld unten\n");
+        this.inputField.setText("");
         this.inventoryField.setText("Dein Inventar:\n" + this.gameEngine.getInventoryDescription());
     }
 }

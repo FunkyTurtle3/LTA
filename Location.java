@@ -43,7 +43,7 @@ public abstract class Location
         StringBuilder description = new StringBuilder();
         if(!items.isEmpty()) description.append("Hier findest du: ").append(this.getItemDescription()).append("\n");
         if(!passages.isEmpty()) description.append("Von hier gelangst du zu: ").append(this.getPassageDescription()).append("\n");
-        if(npc != null) description.append(npc.getName()).append(" wartet bereits auf dich").append("\n");
+        if(npc != NonPlayerCharacter.EMPTY) description.append(npc.getName()).append(" wartet bereits auf dich").append("\n");
         return getGeneralDescription() + "\n\n" + description;
     }
 
@@ -51,14 +51,14 @@ public abstract class Location
 
     public Location hasPassageTo(String name) {
         for(int i = 0; i < passages.size(); i++) {
-            if(passages.get(i).name().toLowerCase().equals(name.toLowerCase())) return passages.get(i).location();
+            if(passages.get(i).name().equalsIgnoreCase(name)) return passages.get(i).location();
         }
         return this;
     }
 
     public Item takeItem(String name) {
         for(int i = 0; i < items.size(); i++) {
-            if(items.get(i).getName().toLowerCase().equals(name.toLowerCase())) return items.remove(i);
+            if(items.get(i).getName().equalsIgnoreCase(name)) return items.remove(i);
         }
         return Item.EMPTY;
     }
