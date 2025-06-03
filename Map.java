@@ -8,6 +8,7 @@ import java.util.LinkedList;
  */
 public class Map
 {
+    public final Location START_ROOM;
     public final Location AULA;
     public final Location SCHULHOF;
     public final Location CAFETERIA;
@@ -47,6 +48,20 @@ public class Map
      public final Location N25;
     */
     public Map() {
+        START_ROOM = new Location(
+                "Start_Room",
+                NonPlayerCharacter.EMPTY,
+                new LinkedList<>())
+        {
+            public String getGeneralDescription()
+            {
+                return "";
+            }
+
+            public void initPassages() {
+                addPassage(new Passage("Aula", AULA));
+            }
+        };
         AULA = new Location(
             "Aula",
             new NonPlayerCharacter("Frau Thies"),
@@ -91,12 +106,11 @@ public class Map
                 addPassage(new Passage("Schulhof", SCHULHOF));
             }
         };
-        AULA.initPassages();
         AULA.addItem(new Item("Capri Sonne"));
         SCHULHOF.addItem(new Item("Stein"));
     }
 
     public Location getStartLocation() {
-        return AULA;
+        return START_ROOM;
     }
 }

@@ -17,8 +17,9 @@ public class GUI {
 
     public GUI(){
         setUpFont();
+        this.gameEngine = new GameEngine();
         generateWindow();
-        this.outputField.setText("\nWillkommen zum Leibniz Text Abenteuer! \n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Start\" in das Feld unten\n");
+        this.outputField.setText("\nWillkommen zum Leibniz Text Abenteuer! \n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Zu Aula\" in das Feld unten\n");
         this.inventoryField.setText("Dein Inventar:\n" + this.gameEngine.getInventoryDescription());
     }
 
@@ -31,7 +32,6 @@ public class GUI {
     }
 
     private void generateWindow() {
-        this.gameEngine = new GameEngine();
         JFrame frame = new JFrame("Leibniz Text Adventure");
         frame.setUndecorated(true);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);

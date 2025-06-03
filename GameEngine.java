@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 /**
- * Beschreiben Sie hier die Klasse SpielerIn.
+ * Beschreiben Sie hier die Klasse GameEngine.
  * 
  * @author LTA
  * @version 1.1.0
@@ -14,6 +14,7 @@ public class GameEngine
     public GameEngine() {
         Map map = new Map();
         this.location = map.getStartLocation();
+        this.location.onEnter();
         this.inventory = new LinkedList<>();
         parser = new Parser();
     }
@@ -34,10 +35,19 @@ public class GameEngine
             case ZU -> output = toLocation(command.input());
             case GIB -> output = dropItem(command.input());
             case NIMM -> output = takeItem(command.input());
+            case STARTE -> output = reset(command.input());
             case INVALIDINPUT -> output = "Das verstehe ich nicht!\n";
         }
 
         return "\nDu: " + input + "\n \n" + output;
+    }
+
+    public String reset(String input) {
+        if(input.equalsIgnoreCase("neu")) {
+            Map map = new Map();
+            this.location = map.getStartLocation();
+            return location.getDescription();
+        } else return "Gebe \"Starte neu\" ein um erneut zu beginnen!";
     }
 
     public String takeItem(String name) {
