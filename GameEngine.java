@@ -3,7 +3,7 @@ import java.util.LinkedList;
  * Beschreiben Sie hier die Klasse SpielerIn.
  * 
  * @author LTA
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class GameEngine
 {
@@ -18,9 +18,26 @@ public class GameEngine
         parser = new Parser();
     }
 
+    public String getInventoryDescription() {
+        StringBuilder des = new StringBuilder();
+        for (Item item : inventory) {
+            des.append(item.getName()).append("\n");
+        }
+        return des.toString();
+    }
+
     public String input(String input) {
-        Command command = parser.createCommand(input);
-        return "\nDu: " + input + "\n \n" + command.command().execute(this, command.input());
+        Command command = parser.createCommand(input.toLowerCase());
+        String output = "";
+
+        switch (command.command()) {
+            case ZU -> output = toLocation(command.input());
+            case GIB -> output = dropItem(command.input());
+            case NIMM -> output = takeItem(command.input());
+            case INVALIDINPUT -> output = "Das verstehe ich nicht!\n";
+        }
+
+        return "\nDu: " + input + "\n \n" + output;
     }
 
     public String takeItem(String name) {
@@ -28,21 +45,21 @@ public class GameEngine
         if(item != Item.EMPTY) {
             inventory.addLast(item);
             return "Ok!\n";
-        } else return "Da ist kein solcher Gegenstand!";
+        } else return "Da ist kein solcher Gegenstand!\n";
     }
 
     public String toLocation(String name) {
         Location location = this.location.hasPassageTo(name);
-        if(this.location != location ) {
+        if(this.location != location) {
             this.location = location;
-            this.location.initPassages();
+            this.location.onEnter();
             return location.getDescription();
         } else return "Das geht leider nicht!\n";
     }
 
     public String dropItem(String name) {
         for(int i = 0; i < inventory.size(); i++) {
-            if(inventory.get(i).getName().equals(name)) {
+            if(inventory.get(i).getName().equalsIgnoreCase(name)) {
                 location.addItem(inventory.remove(i));
                 return "Ok!\n";
             }

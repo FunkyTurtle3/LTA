@@ -52,8 +52,9 @@ public class Map
             new NonPlayerCharacter("Frau Thies"),
             new LinkedList<>())
         {
-            public String getGeneralDescription() {
-                return "Hier steht Frau Thieß mmmmmh...";
+            public String getGeneralDescription()
+            {
+                return "Du befindest dich in der Aula.";
             }
 
             public void initPassages() {
@@ -91,7 +92,8 @@ public class Map
             }
         };
         AULA.initPassages();
-        AULA.addItem(new Item("Capri-Sonne", 3));
+        AULA.addItem(new Item("Capri Sonne"));
+        SCHULHOF.addItem(new Item("Stein"));
     }
 
     public Location getStartLocation() {

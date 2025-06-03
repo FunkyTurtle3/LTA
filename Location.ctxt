@@ -1,14 +1,18 @@
 #BlueJ class context
 comment0.target=Location
-comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Location.\r\n\ \r\n\ @author\ (LTA)\ \r\n\ @version\ (1.0.0)\r\n
+comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Location.\r\n\r\n\ @author\ (LTA)\r\n\ @version\ (1.0.0)\r\n
 comment1.params=name\ npc\ items
 comment1.target=Location(java.lang.String,\ NonPlayerCharacter,\ java.util.LinkedList)
 comment10.params=name
 comment10.target=NonPlayerCharacter\ hasNPC(java.lang.String)
 comment11.params=
-comment11.target=void\ onEnter()
+comment11.target=java.lang.String\ getItemDescription()
 comment12.params=
-comment12.target=void\ initPassages()
+comment12.target=java.lang.String\ getPassageDescription()
+comment13.params=
+comment13.target=void\ onEnter()
+comment14.params=
+comment14.target=void\ initPassages()
 comment2.params=
 comment2.target=java.util.LinkedList\ getPassages()
 comment3.params=passage
@@ -25,4 +29,4 @@ comment8.params=name
 comment8.target=Location\ hasPassageTo(java.lang.String)
 comment9.params=name
 comment9.target=Item\ takeItem(java.lang.String)
-numComments=13
+numComments=15

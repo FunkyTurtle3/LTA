@@ -5,10 +5,8 @@ public class Parser {
 
     public void parse(String input)
     {
-        //int space = input.indexOf(' ');
         command = input.split(" ")[0];
-        adress = input.split(" ")[1];
-        command.toLowerCase();
+        adress = input.substring(command.length() + 1);
     }
 
     public Command createCommand(String input){

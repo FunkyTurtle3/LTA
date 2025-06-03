@@ -1,7 +1,3 @@
 #BlueJ class context
 comment0.target=Commands
-comment1.params=playable
-comment1.target=Commands(Playable)
-comment2.params=gameEngine\ input
-comment2.target=java.lang.String\ execute(GameEngine,\ java.lang.String)
-numComments=3
+numComments=1

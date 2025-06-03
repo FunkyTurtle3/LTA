@@ -2,9 +2,9 @@ import java.util.LinkedList;
 
 /**
  * Beschreiben Sie hier die Klasse Location.
- * 
- * @author (LTA) 
- * @version (1.0.0)
+ *
+ * @author (LTA)
+ * @version (1.1.0)
  */
 public abstract class Location
 {
@@ -20,7 +20,7 @@ public abstract class Location
         this.items = items;
         this.passages = new LinkedList<>();
     }
-    
+
     public LinkedList<Passage> getPassages()
     {
         return passages;
@@ -33,19 +33,22 @@ public abstract class Location
     public void addItem(Item item) {
         items.add(item);
     }
-    
+
     public LinkedList<Item> getItems()
     {
         return items;
     }
 
     public String getDescription() {
-        String description = "";
+        StringBuilder description = new StringBuilder();
+        if(!items.isEmpty()) description.append("Hier findest du: ").append(this.getItemDescription()).append("\n");
+        if(!passages.isEmpty()) description.append("Von hier gelangst du zu: ").append(this.getPassageDescription()).append("\n");
+        if(npc != null) description.append(npc.getName()).append(" wartet bereits auf dich").append("\n");
         return getGeneralDescription() + "\n\n" + description;
     }
 
     protected abstract String getGeneralDescription();
-    
+
     public Location hasPassageTo(String name) {
         for(int i = 0; i < passages.size(); i++) {
             if(passages.get(i).name().toLowerCase().equals(name.toLowerCase())) return passages.get(i).location();
@@ -59,7 +62,7 @@ public abstract class Location
         }
         return Item.EMPTY;
     }
-    
+
     public NonPlayerCharacter hasNPC(String name)
     {
         if(npc.getName().equals(name))
@@ -69,8 +72,28 @@ public abstract class Location
         return NonPlayerCharacter.EMPTY;
     }
 
+    public String getItemDescription()
+    {
+        LinkedList<String> x = new LinkedList<>();
+        for(int i = 0; i < this.getItems().size(); i++)
+        {
+            x.add(this.getItems().get(i).getName());
+        }
+        return x.toString().substring(1, x.toString().length() - 1);
+    }
+
+    public String getPassageDescription()
+    {
+        LinkedList<String> x = new LinkedList<>();
+        for(int p = 0; p < passages.size(); p++)
+        {
+            x.add(passages.get(p).name());
+        }
+        return x.toString().substring(1, x.toString().length() - 1);
+    }
+
     public void onEnter() {
-        initPassages();
+       if(passages.isEmpty()) initPassages();
     }
 
     protected abstract void initPassages();
