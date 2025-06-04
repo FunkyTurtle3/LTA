@@ -3,31 +3,38 @@ import java.util.LinkedList;
 /**
  * Beschreiben Sie hier die Klasse Location.
  *
- * @author (LTA)
+ * @author (Lasse, Victor, Leander, Ella, Mila)
  * @version (1.1.0)
  */
-public abstract class Location
+public class Location
 {
     private final String name;
     private final NonPlayerCharacter npc;
 
     private final LinkedList<Item> items;
-    private final LinkedList<Passage> passages; //Exit = Record
+    private final LinkedList<Location> passages;
+    private final String description;
 
-    public Location(String name, NonPlayerCharacter npc, LinkedList<Item> items) {
+    public Location(String name, NonPlayerCharacter npc, LinkedList<Item> items, String description) {
         this.name = name;
         this.npc = npc;
         this.items = items;
+        this.description = description;
         this.passages = new LinkedList<>();
     }
 
-    public LinkedList<Passage> getPassages()
+    public LinkedList<Location> getPassages()
     {
         return passages;
     }
 
-    public void addPassage(Passage passage) {
+    public String getName() {
+        return name;
+    }
+
+    public Location addPassage(Location passage) {
         passages.add(passage);
+        return this;
     }
 
     public void addItem(Item item) {
@@ -47,11 +54,14 @@ public abstract class Location
         return getGeneralDescription() + "\n\n" + description;
     }
 
-    protected abstract String getGeneralDescription();
+    protected String getGeneralDescription()
+    {
+        return this.description;
+    }
 
     public Location hasPassageTo(String name) {
         for(int i = 0; i < passages.size(); i++) {
-            if(passages.get(i).name().equalsIgnoreCase(name)) return passages.get(i).location();
+            if(passages.get(i).getName().equalsIgnoreCase(name)) return passages.get(i);
         }
         return this;
     }
@@ -87,14 +97,8 @@ public abstract class Location
         LinkedList<String> x = new LinkedList<>();
         for(int p = 0; p < passages.size(); p++)
         {
-            x.add(passages.get(p).name());
+            x.add(passages.get(p).getName());
         }
         return x.toString().substring(1, x.toString().length() - 1);
     }
-
-    public void onEnter() {
-       if(passages.isEmpty()) initPassages();
-    }
-
-    protected abstract void initPassages();
 }

@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
 public class GUI {
-    private GameEngine gameEngine;
+    private final GameEngine gameEngine;
     private JTextField inputField;
     private JTextArea outputField;
     private JTextArea inventoryField;
@@ -15,6 +15,10 @@ public class GUI {
         new GUI();
     }
 
+    /**
+     * Konstruktor für die GUI Klasse
+     * @author (Lasse, Leander)
+     */
     public GUI(){
         setUpFont();
         this.gameEngine = new GameEngine();
@@ -23,6 +27,10 @@ public class GUI {
         this.inventoryField.setText("Dein Inventar:\n" + this.gameEngine.getInventoryDescription());
     }
 
+    /**
+     * Konstruktor für die GUI Klasse
+     * @author (Lasse, Victor)
+     */
     private void setUpFont() {
         try {
             this.font = Font.createFont(Font.TRUETYPE_FONT, new File("assets/font/eleganttypewriter.ttf")).deriveFont(30f);
@@ -31,6 +39,10 @@ public class GUI {
         }
     }
 
+    /**
+     * Konstruktor für die GUI Klasse
+     * @author (Lasse, Leander)
+     */
     private void generateWindow() {
         JFrame frame = new JFrame("Leibniz Text Adventure");
         frame.setUndecorated(true);
@@ -42,6 +54,10 @@ public class GUI {
         frame.setVisible(true);
     }
 
+    /**
+     * Konstruktor für die GUI Klasse
+     * @author (Lasse, Leander)
+     */
     private JPanel generateInputField() {
         JPanel inputPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -73,6 +89,10 @@ public class GUI {
         return inputPanel;
     }
 
+    /**
+     * Konstruktor für die GUI Klasse
+     * @author (Lasse, Leander)
+     */
     private JButton getQuitButton() {
         JButton inputButton = new JButton("Spiel schließen");
         inputButton.setPreferredSize(new Dimension(400, 60));
@@ -85,6 +105,10 @@ public class GUI {
         return inputButton;
     }
 
+    /**
+     * Konstruktor für die GUI Klasse
+     * @author (Lasse, Leander)
+     */
     private JButton getEnterButton() {
         JButton inputButton = new JButton("Eingabe");
         inputButton.setPreferredSize(new Dimension(200, 60));
@@ -96,6 +120,10 @@ public class GUI {
         return inputButton;
     }
 
+    /**
+     * Konstruktor für die GUI Klasse
+     * @author (Lasse, Leander, Victor)
+     */
     private JPanel generateOutputField() {
         JPanel outputPanel = new JPanel(new GridBagLayout());
         this.outputField = new JTextArea();
@@ -110,6 +138,7 @@ public class GUI {
         JScrollBar verticalScrollBar = scrollOutputPane.getVerticalScrollBar();
         verticalScrollBar.setUnitIncrement(20);
         verticalScrollBar.setBlockIncrement(50);
+        //noch zu verstehen
         verticalScrollBar.setUI(new BasicScrollBarUI() {
             @Override
             protected void configureScrollBarColors() {
@@ -176,6 +205,10 @@ public class GUI {
         return outputPanel;
     }
 
+    /**
+     * Konstruktor für die GUI Klasse
+     * @author (Leander, Victor)
+     */
     private void executeInput() {
         if (!this.inputField.getText().isEmpty()) {
             this.outputField.setText(this.outputField.getText() + this.gameEngine.input(this.inputField.getText()));

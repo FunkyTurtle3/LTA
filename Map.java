@@ -31,81 +31,52 @@ public class Map
     public final Location S26;
     public final Location S27;
 
-     public final Location N01;
-     public final Location N02;
-     public final Location N03;
-     public final Location N04;
-     public final Location N05;
-     public final Location N11;
-     public final Location N12;
-     public final Location N13;
-     public final Location N14;
-     public final Location N15;
-     public final Location N21;
-     public final Location N22;
-     public final Location N23;
-     public final Location N24;
-     public final Location N25;
-    */
+    public final Location N01;
+    public final Location N02;
+    public final Location N03;
+    public final Location N04;
+    public final Location N05;
+    public final Location N11;
+    public final Location N12;
+    public final Location N13;
+    public final Location N14;
+    public final Location N15;
+    public final Location N21;
+    public final Location N22;
+    public final Location N23;
+    public final Location N24;
+    public final Location N25;
+     */
     public Map() {
         START_ROOM = new Location(
-                "Start_Room",
-                NonPlayerCharacter.EMPTY,
-                new LinkedList<>())
-        {
-            public String getGeneralDescription()
-            {
-                return "";
-            }
+            "Start_Room",
+            NonPlayerCharacter.EMPTY,
+            new LinkedList<>(),
+        "");
 
-            public void initPassages() {
-                addPassage(new Passage("Aula", AULA));
-            }
-        };
         AULA = new Location(
             "Aula",
             new NonPlayerCharacter("Frau Thies"),
-            new LinkedList<>())
-        {
-            public String getGeneralDescription()
-            {
-                return "Du befindest dich in der Aula.";
-            }
-
-            public void initPassages() {
-                addPassage(new Passage("Schulhof", SCHULHOF));
-                addPassage(new Passage("Cafeteria", CAFETERIA));
-            }
-        };
+            new LinkedList<>(),
+        "Du befindest dich in der Aula");
 
         SCHULHOF = new Location(
             "Schulhof",
             new NonPlayerCharacter("Herr Alik"),
-            new LinkedList<>())
-        {
-            public String getGeneralDescription() {
-                return "Alles grün hier";
-            }
-
-            public void initPassages() {
-                addPassage(new Passage("Aula", AULA));
-            }
-        };
+            new LinkedList<>(),
+        "Alles grün hier");
 
         CAFETERIA = new Location(
             "Cafeteria",
             new NonPlayerCharacter("Ablas Schwester oder so"),
-            new LinkedList<>())
-        {
-            public String getGeneralDescription() {
-                return "Schade, dass Abla weg ist";
-            }
+            new LinkedList<>(),
+        "Schade dass Abla weg ist");
 
-            public void initPassages() {
-                addPassage(new Passage("Aula", AULA));
-                addPassage(new Passage("Schulhof", SCHULHOF));
-            }
-        };
+        START_ROOM.addPassage(AULA);
+        AULA.addPassage(SCHULHOF).addPassage(CAFETERIA);
+        SCHULHOF.addPassage(AULA);
+        CAFETERIA.addPassage(AULA);
+
         AULA.addItem(new Item("Capri Sonne"));
         SCHULHOF.addItem(new Item("Stein"));
     }

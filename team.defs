@@ -1,17 +1,17 @@
-#Sat May 24 15:53:10 CEST 2025
-bluej.teamsettings.git.branch=
-bluej.teamsettings.git.protocol=https
-bluej.teamsettings.git.repositoryPrefix=/FunkyTurtle3/LTA.git
-bluej.teamsettings.git.server=github.com
+#Wed Jun 04 09:54:53 CEST 2025
 bluej.teamsettings.ignore1=.*\\.class
-bluej.teamsettings.ignore2=bluej\\.pkh
-bluej.teamsettings.ignore3=team\\.defs
-bluej.teamsettings.ignore4=.*\\.ctxt
-bluej.teamsettings.ignore5=.*\\~
-bluej.teamsettings.ignore6=.*\\\#
-bluej.teamsettings.ignore7=.*\\\#backup
-bluej.teamsettings.ignore8=\\.DS_Store
-bluej.teamsettings.user=FunkyTurtl3
-bluej.teamsettings.vcs=git
-bluej.teamsettings.yourEmail=lasse2008s@icloud.com
+bluej.teamsettings.git.server=github.com
 bluej.teamsettings.yourName=FunkyTurtl3
+bluej.teamsettings.yourEmail=lasse2008s@icloud.com
+bluej.teamsettings.git.repositoryPrefix=/FunkyTurtle3/LTA.git
+bluej.teamsettings.vcs=git
+bluej.teamsettings.user=FunkyTurtl3
+bluej.teamsettings.ignore3=team\\.defs
+bluej.teamsettings.ignore2=bluej\\.pkh
+bluej.teamsettings.ignore5=.*\\~
+bluej.teamsettings.git.branch=
+bluej.teamsettings.ignore4=.*\\.ctxt
+bluej.teamsettings.ignore7=.*\\\#backup
+bluej.teamsettings.ignore6=.*\\\#
+bluej.teamsettings.git.protocol=https
+bluej.teamsettings.ignore8=\\.DS_Store

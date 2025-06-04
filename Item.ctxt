@@ -1,8 +1,8 @@
 #BlueJ class context
 comment0.target=Item
-comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Item.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
-comment1.params=name\ type
-comment1.target=Item(java.lang.String,\ int)
+comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Item.\r\n\ \r\n\ @author\ (LTA)\r\n\ @version\ (1.1.0)\r\n
+comment1.params=name
+comment1.target=Item(java.lang.String)
 comment2.params=
 comment2.target=java.lang.String\ getName()
 numComments=3

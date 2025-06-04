@@ -2,7 +2,7 @@ import java.util.LinkedList;
 /**
  * Beschreiben Sie hier die Klasse GameEngine.
  * 
- * @author LTA
+ * @author (Lasse, Leander, Victor)
  * @version 1.1.0
  */
 public class GameEngine
@@ -14,7 +14,6 @@ public class GameEngine
     public GameEngine() {
         Map map = new Map();
         this.location = map.getStartLocation();
-        this.location.onEnter();
         this.inventory = new LinkedList<>();
         parser = new Parser();
     }
@@ -37,7 +36,6 @@ public class GameEngine
 
     public String getInfo() {
         return """
-                
                 Du befindest dich am Leibniz-Gymnasium,
                 hier musst du ein Quiz abschließen um den großen Preis zu gewinnen.
                 
@@ -51,7 +49,9 @@ public class GameEngine
                 
                 "Nimm <Gegenstand>": um einen Gegenstand aufzuheben\
                 
-                "Gib <Gegenstand>": um einen Gegenstand abzulegen""";
+                "Gib <Gegenstand>": um einen Gegenstand abzulegen\
+                
+                """;
     }
 
     public String getInventoryDescription() {
@@ -66,9 +66,10 @@ public class GameEngine
         if(input.equalsIgnoreCase("neu")) {
             Map map = new Map();
             this.location = map.getStartLocation();
-            this.location.onEnter();
             return "";
-        } else return "Gebe \"Starte neu\" ein um erneut zu beginnen!";
+        } else if(input.equalsIgnoreCase("spiel") && this.location.getName().equalsIgnoreCase("Start_Room")) {
+            return toLocation("Aula");
+        } else return "Gebe \"Starte neu/Spiel\" ein um erneut zu beginnen!\n";
     }
 
     public String takeItem(String name) {
@@ -83,7 +84,6 @@ public class GameEngine
         Location location = this.location.hasPassageTo(name);
         if(this.location != location) {
             this.location = location;
-            this.location.onEnter();
             return location.getDescription();
         } else return "Das geht leider nicht!\n";
     }
