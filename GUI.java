@@ -9,7 +9,7 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
  * Das Graphical User Interface ist dafür zuständig dem Spieler anzuzeigen was die GameEngine (Attribut) ausgibt.
  */
 public class GUI {
-    private final String START_DESCRIPTION = "\nWillkommen zum Leibniz Text Abenteuer!  "+"Hier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten\n";
+    private final String START_DESCRIPTION = "\nWillkommen zum Leibniz Text Abenteuer!\n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten\n";
     private final GameEngine gameEngine;
     private JTextField inputField;
     private JTextArea outputField;
