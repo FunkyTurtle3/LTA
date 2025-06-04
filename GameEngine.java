@@ -80,6 +80,7 @@ public class GameEngine
      */public String reset(String input) {
         if(input.equalsIgnoreCase("neu")) {
             Map map = new Map();
+            this.inventory.clear();
             this.location = map.getStartLocation();
             return "";
         } else if(input.equalsIgnoreCase("spiel") && this.location.getName().equalsIgnoreCase("Start_Room")) {

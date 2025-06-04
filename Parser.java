@@ -14,7 +14,7 @@ public class Parser {
      */public void parse(String input)
     {
         command = input.split(" ")[0] != null ? input.split(" ")[0] : input;
-        adress = command.length() < input.length() ? input.substring(command.length() + 1) : "";
+        adress = command.length() < input.length() ? input.substring(command.length()).trim() : "";
     }
 
     /**
