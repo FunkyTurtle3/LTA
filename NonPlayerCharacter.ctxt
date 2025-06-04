@@ -1,8 +1,9 @@
 #BlueJ class context
 comment0.target=NonPlayerCharacter
-comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ NonPlayerCharacter.\r\n\ \r\n\ @author\ (Ihr\ Name)\ \r\n\ @version\ (eine\ Versionsnummer\ oder\ ein\ Datum)\r\n
+comment0.text=\r\n\ @author\ (Lasse,\ Ella,\ Mila)\r\n\ @version\ 1.1.0\r\n\ Ein\ NPC\ (Non\ Player\ Character\ (dt.\ Nicht\ Spieler\ Charakter))\ wird\r\n\ verwendet,\ um\ alle\ Personen\ im\ Spiel\ abgesehen\ vom\ Spieler\ zu\ repraesentieren.\r\n
 comment1.params=name
 comment1.target=NonPlayerCharacter(java.lang.String)
 comment2.params=
 comment2.target=java.lang.String\ getName()
+comment2.text=\r\n\ Gibt\ den\ Namen\ des\ NPCs\ zurueck\r\n
 numComments=3

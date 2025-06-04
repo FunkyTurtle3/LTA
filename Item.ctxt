@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Item
-comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Item.\r\n\ \r\n\ @author\ (LTA)\r\n\ @version\ (1.1.0)\r\n
+comment0.text=\r\n\ @author\ (Lasse,\ ELla,\ Mila)\r\n\ @version\ 1.1.0\r\n\ Items\ (dt.\ Gegenstaende)\ koennen\ in\ einem\ Raum\ liegen\ oder\ im\ Inventar\ des\ Spielers\ bzw.\ der\ Game\ Engine\ existieren.\r\n
 comment1.params=name
 comment1.target=Item(java.lang.String)
 comment2.params=

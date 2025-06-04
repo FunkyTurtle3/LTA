@@ -1,20 +1,23 @@
 import java.util.LinkedList;
 
 /**
- * Objekte der Klasse Location (dt. Ort) beinhalten alle notwendigen Informationen über alle Räume des Leibniz-Gymnasiums.
- * Eine Location repräsentiert digital einen Raum.
+ * Objekte der Klasse Location (dt. Ort) beinhalten alle notwendigen Informationen über alle Rauume des Leibniz-Gymnasiums.
+ * Eine Location repraesentiert digital einen Raum.
  * @author (Lasse, Victor, Leander, Ella, Mila)
  * @version (1.1.0)
  */
 public class Location
 {
-    private final String name;
-    private final NonPlayerCharacter npc;
+    private final String name; //Name des Raumes/Ortes
+    private final NonPlayerCharacter npc; //Speichert den NPC der sich im Raum/Ort befindet
 
-    private final LinkedList<Item> items;
-    private final LinkedList<Location> passages;
-    private final String description;
+    private final LinkedList<Item> items; //Stellt eine Liste zum Speichern von Gegenstaenden bereit
+    private final LinkedList<Location> passages; //Stellt eine Liste zum Speichern von Durchgaengen bereit
+    private final String description; //Attribut welches zur Beschreibung des Raum/Ort dient
 
+    /**
+     * Konstruktor der Location Klasse
+     */
     public Location(String name, NonPlayerCharacter npc, LinkedList<Item> items, String description) {
         this.name = name;
         this.npc = npc;
@@ -23,30 +26,42 @@ public class Location
         this.passages = new LinkedList<>();
     }
 
-    public LinkedList<Location> getPassages()
+    /**
+     * gibt eine Liste aller Ausgaenge zurueck
+     */public LinkedList<Location> getPassages()
     {
         return passages;
     }
 
-    public String getName() {
+    /**
+     * gibt den Namen des Raumes/Orts zurueck
+     */public String getName() {
         return name;
     }
 
-    public Location addPassage(Location passage) {
+    /**
+     * Diese Methode dient dazu neue Ausgaenge zu einem Raum/Ort hinzuzufuegen
+     */public Location addPassage(Location passage) {
         passages.add(passage);
         return this;
     }
 
-    public void addItem(Item item) {
+    /**
+     * Diese Methode dient dazu neue Gegenstände zu einem Raum/Ort hinzuzufuegen
+     */public void addItem(Item item) {
         items.add(item);
     }
 
-    public LinkedList<Item> getItems()
+    /**
+     * gibt eine Liste aller Gegenstaende zurueck
+     */public LinkedList<Item> getItems()
     {
         return items;
     }
 
-    public String getDescription() {
+    /**
+     * gibt eine Beschreibung des Raumes inklusive NPCs, Gegenstaenden oder Ausgaengen zurueck
+     */public String getDescription() {
         StringBuilder description = new StringBuilder();
         if(!items.isEmpty()) description.append("Hier findest du: ").append(this.getItemDescription()).append("\n");
         if(!passages.isEmpty()) description.append("Von hier gelangst du zu: ").append(this.getPassageDescription()).append("\n");
@@ -54,7 +69,9 @@ public class Location
         return getGeneralDescription() + "\n\n" + description;
     }
 
-    protected String getGeneralDescription()
+    /**
+     * gibt die Standardbeschreibung des jeweiligen Orts zurueck
+     */protected String getGeneralDescription()
     {
         return this.description;
     }

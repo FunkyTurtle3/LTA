@@ -1,4 +1,4 @@
 #BlueJ class context
 comment0.target=Command
-comment0.text=\r\n\ Beschreiben\ Sie\ hier\ die\ Klasse\ Exit.\r\n\r\n\ @author\ (LTA)\r\n\ @version\ (1.1.0)\r\n
+comment0.text=\r\n\ @author\ (Lasse,\ Leander)\r\n\ @version\ (1.1.0)\r\n\ Diese\ Klasse\ hat\ den\ Zweck\ dem\ Parser\ zu\ erm\u00F6glichen\ ein\ Objekt,\ bestehen\ aus\ einem\ Command\ und\ dem\ 2.\ Teil\ der\ Eingabe,\ wiederzugeben\r\n
 numComments=1

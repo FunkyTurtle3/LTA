@@ -6,37 +6,34 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 /**
  * @author (Lasse, Leander, Victor)
  * @version 1.1.0
- * Das Graphical User Interface ist dafür zuständig dem Spieler anzuzeigen was die GameEngine (Attribut) ausgibt.
+ * Das Graphical User Interface ist dafuer zustaendig dem Spieler anzuzeigen was die GameEngine (Attribut) ausgibt.
  */
 public class GUI {
-    private final String START_DESCRIPTION = "\nWillkommen zum Leibniz Text Abenteuer!\n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten\n";
+    private final String START_DESCRIPTION =
+            "\nWillkommen zum Leibniz Text Abenteuer!\n\nHier lernst du die Schule besser kennen, " +
+                    "möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten\n";
     private final GameEngine gameEngine;
     private JTextField inputField;
     private JTextArea outputField;
     private JTextArea inventoryField;
     private Font font;
-
-    public static void main(String[] args){
-        new GUI();
-    }
+    public static void main(String[] args){new GUI();}
 
     /**
      * Konstruktor für die GUI Klasse
      * @author (Lasse, Leander)
-     */
-    public GUI(){
+     */public GUI(){
         setUpFont();
         this.gameEngine = new GameEngine();
-        generateWindow();
+        createWindow();
         this.outputField.setText(START_DESCRIPTION);
         this.inventoryField.setText("Dein Inventar:\n" + this.gameEngine.getInventoryDescription());
     }
 
     /**
-     * Konstruktor für die GUI Klasse
+     * Macht den importierten "elegantTypewriter" Font für die GUI nutzbar
      * @author (Lasse, Victor)
-     */
-    private void setUpFont() {
+     */private void setUpFont() {
         try {
             this.font = Font.createFont(Font.TRUETYPE_FONT, new File("assets/font/eleganttypewriter.ttf")).deriveFont(30f);
         } catch (Exception e) {
@@ -45,25 +42,23 @@ public class GUI {
     }
 
     /**
-     * Konstruktor für die GUI Klasse
+     * Methode mit der das Fenster generiert und ausgegeben wird
      * @author (Lasse, Leander)
-     */
-    private void generateWindow() {
+     */private void createWindow() {
         JFrame frame = new JFrame("Leibniz Text Adventure");
         frame.setUndecorated(true);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         Container contentPane = frame.getContentPane();
-        contentPane.add(this.generateOutputField(), "Center");
-        contentPane.add(this.generateInputField(), "South");
+        contentPane.add(this.createOutputField(), "Center");
+        contentPane.add(this.createInputField(), "South");
         frame.setResizable(false);
         frame.setVisible(true);
     }
 
     /**
-     * Konstruktor für die GUI Klasse
+     * Methode mit der das Eingabefeld generiert und ausgegeben wird
      * @author (Lasse, Leander)
-     */
-    private JPanel generateInputField() {
+     */private JPanel createInputField() {
         JPanel inputPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         inputPanel.setPreferredSize(new Dimension(1000, 80));
@@ -81,8 +76,8 @@ public class GUI {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(0, 5, 0, 5);
         inputPanel.add(this.inputField, gbc);
-        JButton inputButton = getEnterButton();
-        JButton quitButton = getQuitButton();
+        JButton inputButton = createEnterButton();
+        JButton quitButton = createQuitButton();
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.weightx = 0.0;
@@ -95,10 +90,9 @@ public class GUI {
     }
 
     /**
-     * Konstruktor für die GUI Klasse
+     * Methode mit der der "Spiel schliessen"-Knopf generiert und ausgegeben wird
      * @author (Lasse, Leander)
-     */
-    private JButton getQuitButton() {
+     */private JButton createQuitButton() {
         JButton inputButton = new JButton("Spiel schließen");
         inputButton.setPreferredSize(new Dimension(400, 60));
         inputButton.addActionListener((e) -> System.exit(0));
@@ -111,10 +105,9 @@ public class GUI {
     }
 
     /**
-     * Konstruktor für die GUI Klasse
+     * Methode mit der der Eingabe-Knopf generiert und ausgegeben wird
      * @author (Lasse, Leander)
-     */
-    private JButton getEnterButton() {
+     */private JButton createEnterButton() {
         JButton inputButton = new JButton("Eingabe");
         inputButton.setPreferredSize(new Dimension(200, 60));
         inputButton.addActionListener((e) -> this.executeInput());
@@ -126,10 +119,9 @@ public class GUI {
     }
 
     /**
-     * Konstruktor für die GUI Klasse
+     * Methode mit der das Ausgabefeld generiert und ausgegeben wird
      * @author (Lasse, Leander, Victor)
-     */
-    private JPanel generateOutputField() {
+     */private JPanel createOutputField() {
         JPanel outputPanel = new JPanel(new GridBagLayout());
         this.outputField = new JTextArea();
         this.outputField.setEditable(false);
@@ -140,12 +132,12 @@ public class GUI {
         this.outputField.setFocusable(false);
 
         JScrollPane scrollOutputPane = new JScrollPane(this.outputField);
-        JScrollBar verticalScrollBar = scrollOutputPane.getVerticalScrollBar();
+        JScrollBar verticalScrollBar = scrollOutputPane.createVerticalScrollBar();
         verticalScrollBar.setUnitIncrement(20);
         verticalScrollBar.setBlockIncrement(50);
         //noch zu verstehen
         verticalScrollBar.setUI(createScrollBar());
-        JScrollBar horizontalScrollBar = scrollOutputPane.getHorizontalScrollBar();
+        JScrollBar horizontalScrollBar = scrollOutputPane.createHorizontalScrollBar();
         horizontalScrollBar.setUnitIncrement(20);
         horizontalScrollBar.setBlockIncrement(50);
         //noch zu verstehen
@@ -191,7 +183,9 @@ public class GUI {
         return button;
     }
 
-    private BasicScrollBarUI createScrollBar() {
+    /**
+     * Methode mit der der Schieberegler generiert und ausgegeben wird
+     */private BasicScrollBarUI createScrollBar() {
         return new BasicScrollBarUI() {
             @Override
             protected void configureScrollBarColors() {
@@ -220,7 +214,9 @@ public class GUI {
         };
     }
 
-    private void executeInput() {
+    /**
+     * Methode durch die der GameEngine der Abruf zu verarbeitung eines Inputs gegeben wird
+     */private void executeInput() {
         if (!this.inputField.getText().isEmpty()) {
             this.outputField.setText(this.outputField.getText() + this.gameEngine.input(this.inputField.getText()));
         }

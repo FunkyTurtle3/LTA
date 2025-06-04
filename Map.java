@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 /**
- * IN der Map (dt. Karte) sind alle Räume des Leibniz-Gymnasiums gespeichert. Sie werden in der Kartenerstellung kreiert.
+ * In der Map (dt. Karte) sind alle Rauume des Leibniz-Gymnasiums gespeichert. Sie werden in der Kartenerstellung kreiert.
  * @author (Lasse, Leander, Mila, ELla)
  * @version (1.1.0)
  */

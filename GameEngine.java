@@ -2,8 +2,8 @@ import java.util.LinkedList;
 /**
  * @author (Lasse, Leander, Victor)
  * @version 1.1.0
- * Objekte dieser Klasse sind die Herzstücke von Spielinstanzen.
- * Sie regeln alle rechnerischen Vorgänge und kontrollieren, was der Spieler zu sehen bekommt.
+ * Objekte dieser Klasse sind das Zentrum von Spielinstanzen.
+ * In dieser Klasse werden alle Mothoden und Befehle die fuer den Spielverlauf relevant sind zusammengefuehrt
  */
 public class GameEngine
 {
@@ -11,14 +11,20 @@ public class GameEngine
     private Location location;
     private final Parser parser;
 
-    public GameEngine() {
+    /**
+     * Konstruktor der GameEngine Klasse
+     * @author
+     */public GameEngine() {
         Map map = new Map();
         this.location = map.getStartLocation();
         this.inventory = new LinkedList<>();
         parser = new Parser();
     }
 
-    public String input(String input) {
+    /**
+     * Fuehrt eingabenspezifische Methoden aus
+     * @author
+     */public String input(String input) {
         Command command = parser.createCommand(input.toLowerCase());
         String output = "";
 
@@ -34,7 +40,10 @@ public class GameEngine
         return "\nDu: " + input + "\n \n" + output;
     }
 
-    public String getInfo() {
+    /**
+     * Methode die die Spielfunktionen beschriebt sobald der Spieler sie abfragt
+     * @author
+     */public String getInfo() {
         return """
                 Du befindest dich am Leibniz-Gymnasium,
                 hier musst du ein Quiz abschließen um den großen Preis zu gewinnen.
@@ -54,7 +63,10 @@ public class GameEngine
                 """;
     }
 
-    public String getInventoryDescription() {
+    /**
+     *Methode zum Zurueckgeben des Inhalts des Spielerinventars in From eines Strings
+     * @author
+     */public String getInventoryDescription() {
         StringBuilder des = new StringBuilder();
         for (Item item : inventory) {
             des.append(item.getName()).append("\n");
@@ -62,7 +74,10 @@ public class GameEngine
         return des.toString();
     }
 
-    public String reset(String input) {
+    /**
+     * Setzt das Spiel auf den Anfang zurueck
+     * @author
+     */public String reset(String input) {
         if(input.equalsIgnoreCase("neu")) {
             Map map = new Map();
             this.location = map.getStartLocation();
@@ -72,7 +87,10 @@ public class GameEngine
         } else return "Gebe \"Starte neu/Spiel\" ein um erneut zu beginnen!\n";
     }
 
-    public String takeItem(String name) {
+    /**
+     * Diese methode versucht einen Gegenstand aus einem Raum/Ort in das Inventar zu platzieren
+     * @author
+     */public String takeItem(String name) {
         Item item = location.takeItem(name);
         if(item != Item.EMPTY) {
             inventory.addLast(item);
@@ -80,7 +98,10 @@ public class GameEngine
         } else return "Da ist kein solcher Gegenstand!\n";
     }
 
-    public String toLocation(String name) {
+    /**
+     * Diese Methode versucht den Spieler in einen anliegenden Raum/Ort zu bewegen
+     * @author
+     */public String toLocation(String name) {
         Location location = this.location.hasPassageTo(name);
         if(this.location != location) {
             this.location = location;
@@ -88,7 +109,10 @@ public class GameEngine
         } else return "Das geht leider nicht!\n";
     }
 
-    public String dropItem(String name) {
+    /**
+     *Versucht einen Gegenstand aus dem Inventar in den Raum/Ort zu platzieren
+     * @author ()
+     */public String dropItem(String name) {
         for(int i = 0; i < inventory.size(); i++) {
             if(inventory.get(i).getName().equalsIgnoreCase(name)) {
                 location.addItem(inventory.remove(i));
