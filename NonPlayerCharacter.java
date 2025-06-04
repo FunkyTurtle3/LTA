@@ -1,10 +1,4 @@
 
-/**
- * Beschreiben Sie hier die Klasse NonPlayerCharacter.
- * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
- */
 public class NonPlayerCharacter
 {
     private String name;

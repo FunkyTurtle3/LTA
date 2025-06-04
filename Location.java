@@ -1,8 +1,8 @@
 import java.util.LinkedList;
 
 /**
- * Beschreiben Sie hier die Klasse Location.
- *
+ * Objekte der Klasse Location (dt. Ort) beinhalten alle notwendigen Informationen über alle Räume des Leibniz-Gymnasiums.
+ * Eine Location repräsentiert digital einen Raum.
  * @author (Lasse, Victor, Leander, Ella, Mila)
  * @version (1.1.0)
  */

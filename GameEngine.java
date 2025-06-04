@@ -1,9 +1,9 @@
 import java.util.LinkedList;
 /**
- * Beschreiben Sie hier die Klasse GameEngine.
- * 
  * @author (Lasse, Leander, Victor)
  * @version 1.1.0
+ * Objekte dieser Klasse sind die Herzstücke von Spielinstanzen.
+ * Sie regeln alle rechnerischen Vorgänge und kontrollieren, was der Spieler zu sehen bekommt.
  */
 public class GameEngine
 {

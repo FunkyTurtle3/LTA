@@ -3,12 +3,17 @@ import java.io.File;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
+/**
+ * @author (Lasse, Leander, Victor)
+ * @version 1.1.0
+ * Das Graphical User Interface ist dafür zuständig dem Spieler anzuzeigen was die GameEngine (Attribut) ausgibt.
+ */
 public class GUI {
+    private final String START_DESCRIPTION = "\nWillkommen zum Leibniz Text Abenteuer! \n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Zu Aula\" in das Feld unten\n";
     private final GameEngine gameEngine;
     private JTextField inputField;
     private JTextArea outputField;
     private JTextArea inventoryField;
-    private JTextArea locationField;
     private Font font;
 
     public static void main(String[] args){
@@ -23,7 +28,7 @@ public class GUI {
         setUpFont();
         this.gameEngine = new GameEngine();
         generateWindow();
-        this.outputField.setText("\nWillkommen zum Leibniz Text Abenteuer! \n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Zu Aula\" in das Feld unten\n");
+        this.outputField.setText(START_DESCRIPTION);
         this.inventoryField.setText("Dein Inventar:\n" + this.gameEngine.getInventoryDescription());
     }
 
@@ -179,14 +184,14 @@ public class GUI {
         JPanel previewPanel = new JPanel(new BorderLayout());
         previewPanel.setPreferredSize(new Dimension(620, 1000));
 
-        this.locationField = new JTextArea();
-        this.locationField.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
-        this.locationField.setBackground(new Color(217, 239, 232));
-        this.locationField.setForeground(new Color(29, 53, 87));
-        this.locationField.setFont(font);
-        this.locationField.setEditable(false);
-        this.locationField.setFocusable(false);
-        this.locationField.setPreferredSize(new Dimension(620, 500));
+        JTextArea locationField = new JTextArea();
+        locationField.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
+        locationField.setBackground(new Color(217, 239, 232));
+        locationField.setForeground(new Color(29, 53, 87));
+        locationField.setFont(font);
+        locationField.setEditable(false);
+        locationField.setFocusable(false);
+        locationField.setPreferredSize(new Dimension(620, 500));
 
         this.inventoryField = new JTextArea();
         this.inventoryField.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
@@ -197,7 +202,7 @@ public class GUI {
         this.inventoryField.setFocusable(false);
         this.inventoryField.setPreferredSize(new Dimension(620, 500));
 
-        previewPanel.add(this.locationField, BorderLayout.NORTH);
+        previewPanel.add(locationField, BorderLayout.NORTH);
         previewPanel.add(this.inventoryField, BorderLayout.SOUTH);
 
         outputPanel.add(scrollOutputPane);
@@ -213,7 +218,7 @@ public class GUI {
         if (!this.inputField.getText().isEmpty()) {
             this.outputField.setText(this.outputField.getText() + this.gameEngine.input(this.inputField.getText()));
         }
-        if (this.inputField.getText().equalsIgnoreCase("starte neu")) this.outputField.setText("\nWillkommen zum Leibniz Text Abenteuer! \n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Zu Aula\" in das Feld unten\n");
+        if (this.inputField.getText().equalsIgnoreCase("starte neu")) this.outputField.setText(START_DESCRIPTION);
         this.inputField.setText("");
         this.inventoryField.setText("Dein Inventar:\n" + this.gameEngine.getInventoryDescription());
     }

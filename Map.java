@@ -1,10 +1,9 @@
 import java.util.LinkedList;
 
 /**
- * Beschreiben Sie hier die Klasse Map.
- * 
- * @author (LTA)
- * @version (1.0.0)
+ * IN der Map (dt. Karte) sind alle Räume des Leibniz-Gymnasiums gespeichert. Sie werden in der Kartenerstellung kreiert.
+ * @author (Lasse, Leander, Mila, ELla)
+ * @version (1.1.0)
  */
 public class Map
 {
