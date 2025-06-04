@@ -9,7 +9,7 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
  * Das Graphical User Interface ist dafür zuständig dem Spieler anzuzeigen was die GameEngine (Attribut) ausgibt.
  */
 public class GUI {
-    private final String START_DESCRIPTION = "\nWillkommen zum Leibniz Text Abenteuer! \n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Zu Aula\" in das Feld unten\n";
+    private final String START_DESCRIPTION = "\nWillkommen zum Leibniz Text Abenteuer!  "+"Hier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten\n";
     private final GameEngine gameEngine;
     private JTextField inputField;
     private JTextArea outputField;
@@ -144,40 +144,13 @@ public class GUI {
         verticalScrollBar.setUnitIncrement(20);
         verticalScrollBar.setBlockIncrement(50);
         //noch zu verstehen
-        verticalScrollBar.setUI(new BasicScrollBarUI() {
-            @Override
-            protected void configureScrollBarColors() {
-                this.thumbColor = new Color(168, 218, 220);   // Farbe des Schiebers
-                this.trackColor = new Color(217, 239, 232);   // Farbe der Bahn
-            }
+        verticalScrollBar.setUI(createScrollBar());
+        JScrollBar horizontalScrollBar = scrollOutputPane.getHorizontalScrollBar();
+        horizontalScrollBar.setUnitIncrement(20);
+        horizontalScrollBar.setBlockIncrement(50);
+        //noch zu verstehen
+        horizontalScrollBar.setUI(createScrollBar());
 
-            @Override
-            protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
-                Graphics2D g2 = (Graphics2D) g.create();
-                g2.setColor(thumbColor);
-                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                g2.fillRoundRect(thumbBounds.x, thumbBounds.y, thumbBounds.width, thumbBounds.height, 10, 10);
-                g2.dispose();
-            }
-
-            @Override
-            protected JButton createDecreaseButton(int orientation) {
-                return createZeroButton();
-            }
-
-            @Override
-            protected JButton createIncreaseButton(int orientation) {
-                return createZeroButton();
-            }
-
-            private JButton createZeroButton() {
-                JButton button = new JButton();
-                button.setPreferredSize(new Dimension(0, 0));
-                button.setMinimumSize(new Dimension(0, 0));
-                button.setMaximumSize(new Dimension(0, 0));
-                return button;
-            }
-        });
         scrollOutputPane.setPreferredSize(new Dimension(1300, 1000));
         scrollOutputPane.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
 
@@ -210,10 +183,43 @@ public class GUI {
         return outputPanel;
     }
 
-    /**
-     * Konstruktor für die GUI Klasse
-     * @author (Leander, Victor)
-     */
+    private JButton createZeroButton() {
+        JButton button = new JButton();
+        button.setPreferredSize(new Dimension(0, 0));
+        button.setMinimumSize(new Dimension(0, 0));
+        button.setMaximumSize(new Dimension(0, 0));
+        return button;
+    }
+
+    private BasicScrollBarUI createScrollBar() {
+        return new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = new Color(168, 218, 220);   // Farbe des Schiebers
+                this.trackColor = new Color(217, 239, 232);   // Farbe der Bahn
+            }
+
+            @Override
+            protected void paintThumb(Graphics g, JComponent c, Rectangle thumbBounds) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setColor(thumbColor);
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.fillRoundRect(thumbBounds.x, thumbBounds.y, thumbBounds.width, thumbBounds.height, 10, 10);
+                g2.dispose();
+            }
+
+            @Override
+            protected JButton createDecreaseButton(int orientation) {
+                return createZeroButton();
+            }
+
+            @Override
+            protected JButton createIncreaseButton(int orientation) {
+                return createZeroButton();
+            }
+        };
+    }
+
     private void executeInput() {
         if (!this.inputField.getText().isEmpty()) {
             this.outputField.setText(this.outputField.getText() + this.gameEngine.input(this.inputField.getText()));
