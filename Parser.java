@@ -1,3 +1,9 @@
+/**
+ * @author (Lasse, Leander, Victor)
+ * @version 1.1.0
+ * Der Parser wird von der Game Engine dafür verwendet eine Eingabe in das Eingabefeld in einen verwendbare Command umzuwandeln.
+ * Das heißt einen Command + Argument (2. Teil)
+ */
 public class Parser {
 
     private String adress;
