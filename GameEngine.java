@@ -3,7 +3,7 @@ import java.util.LinkedList;
  * @author (Lasse, Leander, Victor)
  * @version 1.1.0
  * Objekte dieser Klasse sind das Zentrum von Spielinstanzen.
- * In dieser Klasse werden alle Mothoden und Befehle die fuer den Spielverlauf relevant sind zusammengefuehrt
+ * In dieser Klasse werden alle Methoden und Befehle die für den Spielverlauf relevant sind zusammengeführt
  */
 public class GameEngine
 {
@@ -22,7 +22,7 @@ public class GameEngine
     }
 
     /**
-     * Fuehrt eingabenspezifische Methoden aus
+     * Führt eingabenspezifische Methoden aus
      * @author
      */public String input(String input) {
         Command command = parser.createCommand(input.toLowerCase());
@@ -41,7 +41,7 @@ public class GameEngine
     }
 
     /**
-     * Methode die die Spielfunktionen beschriebt sobald der Spieler sie abfragt
+     * Methode die, die Spielfunktionen beschreibt, sobald der Spieler sie abfragt
      * @author
      */public String getInfo() {
         return """
@@ -64,7 +64,7 @@ public class GameEngine
     }
 
     /**
-     *Methode zum Zurueckgeben des Inhalts des Spielerinventars in From eines Strings
+     * Methode zum Zurückgeben des Inhalts des Spielerinventars in From eines Strings
      * @author
      */public String getInventoryDescription() {
         StringBuilder des = new StringBuilder();
@@ -75,7 +75,7 @@ public class GameEngine
     }
 
     /**
-     * Setzt das Spiel auf den Anfang zurueck
+     * Setzt das Spiel auf den Anfang zurück
      * @author
      */public String reset(String input) {
         if(input.equalsIgnoreCase("neu")) {
@@ -89,7 +89,7 @@ public class GameEngine
     }
 
     /**
-     * Diese methode versucht einen Gegenstand aus einem Raum/Ort in das Inventar zu platzieren
+     * Diese Methode versucht einen Gegenstand aus einem Raum/Ort in das Inventar zu platzieren
      * @author
      */public String takeItem(String name) {
         Item item = location.takeItem(name);
@@ -111,7 +111,7 @@ public class GameEngine
     }
 
     /**
-     *Versucht einen Gegenstand aus dem Inventar in den Raum/Ort zu platzieren
+     * Versucht einen Gegenstand aus dem Inventar des Spielers in den Raum/Ort zu platzieren
      * @author ()
      */public String dropItem(String name) {
         for(int i = 0; i < inventory.size(); i++) {

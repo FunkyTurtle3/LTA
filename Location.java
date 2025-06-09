@@ -11,8 +11,8 @@ public class Location
     private final String name; //Name des Raumes/Ortes
     private final NonPlayerCharacter npc; //Speichert den NPC der sich im Raum/Ort befindet
 
-    private final LinkedList<Item> items; //Stellt eine Liste zum Speichern von Gegenstaenden bereit
-    private final LinkedList<Location> passages; //Stellt eine Liste zum Speichern von Durchgaengen bereit
+    private final LinkedList<Item> items; //Stellt eine Liste zum Speichern von Gegenständen bereit
+    private final LinkedList<Location> passages; //Stellt eine Liste zum Speichern von Durchgängen bereit
     private final String description; //Attribut welches zur Beschreibung des Raum/Ort dient
 
     /**
@@ -27,40 +27,40 @@ public class Location
     }
 
     /**
-     * gibt eine Liste aller Ausgaenge zurueck
+     * gibt eine Liste aller Ausgänge zurück
      */public LinkedList<Location> getPassages()
     {
         return passages;
     }
 
     /**
-     * gibt den Namen des Raumes/Orts zurueck
+     * gibt den Namen des Raumes/Orts zurück
      */public String getName() {
         return name;
     }
 
     /**
-     * Diese Methode dient dazu neue Ausgaenge zu einem Raum/Ort hinzuzufuegen
+     * Diese Methode dient dazu neue Ausgänge zu einem Raum/Ort hinzuzufügen
      */public Location addPassage(Location passage) {
         passages.add(passage);
         return this;
     }
 
     /**
-     * Diese Methode dient dazu neue Gegenstände zu einem Raum/Ort hinzuzufuegen
+     * Diese Methode dient dazu neue Gegenstände zu einem Raum/Ort hinzuzufügen
      */public void addItem(Item item) {
         items.add(item);
     }
 
     /**
-     * gibt eine Liste aller Gegenstaende zurueck
+     * gibt eine Liste aller Gegenstände zurück
      */public LinkedList<Item> getItems()
     {
         return items;
     }
 
     /**
-     * gibt eine Beschreibung des Raumes inklusive NPCs, Gegenstaenden oder Ausgaengen zurueck
+     * gibt eine Beschreibung des Raumes inklusive NPCs, Gegenständen oder Ausgängen zurück
      */public String getDescription() {
         StringBuilder description = new StringBuilder();
         if(!items.isEmpty()) description.append("Hier findest du: ").append(this.getItemDescription()).append("\n");
@@ -70,7 +70,7 @@ public class Location
     }
 
     /**
-     * gibt die Standardbeschreibung des jeweiligen Orts zurueck
+     * gibt die Standardbeschreibung des jeweiligen Orts zurück
      */protected String getGeneralDescription()
     {
         return this.description;

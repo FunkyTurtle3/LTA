@@ -1,7 +1,7 @@
 /**
  * @author (Lasse, Leander, Victor)
  * @version 1.1.0
- * Der Parser wird von der Game Engine dafuer verwendet eine Eingabe in das Eingabefeld in einen verwendbare Command umzuwandeln.
+ * Der Parser wird von der Game Engine dafür verwendet eine Eingabe in das Eingabefeld in einen verwendbare Command umzuwandeln.
  * Das heißt einen Command + Argument (2. Teil)
  */
 public class Parser {
@@ -10,7 +10,8 @@ public class Parser {
     private String command;
 
     /**
-     *Diese Methode teilt die Spielereingabe in zwei Teile so dass diese vom programm verabreitet werden können
+     * Diese Methode teilt die Spielereingabe in zwei Teile, sodass diese vom Programm verarbeitet werden können
+     * @author (Leander, Victor, Lasse)
      */public void parse(String input)
     {
         command = input.split(" ")[0] != null ? input.split(" ")[0] : input;
@@ -18,7 +19,8 @@ public class Parser {
     }
 
     /**
-     * Diese Methode erstellt ein Objekt der Command-Klasse und gibt dieses zurueck
+     * Diese Methode erstellt ein Objekt der Command-Klasse und gibt dieses zurück
+     * @author (Leander, Victor, Lasse)
      */public Command createCommand(String input){
         try {
             parse(input);

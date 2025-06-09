@@ -1,8 +1,8 @@
 import java.util.LinkedList;
 
 /**
- * In der Map (dt. Karte) sind alle Rauume des Leibniz-Gymnasiums gespeichert. Sie werden in der Kartenerstellung kreiert.
- * @author (Lasse, Leander, Mila, ELla)
+ * In der Map (dt. Karte) sind alle Räume des Leibniz-Gymnasiums gespeichert. Sie werden in der Kartenerstellung kreiert.
+ * @author (Lasse, Leander, Mila, Ella)
  * @version (1.1.0)
  */
 public class Map
@@ -51,25 +51,25 @@ public class Map
             "Start_Room",
             NonPlayerCharacter.EMPTY,
             new LinkedList<>(),
-        "");
+            "");
 
         AULA = new Location(
             "Aula",
             new NonPlayerCharacter("Frau Thies"),
             new LinkedList<>(),
-        "Du befindest dich in der Aula");
+            "Du befindest dich in der Aula");
 
         SCHULHOF = new Location(
             "Schulhof",
             new NonPlayerCharacter("Herr Alik"),
             new LinkedList<>(),
-        "Alles grün hier");
+            "Alles grün hier");
 
         CAFETERIA = new Location(
             "Cafeteria",
             new NonPlayerCharacter("Ablas Schwester oder so"),
             new LinkedList<>(),
-        "Schade dass Abla weg ist");
+            "Schade dass Abla weg ist");
 
         START_ROOM.addPassage(AULA);
         AULA.addPassage(SCHULHOF).addPassage(CAFETERIA);
@@ -78,6 +78,7 @@ public class Map
 
         AULA.addItem(new Item("Capri Sonne"));
         SCHULHOF.addItem(new Item("Stein"));
+        CAFETERIA.addItem(new Item("Stift"));
     }
 
     public Location getStartLocation() {

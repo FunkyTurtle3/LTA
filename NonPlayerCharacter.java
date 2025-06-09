@@ -2,7 +2,7 @@
  * @author (Lasse, Ella, Mila)
  * @version 1.1.0
  * Ein NPC (Non Player Character (dt. Nicht Spieler Charakter)) wird
- * verwendet, um alle Personen im Spiel abgesehen vom Spieler zu repraesentieren.
+ * verwendet, um alle Personen im Spiel abgesehen vom Spieler zu repräsentieren.
  */
 public class NonPlayerCharacter
 {
@@ -14,7 +14,7 @@ public class NonPlayerCharacter
     }
 
     /**
-     * Gibt den Namen des NPCs zurueck
+     * Gibt den Namen des NPCs zurück
      */public String getName()
     {
         return name;

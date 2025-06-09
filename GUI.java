@@ -6,12 +6,11 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 /**
  * @author (Lasse, Leander, Victor)
  * @version 1.1.0
- * Das Graphical User Interface ist dafuer zustaendig dem Spieler anzuzeigen was die GameEngine (Attribut) ausgibt.
+ * Das Graphical User Interface ist dafür zuständig dem Spieler anzuzeigen was die GameEngine (Attribut) ausgibt.
  */
 public class GUI {
     private final String START_DESCRIPTION =
-            "\nWillkommen zum Leibniz Text Abenteuer!\n\nHier lernst du die Schule besser kennen, " +
-                    "möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten\n";
+            "\nWillkommen zum Leibniz Text Abenteuer!\n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten\n";
     private final GameEngine gameEngine;
     private JTextField inputField;
     private JTextArea outputField;
@@ -31,7 +30,8 @@ public class GUI {
     }
 
     /**
-     * Macht den importierten "elegantTypewriter" Font für die GUI nutzbar
+     * Macht den importierten "elegantTypewriter" Font für die GUI nutzbar.
+     * Die importierte Schriftart ist frei nutzbar für nicht-kommerzielle Zwecke.
      * @author (Lasse, Victor)
      */private void setUpFont() {
         try {
@@ -43,7 +43,7 @@ public class GUI {
 
     /**
      * Methode mit der das Fenster generiert und ausgegeben wird
-     * @author (Lasse, Leander)
+     * @author (Lasse, Leander, Victor)
      */private void createWindow() {
         JFrame frame = new JFrame("Leibniz Text Adventure");
         frame.setUndecorated(true);
@@ -57,7 +57,7 @@ public class GUI {
 
     /**
      * Methode mit der das Eingabefeld generiert und ausgegeben wird
-     * @author (Lasse, Leander)
+     * @author (Lasse, Leander, Victor)
      */private JPanel createInputField() {
         JPanel inputPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -90,8 +90,8 @@ public class GUI {
     }
 
     /**
-     * Methode mit der der "Spiel schliessen"-Knopf generiert und ausgegeben wird
-     * @author (Lasse, Leander)
+     * Methode mit welcher der "Spiel schließen"-Knopf generiert und ausgegeben wird
+     * @author (Lasse, Leander, Victor)
      */private JButton createQuitButton() {
         JButton inputButton = new JButton("Spiel schließen");
         inputButton.setPreferredSize(new Dimension(400, 60));
@@ -105,8 +105,8 @@ public class GUI {
     }
 
     /**
-     * Methode mit der der Eingabe-Knopf generiert und ausgegeben wird
-     * @author (Lasse, Leander)
+     * Methode mit welcher der Eingabe-Knopf generiert und ausgegeben wird
+     * @author (Lasse, Leander, Victor)
      */private JButton createEnterButton() {
         JButton inputButton = new JButton("Eingabe");
         inputButton.setPreferredSize(new Dimension(200, 60));
@@ -175,6 +175,11 @@ public class GUI {
         return outputPanel;
     }
 
+    /**
+     * Erstellt einen Button ohne Aussehen und Inhalt um ihn entsprechend anzuzeigen ohne, dass er sichtbar ist
+     * @author (Lasse, Leander)
+     * @sources (Hilfe von ChatGPT)
+     */
     private JButton createZeroButton() {
         JButton button = new JButton();
         button.setPreferredSize(new Dimension(0, 0));
@@ -184,7 +189,9 @@ public class GUI {
     }
 
     /**
-     * Methode mit der der Schieberegler generiert und ausgegeben wird
+     * Methode mit der, eine ScrollBar generiert und ausgegeben wird
+     * @author (Lasse, Leander)
+     * @sources (Hilfe von ChatGPT)
      */private BasicScrollBarUI createScrollBar() {
         return new BasicScrollBarUI() {
             @Override
@@ -215,7 +222,8 @@ public class GUI {
     }
 
     /**
-     * Methode durch die der GameEngine der Abruf zu verarbeitung eines Inputs gegeben wird
+     * Methode durch die der GameEngine der Abruf zur Verarbeitung eines Inputs gegeben wird
+     * @author (Lasse, Leander)
      */private void executeInput() {
         if (!this.inputField.getText().isEmpty()) {
             this.outputField.setText(this.outputField.getText() + this.gameEngine.input(this.inputField.getText()));
