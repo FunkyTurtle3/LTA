@@ -9,7 +9,6 @@ public class GameEngine
 {
     private final LinkedList<Item> inventory;
     private Location location;
-    private final Parser parser;
 
     /**
      * Konstruktor der GameEngine Klasse
@@ -18,21 +17,22 @@ public class GameEngine
         Map map = new Map();
         this.location = map.getStartLocation();
         this.inventory = new LinkedList<>();
-        parser = new Parser();
     }
 
     /**
      * Führt eingabenspezifische Methoden aus
      * @author
      */public String input(String input) {
-        Command command = parser.createCommand(input.toLowerCase());
+        Command command = Parser.createCommand(input.toLowerCase());
         String output = "";
 
         switch (command.command()) {
             case ZU -> output = toLocation(command.input());
-            case GIB -> output = dropItem(command.input());
+            case LEGE -> output = dropItem(command.input());
             case NIMM -> output = takeItem(command.input());
             case STARTE -> output = reset(command.input());
+            case SPRICH -> output = talkToNPC();
+            case GIB -> output = giveNPC(command.input());
             case INFO -> output = getInfo();
             case INVALIDINPUT -> output = "Das verstehe ich nicht!\n";
         }
@@ -58,10 +58,28 @@ public class GameEngine
                 
                 "Nimm <Gegenstand>": um einen Gegenstand aufzuheben\
                 
-                "Gib <Gegenstand>": um einen Gegenstand abzulegen\
+                "Lege <Gegenstand>": um einen Gegenstand abzulegen\
                 
                 """;
     }
+
+    public String talkToNPC() {
+         return location.getNPC().talk(Item.EMPTY).outputString() + "\n";
+    }
+
+    public String giveNPC(String input) {
+        Item item = Item.EMPTY;
+        int i;
+        for(i = 0; i < inventory.size(); i++) {
+            if(inventory.get(i).getName().equalsIgnoreCase(input)) {
+                item = inventory.remove(i);
+            }
+        }
+        NPCInteraction interaction = location.getNPC().talk(item);
+        if (interaction.output() != Item.EMPTY) inventory.add(i - 1, interaction.output());
+        return location.getNPC().getName() + ": " + interaction.outputString() + "\n";
+    }
+
 
     /**
      * Methode zum Zurückgeben des Inhalts des Spielerinventars in From eines Strings

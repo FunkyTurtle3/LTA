@@ -55,7 +55,10 @@ public class Map
 
         AULA = new Location(
             "Aula",
-            new NonPlayerCharacter("Frau Thies"),
+            new NonPlayerCharacter("Frau Thies")
+                    .addInteraction(new NPCInteraction("Möchtest du das Quiz starten?", Item.EMPTY, Item.EMPTY))
+                    .addInteraction(new NPCInteraction("Dann bring mir das goldene Ticket!", Item.EMPTY, Item.EMPTY))
+                    .addInteraction(new NPCInteraction("Los gehts!", new Item("Goldenes Ticket"), Item.EMPTY)),
             new LinkedList<>(),
             "Du befindest dich in der Aula");
 
@@ -78,7 +81,7 @@ public class Map
 
         AULA.addItem(new Item("Capri Sonne"));
         SCHULHOF.addItem(new Item("Stein"));
-        CAFETERIA.addItem(new Item("Stift"));
+        CAFETERIA.addItem(new Item("Goldenes Ticket"));
     }
 
     public Location getStartLocation() {

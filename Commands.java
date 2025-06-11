@@ -6,7 +6,9 @@
 public enum Commands {
     ZU, //Zum Wechseln von Räumen
     NIMM, //Zum Aufnehmen von Gegenständen
-    GIB, //Zum Ablegen von Gegenständen
+    LEGE, //Zum Ablegen von Gegenständen
+    SPRICH, //Zum Sprechen mit NPCs
+    GIB, //Zum Übergeben von Gegenständen an NPCs
     INVALIDINPUT, //Zum Ausgeben von ungültigen Eingaben
     STARTE, //Zum (Neu-)Starten des Spiels
     INFO; //Zum Ausgeben einer Spielinfo

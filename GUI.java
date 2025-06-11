@@ -2,21 +2,21 @@ import java.awt.*;
 import java.io.File;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
-
 /**
  * @author (Lasse, Leander, Victor)
  * @version 1.1.0
  * Das Graphical User Interface ist dafür zuständig dem Spieler anzuzeigen was die GameEngine (Attribut) ausgibt.
  */
 public class GUI {
-    private final String START_DESCRIPTION =
-            "\nWillkommen zum Leibniz Text Abenteuer!\n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten\n";
+    private static final String START_DESCRIPTION = "\nWillkommen zum Leibniz Text Abenteuer!\n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten\n";
     private final GameEngine gameEngine;
     private JTextField inputField;
     private JTextArea outputField;
     private JTextArea inventoryField;
     private Font font;
-    public static void main(String[] args){new GUI();}
+    public static void main(String[] args){
+        new GUI();
+    }
 
     /**
      * Konstruktor für die GUI Klasse
@@ -137,11 +137,13 @@ public class GUI {
         verticalScrollBar.setBlockIncrement(50);
         //noch zu verstehen
         verticalScrollBar.setUI(createScrollBar());
+        scrollOutputPane.setVerticalScrollBar(verticalScrollBar);
         JScrollBar horizontalScrollBar = scrollOutputPane.createHorizontalScrollBar();
         horizontalScrollBar.setUnitIncrement(20);
         horizontalScrollBar.setBlockIncrement(50);
         //noch zu verstehen
         horizontalScrollBar.setUI(createScrollBar());
+        scrollOutputPane.setHorizontalScrollBar(horizontalScrollBar);
 
         scrollOutputPane.setPreferredSize(new Dimension(1300, 1000));
         scrollOutputPane.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));

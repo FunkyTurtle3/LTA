@@ -1,0 +1,1 @@
+public record NPCInteraction(String outputString, Item input, Item output) {}

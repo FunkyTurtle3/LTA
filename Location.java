@@ -99,6 +99,10 @@ public class Location
         return NonPlayerCharacter.EMPTY;
     }
 
+    public NonPlayerCharacter getNPC() {
+         return npc;
+    }
+
     public String getItemDescription()
     {
         LinkedList<String> x = new LinkedList<>();
