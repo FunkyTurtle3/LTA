@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 /**
- * @author (Lasse, Leander, Victor)
+ * @author (Lasse, Leander, Victor, Ella, Mila)
  * @version 1.1.0
  * Objekte dieser Klasse sind das Zentrum von Spielinstanzen.
  * In dieser Klasse werden alle Methoden und Befehle die für den Spielverlauf relevant sind zusammengeführt
@@ -21,7 +21,7 @@ public class GameEngine
 
     /**
      * Führt eingabenspezifische Methoden aus
-     * @author
+     * @author(Mila, Ella, Lasse, Leander)
      */public String input(String input) {
         Command command = Parser.createCommand(input.toLowerCase());
         String output = "";
@@ -31,9 +31,11 @@ public class GameEngine
             case LEGE -> output = dropItem(command.input());
             case NIMM -> output = takeItem(command.input());
             case STARTE -> output = reset(command.input());
-            case SPRICH -> output = talkToNPC();
+            case FRAG -> output = talkToNPC();
             case GIB -> output = giveNPC(command.input());
             case INFO -> output = getInfo();
+            case INSPIZIERE -> output = getItemDescription(command.input());
+            case OEFFNE -> output = openDoor(command.input());
             case INVALIDINPUT -> output = "Das verstehe ich nicht!\n";
         }
 
@@ -64,7 +66,7 @@ public class GameEngine
     }
 
     public String talkToNPC() {
-         return location.getNPC().talk(Item.EMPTY).outputString() + "\n";
+        return location.getNPC().talk(Item.EMPTY).outputString() + "\n";
     }
 
     public String giveNPC(String input) {
@@ -80,11 +82,11 @@ public class GameEngine
         return location.getNPC().getName() + ": " + interaction.outputString() + "\n";
     }
 
-
     /**
      * Methode zum Zurückgeben des Inhalts des Spielerinventars in From eines Strings
      * @author
-     */public String getInventoryDescription() {
+     */
+    public String getInventoryDescription() {
         StringBuilder des = new StringBuilder();
         for (Item item : inventory) {
             des.append(item.getName()).append("\n");
@@ -95,7 +97,8 @@ public class GameEngine
     /**
      * Setzt das Spiel auf den Anfang zurück
      * @author
-     */public String reset(String input) {
+     */
+    public String reset(String input) {
         if(input.equalsIgnoreCase("neu")) {
             Map map = new Map();
             this.inventory.clear();
@@ -109,7 +112,8 @@ public class GameEngine
     /**
      * Diese Methode versucht einen Gegenstand aus einem Raum/Ort in das Inventar zu platzieren
      * @author
-     */public String takeItem(String name) {
+     */
+    public String takeItem(String name) {
         Item item = location.takeItem(name);
         if(item != Item.EMPTY) {
             inventory.addLast(item);
@@ -119,13 +123,18 @@ public class GameEngine
 
     /**
      * Diese Methode versucht den Spieler in einen anliegenden Raum/Ort zu bewegen
-     * @author
-     */public String toLocation(String name) {
+     * @author (Mila, Ella)
+     */
+    public String toLocation(String name) {
         Location location = this.location.hasPassageTo(name);
-        if(this.location != location) {
-            this.location = location;
-            return location.getDescription();
-        } else return "Das geht leider nicht!\n";
+        if(location.isLocked() == false)
+        {
+            if(this.location != location) {
+                this.location = location;
+                return location.getDescription();
+            } else return "Du befindest dich schon in diesem Raum.\n";
+        }
+        else return "Der Raum ist verschlossen!\n";
     }
 
     /**
@@ -139,5 +148,47 @@ public class GameEngine
             }
         }
         return "Du hast keinen solchen Gegenstand in deinem Inventar!\n";
+    }
+
+    /**
+     * Gibt eine Beschreibung eines bestimmten Gegenstandes zurück.
+     * @author (Mila, Ella)
+     */
+    public String getItemDescription(String name)
+    {
+        for(int i = 0; i < inventory.size(); i++)
+        {
+            if(inventory.get(i).getName().equalsIgnoreCase(name))
+            {
+                return inventory.get(i).getDescription();
+            }
+        }
+        return "Du hast keinen solchen Gegenstand in deinem Inventar!\n";
+    }
+
+
+    /**
+     * Versucht verschlossene Türen zu öffnen, wenn der Spieler einen Schlüssel hat.
+     * @author (Mila, Ella)
+     */
+    public String openDoor(String name)
+    {
+        if(location.hasPassageTo(name).isLocked())
+        {
+            for(int i = 0; i < inventory.size(); i++)
+            {
+                if(inventory.get(i).getName().equalsIgnoreCase("schlüssel"))
+                {
+                    location.hasPassageTo(name).open();
+                    return "Die Tür ist jetzt geöffnet.";
+                }
+            }
+            return "Du hast keinen Schlüssel.";
+        }
+        else if(location.hasPassageTo(name)==location)
+        {
+            return "Du kannst von hier aus nicht an dein Ziel gehen.";
+        }
+        else return "Diese Tür ist nicht verschlossen";
     }
 }

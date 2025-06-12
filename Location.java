@@ -15,53 +15,63 @@ public class Location
     private final LinkedList<Location> passages; //Stellt eine Liste zum Speichern von Durchgängen bereit
     private final String description; //Attribut welches zur Beschreibung des Raum/Ort dient
 
+    private boolean locked;//Attribut zur Überprüfung ob ein Raum verschlossen ist
+
     /**
      * Konstruktor der Location Klasse
+     * @author(Mila,Ella)
      */
-    public Location(String name, NonPlayerCharacter npc, LinkedList<Item> items, String description) {
+    public Location(String name, NonPlayerCharacter npc, LinkedList<Item> items, String description, boolean locked) {
         this.name = name;
         this.npc = npc;
         this.items = items;
         this.description = description;
         this.passages = new LinkedList<>();
+        this.locked = locked;
     }
 
     /**
      * gibt eine Liste aller Ausgänge zurück
-     */public LinkedList<Location> getPassages()
+     */
+    public LinkedList<Location> getPassages()
     {
         return passages;
     }
 
     /**
      * gibt den Namen des Raumes/Orts zurück
-     */public String getName() {
+     */
+    public String getName() {
         return name;
     }
 
     /**
      * Diese Methode dient dazu neue Ausgänge zu einem Raum/Ort hinzuzufügen
-     */public Location addPassage(Location passage) {
+     */
+    public Location addPassage(Location passage) {
         passages.add(passage);
         return this;
     }
 
     /**
      * Diese Methode dient dazu neue Gegenstände zu einem Raum/Ort hinzuzufügen
-     */public void addItem(Item item) {
+     */
+    public void addItem(Item item) {
         items.add(item);
     }
 
     /**
-     * gibt eine Liste aller Gegenstände zurück
-     */public LinkedList<Item> getItems()
+     * Gibt eine Liste aller Gegenstände zurück
+     */
+    public LinkedList<Item> getItems()
     {
         return items;
     }
 
     /**
-     * gibt eine Beschreibung des Raumes inklusive NPCs, Gegenständen oder Ausgängen zurück
-     */public String getDescription() {
+     * Gibt eine Beschreibung des Raumes inklusive NPCs, Gegenständen oder Ausgängen zurück
+     */
+    public String getDescription() {
         StringBuilder description = new StringBuilder();
         if(!items.isEmpty()) description.append("Hier findest du: ").append(this.getItemDescription()).append("\n");
         if(!passages.isEmpty()) description.append("Von hier gelangst du zu: ").append(this.getPassageDescription()).append("\n");
@@ -71,11 +81,16 @@ public class Location
 
     /**
      * gibt die Standardbeschreibung des jeweiligen Orts zurück
-     */protected String getGeneralDescription()
+     */
+    protected String getGeneralDescription()
     {
         return this.description;
     }
 
+    /**
+     * Testet, ob der aktuelle Ort einen Zugang zu dem eingegebenen Ort hat
+     * @author (Lasse, Ella, Mila)
+     */
     public Location hasPassageTo(String name) {
         for(int i = 0; i < passages.size(); i++) {
             if(passages.get(i).getName().equalsIgnoreCase(name)) return passages.get(i);
@@ -83,6 +98,10 @@ public class Location
         return this;
     }
 
+    /**
+     * Plaziert wenn möglich einen Gegenstand im Inventar des Spielers
+     * @author
+     */
     public Item takeItem(String name) {
         for(int i = 0; i < items.size(); i++) {
             if(items.get(i).getName().equalsIgnoreCase(name)) return items.remove(i);
@@ -100,9 +119,13 @@ public class Location
     }
 
     public NonPlayerCharacter getNPC() {
-         return npc;
+        return npc;
     }
 
+    /**
+     * gibt eine Beschreibung der Gegenstände in einem Raum zurück
+     * @author (Mila, Lasse, Ella)
+     */
     public String getItemDescription()
     {
         LinkedList<String> x = new LinkedList<>();
@@ -113,6 +136,10 @@ public class Location
         return x.toString().substring(1, x.toString().length() - 1);
     }
 
+    /**
+     * gibt eine Beschreibung der Ausgänge in einem Raum zurück
+     * @author (Mila, Lasse, Ella)
+     */
     public String getPassageDescription()
     {
         LinkedList<String> x = new LinkedList<>();
@@ -121,5 +148,23 @@ public class Location
             x.add(passages.get(p).getName());
         }
         return x.toString().substring(1, x.toString().length() - 1);
+    }
+
+    /**
+     * Überprüft, ob ein Raum verschlossen ist.
+     * @author (Mila, Ella)
+     */
+    public boolean isLocked()
+    {
+        return locked;
+    }
+
+    /**
+     * Öffnet eine Tür.
+     * @author (Mila, Ella)
+     */
+    public void open()
+    {
+        locked = false;
     }
 }

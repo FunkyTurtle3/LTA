@@ -27,10 +27,10 @@ public class NonPlayerCharacter
     }
 
     public NonPlayerCharacter addInteraction(NPCInteraction interaction) {
-         if(!interactions.isEmpty() || interaction.input() == Item.EMPTY) {
-             interactions.add(interaction);
-         }
-         return this;
+        if(!interactions.isEmpty() || interaction.input() == Item.EMPTY) {
+            interactions.add(interaction);
+        }
+        return this;
     }
 
     public NPCInteraction talk(Item input) {
