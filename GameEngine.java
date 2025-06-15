@@ -125,6 +125,7 @@ public class GameEngine
             Map map = new Map();
             this.inventory.clear();
             this.location = map.getStartLocation();
+            this.isInDevMode = false;
             return "";
         } else if(input.equalsIgnoreCase("spiel") && this.location.getName().equals("Start_Room")) {
             return toLocation("Aula");
@@ -156,10 +157,8 @@ public class GameEngine
                 Object wert = feld.get(map);
                 this.location = (Location) wert;
                 return location.getDescription();
-            } catch (NoSuchFieldException e) {
+            } catch (Exception e) {
                 System.out.println("Location '" + name + "' existiert nicht oder ist nicht public.");
-            } catch (IllegalAccessException e) {
-                System.out.println("Zugriff auf die Location '" + name + "'ist nicht erlaubt.");
             }
         } //Hilfe durch https://chatgpt.com
         Location location = this.location.hasPassageTo(name);
