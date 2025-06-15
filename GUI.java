@@ -11,12 +11,13 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
  * Das Graphical User Interface ist dafür zuständig dem Spieler anzuzeigen was die GameEngine (Attribut) ausgibt.
  */
 public class GUI implements KeyListener {
-    private static final String START_DESCRIPTION = "\nWillkommen zum Leibniz Text Abenteuer!\n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten\n";
+    private static final String START_DESCRIPTION = "\nWillkommen zum Leibniz Text Abenteuer!\n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten.\nFür eine generelle Spielinfo schreibe \"Info\".\n";
     private final GameEngine gameEngine;
     private JTextField inputField;
     private JTextArea outputField;
     private JTextArea inventoryField;
-    private Font font;
+    private Font fontBig;
+    private Font fontSmall;
     private final LinkedList<String> arguments;
     private int argument;
 
@@ -44,7 +45,8 @@ public class GUI implements KeyListener {
      * @author (Lasse, Victor)
      */private void setUpFont() {
         try {
-            this.font = Font.createFont(Font.TRUETYPE_FONT, new File("assets/font/eleganttypewriter.ttf")).deriveFont(30f);
+            this.fontBig = Font.createFont(Font.TRUETYPE_FONT, new File("assets/font/eleganttypewriter.ttf")).deriveFont(30f);
+            this.fontSmall = Font.createFont(Font.TRUETYPE_FONT, new File("assets/font/eleganttypewriter.ttf")).deriveFont(25f);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,7 +81,7 @@ public class GUI implements KeyListener {
         this.inputField.addKeyListener(this);
         this.inputField.setBackground(new Color(217, 239, 232));
         this.inputField.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
-        this.inputField.setFont(this.font);
+        this.inputField.setFont(this.fontBig);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.weightx = 1.0;
@@ -109,7 +111,7 @@ public class GUI implements KeyListener {
         inputButton.setBackground(new Color(217, 239, 232));
         inputButton.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
         inputButton.setFocusPainted(false);
-        inputButton.setFont(this.font);
+        inputButton.setFont(this.fontBig);
         inputButton.setFocusable(false);
         return inputButton;
     }
@@ -123,7 +125,7 @@ public class GUI implements KeyListener {
         inputButton.addActionListener((e) -> this.executeInput());
         inputButton.setBackground(new Color(217, 239, 232));
         inputButton.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
-        inputButton.setFont(this.font);
+        inputButton.setFont(this.fontBig);
         inputButton.setFocusable(false);
         return inputButton;
     }
@@ -137,7 +139,7 @@ public class GUI implements KeyListener {
         this.outputField.setEditable(false);
         this.outputField.setBackground(new Color(217, 239, 232));
         this.outputField.setForeground(new Color(29, 53, 87));
-        this.outputField.setFont(font);
+        this.outputField.setFont(fontSmall);
         this.outputField.setEditable(false);
 
         JScrollPane scrollOutputPane = new JScrollPane(this.outputField);
@@ -164,14 +166,14 @@ public class GUI implements KeyListener {
         notesField.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
         notesField.setBackground(new Color(217, 239, 232));
         notesField.setForeground(new Color(29, 53, 87));
-        notesField.setFont(font);
+        notesField.setFont(fontBig);
         notesField.setPreferredSize(new Dimension(620, 500));
 
         this.inventoryField = new JTextArea();
         this.inventoryField.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
         this.inventoryField.setBackground(new Color(217, 239, 232));
         this.inventoryField.setForeground(new Color(29, 53, 87));
-        this.inventoryField.setFont(font);
+        this.inventoryField.setFont(fontBig);
         this.inventoryField.setEditable(false);
         this.inventoryField.setPreferredSize(new Dimension(620, 500));
 

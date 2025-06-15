@@ -128,7 +128,11 @@ public class Map
 
         S04 = new Location(
                 "S04",
-                NonPlayerCharacter.EMPTY,
+                new NonPlayerCharacter("Linnea")
+                        .addInteraction(new NPCInteraction("Brauchst du Hilfe mit dem Quiz in der Aula?", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Gegen einen klitzekleinen Gefallen geb ich dir einen Tipp", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Bring mir einen Kuchen und ich verspreche dir du bekommst was du brauchst", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Hier hast du den Schlüssel zum Lehrerzimmer (N03). Dort liegen alle Lösungen parat", new Item("Apfelkuchen"), new Item("Schlüssel zum Lehrerzimmer", "mit diesem Schlüssel gelangst du ins Lehrerzimmer (N03), aber sei vorsichtig!"))),
                 new LinkedList<>(),
                 "Du befindest dich in Raum S04.");
 
@@ -267,7 +271,7 @@ public class Map
                 NonPlayerCharacter.EMPTY,
                 new LinkedList<>(),
                 "Du befindest dich in Raum N03.",
-                new Item("Schlüssel"));
+                new Item("Schlüssel zum Lehrerzimmer"));
 
         N04 = new Location(
                 "N04",
@@ -389,7 +393,7 @@ public class Map
                 new NonPlayerCharacter("Herr Türkan")
                         .addInteraction(new NPCInteraction("Du möchtest wissen auf welchen Koordinaten sich das Leibniz-Gymnasium befindet?", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("In 202 steht glaube ich ein alter Globus.\nGegen einen kleinen Gefallen könnte ich dir den Schlüssel überlassen.", Item.EMPTY, Item.EMPTY))
-                        .addInteraction(new NPCInteraction("Wenn du mir aus 102 den Stapel Atlanten überbringen könntest, dann könntest du ihn bekommen", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Wenn du mir aus 102 den Stapel Atlanten bringst, dann könntest du ihn bekommen", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Vielen Dank! Hier ist wie versprochen der Schlüssel", new Item("Stapel Atlanten"), new Item("Schlüssel zu 202", "Mit diesem Schlüssel kannst du den Raum 202 aufschließen.\n"))),
                 new LinkedList<>(),
                 "Du befindest dich in Raum 103.");
@@ -490,6 +494,7 @@ public class Map
         AULA.addItem(new Item("Capri Sonne", "Dies ist eine erfrischende Capri-Sonne mit Multivitamin Geschmack"));
         SCHULHOF.addItem(new Item("Stein", "Dies ist ein grauer dreckiger Stein."));
         CAFETERIA.addItem(new Item("Goldenes Ticket", "Das goldene Ticket ermöglicht dir das Quiz zu starten!"));
+        CAFETERIA.addItem(new Item("Apfelkuchen", "Wer wollte nochmal Kuchen haben?"));
         NERDGESCHOSS.addItem(new Item("Schlüssel", "Mit einem Schlüssel kannst du verschlossene Türen aufschließen"));
 
         NB102.addItem(new Item("Stapel Atlanten", "Das ist ein Stapel Atlanten. Herr Türkan in 103 sucht genau so einen."));

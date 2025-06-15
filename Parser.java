@@ -12,7 +12,7 @@ public class Parser {
      * @author (Leander, Victor, Lasse)
      */
     public static Command createCommand(String input){
-        String command = "";
+        String command;
         String adress = "";
         try {
             command = input.split(" ")[0] != null ? input.split(" ")[0] : input;
