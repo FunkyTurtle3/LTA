@@ -8,8 +8,17 @@ public class Item
     private final String name; //Name des Gegenstands
     private final String description;
     public static final Item EMPTY = new Item("", "");
+
     /**
-     * Konstruktor für die Item-Klasse die nur den Namen initialisiert
+     * Konstruktor für die Item-Klasse die nur den Namen benutzerdefiniert erstellt
+     */
+    public Item(String name) {
+        this.name = name;
+        this.description = "";
+    }
+
+    /**
+     * Konstruktor für die Item-Klasse
      */
     public Item(String name, String description) {
         this.name = name;

@@ -14,5 +14,6 @@ public enum Commands {
     INFO, //zum Ausgeben einer Spielinfo
     OEFFNE, //zum Aufschliessen einer Tür
     ANTWORTE, //zum Antworten auf das Quiz
-    INVALIDINPUT; //zum Ausgeben von ungültigen Eingaben
+    INVALIDINPUT, //zum Ausgeben von ungültigen Eingaben
+    SUDODEVELOPERMODE; //zum Einschalten vom Entwickler-Modus
 }

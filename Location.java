@@ -1,8 +1,8 @@
 import java.util.LinkedList;
 
 /**
- * Objekte der Klasse Location (dt. Ort) beinhalten alle notwendigen Informationen über alle Rauume des Leibniz-Gymnasiums.
- * Eine Location repraesentiert digital einen Raum.
+ * Objekte der Klasse Location (dt. Ort) beinhalten alle notwendigen Informationen über alle Räume des Leibniz-Gymnasiums.
+ * Eine Location repräsentiert digital einen Raum.
  * @author (Lasse, Victor, Leander, Ella, Mila)
  * @version (1.1.0)
  */
@@ -15,19 +15,35 @@ public class Location
     private final LinkedList<Location> passages; //Stellt eine Liste zum Speichern von Durchgängen bereit
     private final String description; //Attribut welches zur Beschreibung des Raum/Ort dient
 
-    private boolean locked;//Attribut zur Überprüfung ob ein Raum verschlossen ist
+    private boolean locked;//Attribut zur Überprüfung, ob ein Raum verschlossen ist
+    private final Item unlockItem;
 
     /**
      * Konstruktor der Location Klasse
-     * @author(Mila,Ella)
+     * @author (Mila,Ella)
      */
-    public Location(String name, NonPlayerCharacter npc, LinkedList<Item> items, String description, boolean locked) {
+    public Location(String name, NonPlayerCharacter npc, LinkedList<Item> items, String description, Item unlockItem) {
         this.name = name;
         this.npc = npc;
         this.items = items;
         this.description = description;
         this.passages = new LinkedList<>();
-        this.locked = locked;
+        this.unlockItem = unlockItem;
+        if(unlockItem != Item.EMPTY) this.locked = true;
+    }
+
+    /**
+     * Konstruktor der Location Klasse
+     * @author (Mila,Ella)
+     */
+    public Location(String name, NonPlayerCharacter npc, LinkedList<Item> items, String description) {
+        this.name = name;
+        this.npc = npc;
+        this.items = items;
+        this.description = description;
+        this.passages = new LinkedList<>();
+        this.unlockItem = Item.EMPTY;
+        this.locked = false;
     }
 
     /**
@@ -43,6 +59,10 @@ public class Location
      */
     public String getName() {
         return name;
+    }
+
+    public Item getUnlockItem() {
+        return this.unlockItem;
     }
 
     /**
@@ -75,7 +95,7 @@ public class Location
         StringBuilder description = new StringBuilder();
         if(!items.isEmpty()) description.append("Hier findest du: ").append(this.getItemDescription()).append("\n");
         if(!passages.isEmpty()) description.append("Von hier gelangst du zu: ").append(this.getPassageDescription()).append("\n");
-        if(npc != NonPlayerCharacter.EMPTY) description.append(npc.getName()).append(" wartet bereits auf dich").append("\n");
+        if(npc != NonPlayerCharacter.EMPTY) description.append(npc.getName()).append(" wartet bereits auf dich");
         return getGeneralDescription() + "\n\n" + description;
     }
 
@@ -123,7 +143,7 @@ public class Location
     }
 
     /**
-     * gibt eine Beschreibung der Gegenstände in einem Raum zurück
+     * Gibt eine Beschreibung der Gegenstände in einem Raum zurück
      * @author (Mila, Lasse, Ella)
      */
     public String getItemDescription()

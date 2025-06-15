@@ -1,3 +1,4 @@
+import java.lang.reflect.Field;
 import java.util.LinkedList;
 /**
  * @author (Lasse, Leander, Victor, Ella, Mila)
@@ -9,13 +10,14 @@ public class GameEngine
 {
     private final LinkedList<Item> inventory;
     private final NonPlayerCharacter quiz;
+    private Map map;
     private Location location;
-
+    private boolean isInDevMode;
     /**
      * Konstruktor der GameEngine Klasse
      * @author
      */public GameEngine() {
-        Map map = new Map();
+        this.map = new Map();
         this.location = map.getStartLocation();
         this.inventory = new LinkedList<>();
         this.quiz = new NonPlayerCharacter("")
@@ -26,12 +28,12 @@ public class GameEngine
                 .addInteraction(new NPCInteraction("Auf welchen Koordinaten befindet sich das Gebäude des Leibniz-Gymnasium?\n", new Item("Robert Koch", ""), Item.EMPTY))
                 .addInteraction(new NPCInteraction("Welchen Namen trug der Architekt des Gebäudes vom Leibniz-Gymnasium?\n", new Item("52° N, 13° O", ""), Item.EMPTY))
                 .addInteraction(new NPCInteraction("Nächste Frage", new Item("Ludwig Hoffmann", ""), Item.EMPTY));
-
-    }
+        this.isInDevMode = false;
+     }
 
     /**
      * Führt eingabenspezifische Methoden aus
-     * @author(Mila, Ella, Lasse, Leander)
+     * @author (Mila, Ella, Lasse, Leander)
      */public String input(String input) {
         Command command = Parser.createCommand(input.toLowerCase());
         String output = "";
@@ -47,10 +49,11 @@ public class GameEngine
             case INSPIZIERE -> output = getItemDescription(command.input());
             case OEFFNE -> output = openDoor(command.input());
             case ANTWORTE -> output = answerQuiz(command.input());
-            case INVALIDINPUT -> output = "Das verstehe ich nicht!\n";
+            case INVALIDINPUT -> output = "Das verstehe ich nicht!";
+            case SUDODEVELOPERMODE -> {this.isInDevMode = true; output = "Du bist jetzt im Entwickler-Modus";}
         }
 
-        return "\nDu: " + input + "\n \n" + output;
+        return "\nDu: " + input + "\n \n" + output + "\n";
     }
 
     public String answerQuiz(String input) {
@@ -85,7 +88,7 @@ public class GameEngine
     }
 
     public String talkToNPC() {
-        return location.getNPC().talk(Item.EMPTY).outputString() + "\n";
+        return location.getNPC().getName() + ": " + location.getNPC().talk(Item.EMPTY).outputString();
     }
 
     public String giveNPC(String input) {
@@ -98,7 +101,7 @@ public class GameEngine
         }
         NPCInteraction interaction = location.getNPC().talk(item);
         if (interaction.output() != Item.EMPTY) inventory.add(i - 1, interaction.output());
-        return location.getNPC().getName() + ": " + interaction.outputString() + "\n";
+        return location.getNPC().getName() + ": " + interaction.outputString();
     }
 
     /**
@@ -127,7 +130,7 @@ public class GameEngine
             return toLocation("Aula");
         } else if(input.equalsIgnoreCase("quiz") && this.location.getName().equals("Aula") && quiz.getTimesInteracted() == 0) {
             return quiz.talk(Item.EMPTY).outputString();
-        } else return "Gebe \"Starte neu/Spiel\" ein um erneut zu beginnen!\n";
+        } else return "Gebe \"Starte neu/Spiel\" ein um erneut zu beginnen!";
     }
 
     /**
@@ -138,8 +141,8 @@ public class GameEngine
         Item item = location.takeItem(name);
         if(item != Item.EMPTY) {
             inventory.addLast(item);
-            return "Ok!\n";
-        } else return "Da ist kein solcher Gegenstand!\n";
+            return "Ok!";
+        } else return "Da ist kein solcher Gegenstand!";
     }
 
     /**
@@ -147,15 +150,27 @@ public class GameEngine
      * @author (Mila, Ella)
      */
     public String toLocation(String name) {
+        if (isInDevMode) {
+            try {
+                Field feld = this.map.getClass().getField(name.toUpperCase());  // Sucht nur public Felder
+                Object wert = feld.get(map);
+                this.location = (Location) wert;
+                return location.getDescription();
+            } catch (NoSuchFieldException e) {
+                System.out.println("Location '" + name + "' existiert nicht oder ist nicht public.");
+            } catch (IllegalAccessException e) {
+                System.out.println("Zugriff auf die Location '" + name + "'ist nicht erlaubt.");
+            }
+        } //Hilfe durch https://chatgpt.com
         Location location = this.location.hasPassageTo(name);
         if(!location.isLocked())
         {
             if(this.location != location) {
                 this.location = location;
                 return location.getDescription();
-            } else return "Das geht leider nicht!\n";
+            } else return "Das geht leider nicht!";
         }
-        else return "Der Raum ist verschlossen!\n";
+        else return "Der Raum ist verschlossen!";
     }
 
     /**
@@ -165,10 +180,10 @@ public class GameEngine
         for(int i = 0; i < inventory.size(); i++) {
             if(inventory.get(i).getName().equalsIgnoreCase(name)) {
                 location.addItem(inventory.remove(i));
-                return "Ok!\n";
+                return "Ok!";
             }
         }
-        return "Du hast keinen solchen Gegenstand in deinem Inventar!\n";
+        return "Du hast keinen solchen Gegenstand in deinem Inventar!";
     }
 
     /**
@@ -177,14 +192,13 @@ public class GameEngine
      */
     public String getItemDescription(String name)
     {
-        for(int i = 0; i < inventory.size(); i++)
-        {
+        for(int i = 0; i < inventory.size(); i++) {
             if(inventory.get(i).getName().equalsIgnoreCase(name))
             {
                 return inventory.get(i).getDescription();
             }
         }
-        return "Du hast keinen solchen Gegenstand in deinem Inventar!\n";
+        return "Du hast keinen solchen Gegenstand in deinem Inventar!";
     }
 
 
@@ -194,15 +208,12 @@ public class GameEngine
      */
     public String openDoor(String name)
     {
-        if(location.hasPassageTo(name).isLocked())
-        {
-            for(int i = 0; i < inventory.size(); i++)
-            {
-                if(inventory.get(i).getName().equalsIgnoreCase("schlüssel"))
-                {
+        if(location.hasPassageTo(name).isLocked()) {
+            for(int i = 0; i < inventory.size(); i++) {
+                if(inventory.get(i).getName().equalsIgnoreCase(location.hasPassageTo(name).getUnlockItem().getName())) {
                     location.hasPassageTo(name).open();
                     return "Die Tür ist jetzt geöffnet.";
-                }
+                } else return "Fehler in der If-Anweisung";
             }
             return "Du hast keinen Schlüssel.";
         }
