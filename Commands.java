@@ -13,5 +13,6 @@ public enum Commands {
     INSPIZIERE, //zum Untersuchen eines Gegenstandes
     INFO, //zum Ausgeben einer Spielinfo
     OEFFNE, //zum Aufschliessen einer Tür
+    ANTWORTE, //zum Antworten auf das Quiz
     INVALIDINPUT; //zum Ausgeben von ungültigen Eingaben
 }

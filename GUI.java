@@ -1,5 +1,8 @@
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
+import java.util.LinkedList;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 /**
@@ -7,13 +10,17 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
  * @version 1.1.0
  * Das Graphical User Interface ist dafür zuständig dem Spieler anzuzeigen was die GameEngine (Attribut) ausgibt.
  */
-public class GUI {
+public class GUI implements KeyListener {
     private static final String START_DESCRIPTION = "\nWillkommen zum Leibniz Text Abenteuer!\n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten\n";
     private final GameEngine gameEngine;
     private JTextField inputField;
     private JTextArea outputField;
     private JTextArea inventoryField;
     private Font font;
+    private final LinkedList<String> arguments;
+    private int argument;
+
+
     public static void main(String[] args){
         new GUI();
     }
@@ -22,6 +29,8 @@ public class GUI {
      * Konstruktor für die GUI Klasse
      * @author (Lasse, Leander)
      */public GUI(){
+        this.arguments = new LinkedList<>();
+        this.argument = 0;
         setUpFont();
         this.gameEngine = new GameEngine();
         createWindow();
@@ -67,6 +76,7 @@ public class GUI {
         this.inputField = new JTextField();
         this.inputField.setPreferredSize(new Dimension(400, 60));
         this.inputField.addActionListener((e) -> this.executeInput());
+        this.inputField.addKeyListener(this);
         this.inputField.setBackground(new Color(217, 239, 232));
         this.inputField.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
         this.inputField.setFont(this.font);
@@ -129,7 +139,6 @@ public class GUI {
         this.outputField.setForeground(new Color(29, 53, 87));
         this.outputField.setFont(font);
         this.outputField.setEditable(false);
-        this.outputField.setFocusable(false);
 
         JScrollPane scrollOutputPane = new JScrollPane(this.outputField);
         JScrollBar verticalScrollBar = scrollOutputPane.createVerticalScrollBar();
@@ -151,14 +160,12 @@ public class GUI {
         JPanel previewPanel = new JPanel(new BorderLayout());
         previewPanel.setPreferredSize(new Dimension(620, 1000));
 
-        JTextArea locationField = new JTextArea();
-        locationField.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
-        locationField.setBackground(new Color(217, 239, 232));
-        locationField.setForeground(new Color(29, 53, 87));
-        locationField.setFont(font);
-        locationField.setEditable(false);
-        locationField.setFocusable(false);
-        locationField.setPreferredSize(new Dimension(620, 500));
+        JTextArea notesField = new JTextArea("Hier hast du Platz für Notizen");
+        notesField.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
+        notesField.setBackground(new Color(217, 239, 232));
+        notesField.setForeground(new Color(29, 53, 87));
+        notesField.setFont(font);
+        notesField.setPreferredSize(new Dimension(620, 500));
 
         this.inventoryField = new JTextArea();
         this.inventoryField.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
@@ -166,10 +173,9 @@ public class GUI {
         this.inventoryField.setForeground(new Color(29, 53, 87));
         this.inventoryField.setFont(font);
         this.inventoryField.setEditable(false);
-        this.inventoryField.setFocusable(false);
         this.inventoryField.setPreferredSize(new Dimension(620, 500));
 
-        previewPanel.add(locationField, BorderLayout.NORTH);
+        previewPanel.add(notesField, BorderLayout.NORTH);
         previewPanel.add(this.inventoryField, BorderLayout.SOUTH);
 
         outputPanel.add(scrollOutputPane);
@@ -229,9 +235,33 @@ public class GUI {
      */private void executeInput() {
         if (!this.inputField.getText().isEmpty()) {
             this.outputField.setText(this.outputField.getText() + this.gameEngine.input(this.inputField.getText()));
+            this.arguments.addFirst(inputField.getText());
+            this.argument = 0;
         }
         if (this.inputField.getText().equalsIgnoreCase("starte neu")) this.outputField.setText(START_DESCRIPTION);
         this.inputField.setText("");
         this.inventoryField.setText("Dein Inventar:\n" + this.gameEngine.getInventoryDescription());
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        //nicht benötigt aber durch interface vorgegeben
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if(e.getKeyCode() == 38 && this.arguments.size() > this.argument) {
+            this.inputField.setText(this.arguments.get(this.argument));
+            this.argument++;
+        }
+        if(e.getKeyCode() == 40 && this.argument > 0) {
+            this.argument--;
+            this.inputField.setText(this.arguments.get(this.argument));
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        //nicht benötigt aber durch interface vorgegeben
     }
 }

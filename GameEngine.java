@@ -8,6 +8,7 @@ import java.util.LinkedList;
 public class GameEngine
 {
     private final LinkedList<Item> inventory;
+    private final NonPlayerCharacter quiz;
     private Location location;
 
     /**
@@ -17,6 +18,15 @@ public class GameEngine
         Map map = new Map();
         this.location = map.getStartLocation();
         this.inventory = new LinkedList<>();
+        this.quiz = new NonPlayerCharacter("")
+                .addInteraction(new NPCInteraction("Seit welchem Jahr ist es Schülerinnen erlaubt am Leibniz Gymnasium zu lernen?\n", Item.EMPTY, Item.EMPTY))
+                .addInteraction(new NPCInteraction("Wie viele Räume hat das Gebäude des Leibniz-Gymnasiums?\n", new Item("1900", ""), Item.EMPTY))
+                .addInteraction(new NPCInteraction("Wie lautet die Zahl 175 im Binärcode\n", new Item("80", ""), Item.EMPTY))
+                .addInteraction(new NPCInteraction("Nach welcher Person, wurde die Schule vor Gottfried Wilhelm Leibniz benannt?\n", new Item("10101111", ""), Item.EMPTY))
+                .addInteraction(new NPCInteraction("Auf welchen Koordinaten befindet sich das Gebäude des Leibniz-Gymnasium?\n", new Item("Robert Koch", ""), Item.EMPTY))
+                .addInteraction(new NPCInteraction("Welchen Namen trug der Architekt des Gebäudes vom Leibniz-Gymnasium?\n", new Item("52° N, 13° O", ""), Item.EMPTY))
+                .addInteraction(new NPCInteraction("Nächste Frage", new Item("Ludwig Hoffmann", ""), Item.EMPTY));
+
     }
 
     /**
@@ -30,16 +40,25 @@ public class GameEngine
             case ZU -> output = toLocation(command.input());
             case LEGE -> output = dropItem(command.input());
             case NIMM -> output = takeItem(command.input());
-            case STARTE -> output = reset(command.input());
+            case STARTE -> output = start(command.input());
             case FRAG -> output = talkToNPC();
             case GIB -> output = giveNPC(command.input());
             case INFO -> output = getInfo();
             case INSPIZIERE -> output = getItemDescription(command.input());
             case OEFFNE -> output = openDoor(command.input());
+            case ANTWORTE -> output = answerQuiz(command.input());
             case INVALIDINPUT -> output = "Das verstehe ich nicht!\n";
         }
 
         return "\nDu: " + input + "\n \n" + output;
+    }
+
+    public String answerQuiz(String input) {
+         if(!this.location.getName().equals("Aula")){
+             return "Du musst in der Aula sein um das Quiz zu machen";
+         } else if (this.quiz.getTimesInteracted() <= 0) {
+             return "Benutze den \"Starte Quiz\"-Befehl um das Quiz zu starten";
+         } else return quiz.talk(new Item(input, "")).outputString();
     }
 
     /**
@@ -98,14 +117,16 @@ public class GameEngine
      * Setzt das Spiel auf den Anfang zurück
      * @author
      */
-    public String reset(String input) {
+    public String start(String input) {
         if(input.equalsIgnoreCase("neu")) {
             Map map = new Map();
             this.inventory.clear();
             this.location = map.getStartLocation();
             return "";
-        } else if(input.equalsIgnoreCase("spiel") && this.location.getName().equalsIgnoreCase("Start_Room")) {
+        } else if(input.equalsIgnoreCase("spiel") && this.location.getName().equals("Start_Room")) {
             return toLocation("Aula");
+        } else if(input.equalsIgnoreCase("quiz") && this.location.getName().equals("Aula") && quiz.getTimesInteracted() == 0) {
+            return quiz.talk(Item.EMPTY).outputString();
         } else return "Gebe \"Starte neu/Spiel\" ein um erneut zu beginnen!\n";
     }
 
@@ -127,12 +148,12 @@ public class GameEngine
      */
     public String toLocation(String name) {
         Location location = this.location.hasPassageTo(name);
-        if(location.isLocked() == false)
+        if(!location.isLocked())
         {
             if(this.location != location) {
                 this.location = location;
                 return location.getDescription();
-            } else return "Du befindest dich schon in diesem Raum.\n";
+            } else return "Das geht leider nicht!\n";
         }
         else return "Der Raum ist verschlossen!\n";
     }
