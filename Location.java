@@ -41,14 +41,6 @@ public class Location
     }
 
     /**
-     * gibt eine Liste aller Ausgänge zurück
-     */
-    public LinkedList<Location> getPassages()
-    {
-        return passages;
-    }
-
-    /**
      * gibt den Namen des Raumes/Orts zurück
      */
     public String getName() {
@@ -113,7 +105,7 @@ public class Location
     }
 
     /**
-     * Plaziert wenn möglich einen Gegenstand im Inventar des Spielers
+     * Platziert wenn möglich einen Gegenstand im Inventar des Spielers
      * @author
      */
     public Item takeItem(String name) {
@@ -121,15 +113,6 @@ public class Location
             if(items.get(i).getName().equalsIgnoreCase(name)) return items.remove(i);
         }
         return Item.EMPTY;
-    }
-
-    public NonPlayerCharacter hasNPC(String name)
-    {
-        if(npc.getName().equals(name))
-        {
-            return npc;
-        }
-        return NonPlayerCharacter.EMPTY;
     }
 
     public NonPlayerCharacter getNPC() {

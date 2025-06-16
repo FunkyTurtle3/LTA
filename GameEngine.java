@@ -15,20 +15,22 @@ public class GameEngine
     private boolean isInDevMode;
     /**
      * Konstruktor der GameEngine Klasse
-     * @author
+     * @author ()
      */public GameEngine() {
         this.map = new Map();
         this.location = map.getStartLocation();
         this.inventory = new LinkedList<>();
         this.quiz = new NonPlayerCharacter("")
         .addInteraction(new NPCInteraction("Seit welchem Jahr ist es Schülerinnen erlaubt am Leibniz Gymnasium zu lernen?", Item.EMPTY, Item.EMPTY))
-        .addInteraction(new NPCInteraction("Wie viele Räume hat das Gebäude des Leibniz-Gymnasiums?", new Item("1900", ""), Item.EMPTY))
-        .addInteraction(new NPCInteraction("Wie lautet die Zahl 175 im Binärcode?", new Item("80", ""), Item.EMPTY))
-        .addInteraction(new NPCInteraction("Nach welcher Person, wurde die Schule vor Gottfried Wilhelm Leibniz benannt?", new Item("10101111", ""), Item.EMPTY))
-        .addInteraction(new NPCInteraction("Auf welchen Koordinaten befindet sich das Gebäude des Leibniz-Gymnasium?", new Item("Robert Koch", ""), Item.EMPTY))
-        .addInteraction(new NPCInteraction("Welchen Namen trug der Architekt des Gebäudes vom Leibniz-Gymnasium?", new Item("52° N, 13° O", ""), Item.EMPTY))
-        .addInteraction(new NPCInteraction("Wann wurde das Leibniz-Gymnasium erstmals als MINT-freundliche Schule ausgezeichnet?", new Item("Ludwig Hoffmann", ""), Item.EMPTY))
-        .addInteraction(new NPCInteraction("Nächste Frage", new Item("2013", ""), Item.EMPTY));
+        .addInteraction(new NPCInteraction("Wie viele Räume hat das Gebäude des Leibniz-Gymnasiums?", new Item("1900"), Item.EMPTY)) //Hausmeister
+        .addInteraction(new NPCInteraction("Wie lautet die Zahl 175 im Binärcode?", new Item("80"), Item.EMPTY)) //Informatik
+        .addInteraction(new NPCInteraction("Nach welcher Person, wurde die Schule vor Gottfried Wilhelm Leibniz benannt?", new Item("10101111"), Item.EMPTY)) //Geschichte
+        .addInteraction(new NPCInteraction("Auf welchen Koordinaten befindet sich das Gebäude des Leibniz-Gymnasium?", new Item("Robert Koch"), Item.EMPTY)) //Geografie
+        .addInteraction(new NPCInteraction("Welchen Namen trug der Architekt des Gebäudes vom Leibniz-Gymnasium?", new Item("52° N, 13° O"), Item.EMPTY)) //Kunst
+        .addInteraction(new NPCInteraction("Wann wurde das Leibniz-Gymnasium erstmals als MINT-freundliche Schule ausgezeichnet?", new Item("Ludwig Hoffmann"), Item.EMPTY)) //Schulleitung
+        .addInteraction(new NPCInteraction("Mit wie viel Prozent der Stimmen gewann die Parte \"Die Linke\" 2025 die Juniorwahl?", new Item("2013"), Item.EMPTY)) //Politik
+        .addInteraction(new NPCInteraction("Welcher Epoche lässt sich Gottfried Wilhelm Leibniz's Person zuordnen?", new Item("39,8", ""), Item.EMPTY)) //Deutsch
+                .addInteraction(new NPCInteraction("Nächste Frage", new Item("Aufklärung", ""), Item.EMPTY));
         this.isInDevMode = false;
     }
 
@@ -135,7 +137,7 @@ public class GameEngine
      */
     public String start(String input) {
         if(input.equalsIgnoreCase("neu")) {
-            Map map = new Map();
+            this.map = new Map();
             this.inventory.clear();
             this.location = map.getStartLocation();
             this.isInDevMode = false;
