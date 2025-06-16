@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 
 /**
  * In der Map (dt. Karte) sind alle Räume des Leibniz-Gymnasiums gespeichert. Sie werden in der Kartenerstellung kreiert.
@@ -168,7 +167,12 @@ public class Map
 
         S16 = new Location(
                 "S16",
-                NonPlayerCharacter.EMPTY,
+                new NonPlayerCharacter("Frau Küchler")
+                        .addInteraction(new NPCInteraction("Ich hab gehört du möchtest wissen wie der Architekt unseres Hauses heißt?", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Wenn du 2 Aufgabe für mich erledigst, dann verrate ich dir den Vornamen.", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Bringe mir zunächst die Farbe mit der man zusätzlich zu Blau, Grün mischen kann", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Super! Jetzt besorg mir doch bitte eine Farbe, die eigentlich gar keine ist.", new Item("Gelbe Farbtube"), Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Perfekt! Der Architekt unseres Gebäudes hieß mit Vornamen Ludwig", new Item("Schwarze Farbtube"), Item.EMPTY)),
                 "Du befindest dich in Raum S16.");
 
         SOG2 = new Location(
@@ -215,7 +219,12 @@ public class Map
 
         S29 = new Location(
                 "S29",
-                NonPlayerCharacter.EMPTY,
+                new NonPlayerCharacter("Frau Gruhl")
+                        .addInteraction(new NPCInteraction("Du kommst wegen des Quiz's richtig?", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Wenn du mir kurz hilfst, sag ich dir wie der Architekt unseres Hauses mit Nachnamen hieß.", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Hol als erstes die Komplementärfarbe von Orange", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Dankeschön! Jetzt brauche ich noch die Farbe für die das \"R\" im RGB-Farbsystem steht", new Item("Blaue Farbtube"), Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Toll! Der Nachname des Architekten lautet Hoffmann", new Item("Rote Farbtube"), Item.EMPTY)),
                 "Du befindest dich in Raum S29.");
 
         NERDGESCHOSS = new Location(
@@ -445,6 +454,12 @@ public class Map
                 "\nDer Punkt liegt irgendwo zwischen 50° und 60° N und zwischen 10° und 20° O"));
                 
         N03.addItem(new Item("Lösungen", ""));
+
+        //Items in den Kunst-Räumen
+        KUK.addItem(new Item("Blaue Farbtube", "Das ist eine blaue Farbtube. Acryl ist da glaube ich drin."));
+        KUK.addItem(new Item("Schwarze Farbtube", "Das ist ein Plastikbehälter mit schwarzer Farbe. Latex ist da vielleicht drin."));
+        S16.addItem(new Item("Rote Farbtube", "Das ist eine Tube mit roter Farbe. Pigment ist da vermutlich drin."));
+        S29.addItem(new Item("Gelbe Farbtube", "Das ist eine gelbe Tube voller Farbe. Öl ist da eventuell drin."));
     }
 
     public Location getStartLocation() {
