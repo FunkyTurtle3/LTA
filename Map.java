@@ -72,7 +72,6 @@ public class Map
         START_ROOM = new Location(
                 "Start_Room",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "");
 
         AULA = new Location(
@@ -81,49 +80,41 @@ public class Map
                         .addInteraction(new NPCInteraction("Möchtest du das Quiz starten?", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Dann bring mir das goldene Ticket!", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Los gehts!", new Item("Goldenes Ticket", "Das goldene Ticket ermöglicht dir das Quiz zu starten!"), Item.EMPTY)),
-                new LinkedList<>(),
                 "Du befindest dich in der Aula");
 
         SCHULHOF = new Location(
                 "Schulhof",
                 new NonPlayerCharacter("Herr Alik"),
-                new LinkedList<>(),
                 "Alles grün hier");
 
         CAFETERIA = new Location(
                 "Cafeteria",
                 new NonPlayerCharacter("Ablas Schwester oder so"),
-                new LinkedList<>(),
                 "Schade dass Abla weg ist");
 
         TERRASSE = new Location(
                 "Terrasse",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich auf der Terrasse.");
 
         SERDGESCHOSS = new Location(
                 "Erdgeschoss-Süd",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich nun im Erdgeschoss des Südflügels.");
 
         S01 = new Location(
                 "S01",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S01.");
 
         S02 = new Location(
                 "S02",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S02.");
 
         S03 = new Location(
                 "S03",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S03.");
 
         S04 = new Location(
@@ -133,259 +124,217 @@ public class Map
                         .addInteraction(new NPCInteraction("Gegen einen klitzekleinen Gefallen geb ich dir einen Tipp", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Bring mir einen Kuchen und ich verspreche dir du bekommst was du brauchst", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Hier hast du den Schlüssel zum Lehrerzimmer (N03). Dort liegen alle Lösungen parat", new Item("Apfelkuchen"), new Item("Schlüssel zum Lehrerzimmer", "mit diesem Schlüssel gelangst du ins Lehrerzimmer (N03), aber sei vorsichtig!"))),
-                new LinkedList<>(),
                 "Du befindest dich in Raum S04.");
 
         S05 = new Location(
                 "S05",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S05.");
 
         KUK = new Location(
                 "Kunstkeller",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich im Kunstkeller.");
 
         SOG1 = new Location(
                 "1.Stock-Süd",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich nun im 1.Stock des Südflügels.");
 
         S11 = new Location(
                 "S11",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S11.");
 
         S12 = new Location(
                 "S12",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S12.");
 
         S13 = new Location(
                 "S13",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S13.");
 
         S14 = new Location(
                 "S14",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S14.");
 
         S15 = new Location(
                 "S15",
                 new NonPlayerCharacter("Herr M. Müller"),
-                new LinkedList<>(),
                 "Du befindest dich in Raum S15.");
 
         S16 = new Location(
                 "S16",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S16.");
 
         SOG2 = new Location(
                 "2.Stock-Süd",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich nun im 2.Stock des Südflügels.");
 
 
         S21 = new Location(
                 "S21",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S21.");
 
         S22 = new Location(
                 "S22",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S22.");
 
         S23 = new Location(
                 "S23",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S23.");
 
         S24 = new Location(
                 "S24",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S24.");
 
         S25 = new Location(
                 "S25",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S25.");
 
         S26 = new Location(
                 "S26",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S26.");
 
         S27 = new Location(
                 "S27",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S27.");
 
 
         S29 = new Location(
                 "S29",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum S29.");
 
         NERDGESCHOSS = new Location(
                 "Erdgeschoss-Nord",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich nun im Erdgeschoss des Nordflügels.");
 
         N01 = new Location(
                 "N01",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N01.",
                 new Item("Schlüssel"));
 
         N02 = new Location(
                 "N02",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N02.",
                 new Item("Schlüssel"));
 
         N03 = new Location(
                 "N03",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N03.",
                 new Item("Schlüssel zum Lehrerzimmer"));
 
         N04 = new Location(
                 "N04",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N04.",
                 new Item("Schlüssel"));
 
         N05 = new Location(
                 "N05",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N05.",
                 new Item("Schlüssel"));
 
         NOG1 = new Location(
                 "1.Stock-Nord",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich nun im 1.Stock des Nordflügel.");
 
         N11 = new Location(
                 "N11",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N11.");
 
         N12 = new Location(
                 "N12",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N12.");
 
         N13 = new Location(
                 "N13",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N13.");
 
         N14 = new Location(
                 "N14",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N14.");
 
         N15 = new Location(
                 "N15",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N15.");
 
         N16 = new Location(
                 "N16",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N16.");
 
         NOG2 = new Location(
                 "2.Stock-Nord",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich nun im 2.Stock des Nordflügels.");
         N21 = new Location(
                 "N21",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N21.");
 
         N22 = new Location(
                 "N22",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N22.");
 
         N23 = new Location(
                 "N23",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N23.");
 
         N24 = new Location(
                 "N24",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N24.");
 
         N25 = new Location(
                 "N25",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N25.");
 
         N26 = new Location(
                 "N26",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum N26.");
 
         NEUBAU = new Location(
                 "Neubau",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich im Neubau.");
 
         NB101 = new Location(
                 "101",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum 101.");
 
         NB102 = new Location(
                 "102",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum 102.");
 
         NB103 = new Location(
@@ -395,7 +344,6 @@ public class Map
                         .addInteraction(new NPCInteraction("In 202 steht glaube ich ein alter Globus.\nGegen einen kleinen Gefallen könnte ich dir den Schlüssel überlassen.", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Wenn du mir aus 102 den Stapel Atlanten bringst, dann könntest du ihn bekommen", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Vielen Dank! Hier ist wie versprochen der Schlüssel", new Item("Stapel Atlanten"), new Item("Schlüssel zu 202", "Mit diesem Schlüssel kannst du den Raum 202 aufschließen.\n"))),
-                new LinkedList<>(),
                 "Du befindest dich in Raum 103.");
 
         NB201 = new Location(
@@ -403,26 +351,22 @@ public class Map
                 new NonPlayerCharacter("Frau Krauß")
                         .addInteraction(new NPCInteraction("Du möchtest wissen auf welchem Breitengrad sich das Leibniz-Gymnasium befindet?", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Der Breitengrad des Leibniz-Gymnasiums beträgt 52°. Ob Nord oder Süd musst du selbst herausfinden.\nVielleicht findest du ja irgendwo einen Globus.", Item.EMPTY, Item.EMPTY)),
-                new LinkedList<>(),
                 "Du befindest dich in Raum 201.");
 
         NB202 = new Location(
                 "202",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum 202.",
                 new Item("Schlüssel zu 202"));
 
         NB203 = new Location(
                 "203",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum 203.");
 
         NB301 = new Location(
                 "301",
                 NonPlayerCharacter.EMPTY,
-                new LinkedList<>(),
                 "Du befindest dich in Raum 301.");
 
         NB302 = new Location(
@@ -430,7 +374,6 @@ public class Map
                 new NonPlayerCharacter("Herr Heickmann")
                         .addInteraction(new NPCInteraction("Du möchtest wissen auf welchem Längengrad sich das Leibniz-Gymnasium befindet?", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Der Längengrad des Leibniz-Gymnasiums beträgt 13°. Ob Ost oder West musst du selbst herausfinden.\nVielleicht findest du ja irgendwo einen Globus.", Item.EMPTY, Item.EMPTY)),
-                new LinkedList<>(),
                 "Du befindest dich in Raum 302.");
 
         START_ROOM.addPassage(AULA);
@@ -500,6 +443,8 @@ public class Map
         NB102.addItem(new Item("Stapel Atlanten", "Das ist ein Stapel Atlanten. Herr Türkan in 103 sucht genau so einen."));
         NB202.addItem(new Item("Globus", "Auf dem Globus ist ein Roter Punkt. Darüber steht Leibniz-Gymnasium." +
                 "\nDer Punkt liegt irgendwo zwischen 50° und 60° N und zwischen 10° und 20° O"));
+                
+        N03.addItem(new Item("Lösungen", ""));
     }
 
     public Location getStartLocation() {

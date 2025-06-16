@@ -1,10 +1,16 @@
 #BlueJ class context
 comment0.target=Item
-comment0.text=\r\n\ @author\ (Lasse,\ ELla,\ Mila)\r\n\ @version\ 1.1.0\r\n\ Items\ (dt.\ Gegenst\u00E4nde)\ k\u00F6nnen\ in\ einem\ Raum\ liegen\ oder\ im\ Inventar\ des\ Spielers\ bzw.\ der\ GameEngine\ existieren.\r\n
+comment0.text=\r\n\ @author\ (Lasse,\ Ella,\ Mila)\r\n\ @version\ 1.1.0\r\n\ Items\ (dt.\ Gegenst\u00E4nde)\ k\u00F6nnen\ in\ einem\ Raum\ liegen\ oder\ im\ Inventar\ des\ Spielers\ bzw.\ der\ GameEngine\ existieren.\r\n
 comment1.params=name
 comment1.target=Item(java.lang.String)
-comment1.text=\r\n\ Konstruktor\ f\u00FCr\ die\ Item-Klasse\ die\ nur\ den\ Namen\ initialisiert\r\n
-comment2.params=
-comment2.target=java.lang.String\ getName()
-comment2.text=\r\n\ Get-Methode\ f\u00FCr\ das\ Namen-Attribut\r\n\ @author\ (Ella,\ Mila)\r\n
-numComments=3
+comment1.text=\r\n\ Konstruktor\ f\u00FCr\ die\ Item-Klasse\ die\ nur\ den\ Namen\ benutzerdefiniert\ erstellt\r\n
+comment2.params=name\ description
+comment2.target=Item(java.lang.String,\ java.lang.String)
+comment2.text=\r\n\ Konstruktor\ f\u00FCr\ die\ Item-Klasse\r\n
+comment3.params=
+comment3.target=java.lang.String\ getName()
+comment3.text=\r\n\ Get-Methode\ f\u00FCr\ das\ Namen-Attribut\r\n\ @author\ (Ella,\ Mila)\r\n
+comment4.params=
+comment4.target=java.lang.String\ getDescription()
+comment4.text=\r\n\ Get-Methode\ f\u00FCr\ das\ Beschreibungsattribut\r\n\ @author\ (Ella,\ Mila)\r\n
+numComments=5

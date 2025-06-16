@@ -22,10 +22,10 @@ public class Location
      * Konstruktor der Location Klasse
      * @author (Mila,Ella)
      */
-    public Location(String name, NonPlayerCharacter npc, LinkedList<Item> items, String description, Item unlockItem) {
+    public Location(String name, NonPlayerCharacter npc, String description, Item unlockItem) {
         this.name = name;
         this.npc = npc;
-        this.items = items;
+        this.items = new LinkedList<>();
         this.description = description;
         this.passages = new LinkedList<>();
         this.unlockItem = unlockItem;
@@ -36,14 +36,8 @@ public class Location
      * Konstruktor der Location Klasse
      * @author (Mila,Ella)
      */
-    public Location(String name, NonPlayerCharacter npc, LinkedList<Item> items, String description) {
-        this.name = name;
-        this.npc = npc;
-        this.items = items;
-        this.description = description;
-        this.passages = new LinkedList<>();
-        this.unlockItem = Item.EMPTY;
-        this.locked = false;
+    public Location(String name, NonPlayerCharacter npc, String description) {
+        this(name, npc, description, Item.EMPTY);
     }
 
     /**
@@ -93,9 +87,9 @@ public class Location
      */
     public String getDescription() {
         StringBuilder description = new StringBuilder();
-        if(!items.isEmpty()) description.append("Hier findest du: ").append(this.getItemDescription()).append("\n");
-        if(!passages.isEmpty()) description.append("Von hier gelangst du zu: ").append(this.getPassageDescription()).append("\n");
-        if(npc != NonPlayerCharacter.EMPTY) description.append(npc.getName()).append(" wartet bereits auf dich");
+        if(!items.isEmpty()) description.append("Hier findest du: ").append(this.getItemDescription());
+        if(!passages.isEmpty()) description.append("\n").append("Von hier gelangst du zu: ").append(this.getPassageDescription());
+        if(npc != NonPlayerCharacter.EMPTY) description.append("\n").append(npc.getName()).append(" wartet bereits auf dich");
         return getGeneralDescription() + "\n\n" + description;
     }
 
@@ -115,7 +109,7 @@ public class Location
         for(int i = 0; i < passages.size(); i++) {
             if(passages.get(i).getName().equalsIgnoreCase(name)) return passages.get(i);
         }
-        return this;
+        return null;
     }
 
     /**

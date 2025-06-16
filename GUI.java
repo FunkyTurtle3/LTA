@@ -1,8 +1,13 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedList;
+import java.util.Objects;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 /**
@@ -13,14 +18,17 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 public class GUI implements KeyListener {
     private static final String START_DESCRIPTION = "\nWillkommen zum Leibniz Text Abenteuer!\n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten.\nFür eine generelle Spielinfo schreibe \"Info\".\n";
     private final GameEngine gameEngine;
+    private JFrame frame;
     private JTextField inputField;
     private JTextArea outputField;
     private JTextArea inventoryField;
+    private Font fontNormal;
     private Font fontBig;
     private Font fontSmall;
     private final LinkedList<String> arguments;
     private int argument;
-
+    private final double width;
+    private final double height;
 
     public static void main(String[] args){
         new GUI();
@@ -34,9 +42,23 @@ public class GUI implements KeyListener {
         this.argument = 0;
         setUpFont();
         this.gameEngine = new GameEngine();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.width = screenSize.getWidth();
+        this.height = screenSize.getHeight();
         createWindow();
+        setUpLogo();
         this.outputField.setText(START_DESCRIPTION);
         this.inventoryField.setText("Dein Inventar:\n" + this.gameEngine.getInventoryDescription());
+    }
+
+    private void setUpLogo() {
+        try {
+            InputStream imageStream = GUI.class.getResourceAsStream("/assets/textures/logo.png");
+            Image icon = ImageIO.read(imageStream);
+            frame.setIconImage(icon);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -45,10 +67,13 @@ public class GUI implements KeyListener {
      * @author (Lasse, Victor)
      */private void setUpFont() {
         try {
-            this.fontBig = Font.createFont(Font.TRUETYPE_FONT, new File("assets/font/eleganttypewriter.ttf")).deriveFont(30f);
-            this.fontSmall = Font.createFont(Font.TRUETYPE_FONT, new File("assets/font/eleganttypewriter.ttf")).deriveFont(25f);
+            InputStream Fontstream = GUI.class.getResourceAsStream("/assets/font/ElegantTypewriter.ttf");
+            Font font = Font.createFont(Font.TRUETYPE_FONT, Fontstream);
+            this.fontNormal = font.deriveFont(30f);
+            this.fontBig = font.deriveFont(40f);
+            this.fontSmall = font.deriveFont(25f);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 
@@ -56,12 +81,14 @@ public class GUI implements KeyListener {
      * Methode mit der das Fenster generiert und ausgegeben wird
      * @author (Lasse, Leander, Victor)
      */private void createWindow() {
-        JFrame frame = new JFrame("Leibniz Text Adventure");
+        this.frame = new JFrame("Leibniz Text Adventure");
         frame.setUndecorated(true);
         frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        frame.setBackground(new Color(69, 123, 157));
+        frame.setName("Leibniz Text Adventure");
         Container contentPane = frame.getContentPane();
-        contentPane.add(this.createOutputField(), "Center");
         contentPane.add(this.createInputField(), "South");
+        contentPane.add(this.createOutputField(), "Center");
         frame.setResizable(false);
         frame.setVisible(true);
     }
@@ -72,11 +99,13 @@ public class GUI implements KeyListener {
      */private JPanel createInputField() {
         JPanel inputPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-        inputPanel.setPreferredSize(new Dimension(1000, 80));
+        inputPanel.setPreferredSize(new Dimension((int) (this.width * ((double) 7 /10)), (int) (height / 10)));
         inputPanel.setBackground(new Color(168, 218, 220));
         inputPanel.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
         this.inputField = new JTextField();
-        this.inputField.setPreferredSize(new Dimension(400, 60));
+        this.inputField.setMinimumSize(new Dimension((int) (this.width * ((double) 20 /100)), (int) (this.height * ((double) 1 /12))));
+        this.inputField.setMaximumSize(new Dimension((int) (this.width * ((double) 20 /100)), (int) (this.height * ((double) 1 /12))));
+        this.inputField.setPreferredSize(new Dimension((int) (this.width * ((double) 20 /100)), (int) (this.height * ((double) 1 /12))));
         this.inputField.addActionListener((e) -> this.executeInput());
         this.inputField.addKeyListener(this);
         this.inputField.setBackground(new Color(217, 239, 232));
@@ -106,7 +135,9 @@ public class GUI implements KeyListener {
      * @author (Lasse, Leander, Victor)
      */private JButton createQuitButton() {
         JButton inputButton = new JButton("Spiel schließen");
-        inputButton.setPreferredSize(new Dimension(400, 60));
+        inputButton.setMinimumSize(new Dimension((int) (this.width * ((double) 20 /100)), (int) (this.height * ((double) 1 /12))));
+        inputButton.setMaximumSize(new Dimension((int) (this.width * ((double) 20 /100)), (int) (this.height * ((double) 1 /12))));
+        inputButton.setPreferredSize(new Dimension((int) (this.width * ((double) 20 /100)), (int) (this.height * ((double) 1 /12))));
         inputButton.addActionListener((e) -> System.exit(0));
         inputButton.setBackground(new Color(217, 239, 232));
         inputButton.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
@@ -121,7 +152,9 @@ public class GUI implements KeyListener {
      * @author (Lasse, Leander, Victor)
      */private JButton createEnterButton() {
         JButton inputButton = new JButton("Eingabe");
-        inputButton.setPreferredSize(new Dimension(200, 60));
+        inputButton.setMinimumSize(new Dimension((int) (this.width * ((double) 20 /100)), (int) (this.height * ((double) 1 /12))));
+        inputButton.setMaximumSize(new Dimension((int) (this.width * ((double) 20 /100)), (int) (this.height * ((double) 1 /12))));
+        inputButton.setPreferredSize(new Dimension((int) (this.width * ((double) 20 /100)), (int) (this.height * ((double) 1 /12))));
         inputButton.addActionListener((e) -> this.executeInput());
         inputButton.setBackground(new Color(217, 239, 232));
         inputButton.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
@@ -155,27 +188,27 @@ public class GUI implements KeyListener {
         //noch zu verstehen
         horizontalScrollBar.setUI(createScrollBar());
         scrollOutputPane.setHorizontalScrollBar(horizontalScrollBar);
-
-        scrollOutputPane.setPreferredSize(new Dimension(1300, 1000));
+        
+        scrollOutputPane.setPreferredSize(new Dimension((int) (this.width * ((double) 7 /10)), (int) (this.height * ((double) 9 /10))));
         scrollOutputPane.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
-
+        
         JPanel previewPanel = new JPanel(new BorderLayout());
-        previewPanel.setPreferredSize(new Dimension(620, 1000));
+        previewPanel.setPreferredSize(new Dimension((int) (this.width * ((double) 3 /10)), (int) (this.height * ((double) 9 /10))));
 
         JTextArea notesField = new JTextArea("Hier hast du Platz für Notizen");
         notesField.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
         notesField.setBackground(new Color(217, 239, 232));
         notesField.setForeground(new Color(29, 53, 87));
-        notesField.setFont(fontBig);
-        notesField.setPreferredSize(new Dimension(620, 500));
+        notesField.setFont(fontNormal);
+        notesField.setPreferredSize(new Dimension((int) (this.width - scrollOutputPane.getWidth()), (int) (this.height * ((double) 45 /100))));
 
         this.inventoryField = new JTextArea();
         this.inventoryField.setBorder(BorderFactory.createLineBorder(new Color(69, 123, 157), 3));
         this.inventoryField.setBackground(new Color(217, 239, 232));
         this.inventoryField.setForeground(new Color(29, 53, 87));
-        this.inventoryField.setFont(fontBig);
+        this.inventoryField.setFont(fontNormal);
         this.inventoryField.setEditable(false);
-        this.inventoryField.setPreferredSize(new Dimension(620, 500));
+        this.inventoryField.setPreferredSize(new Dimension((int) (this.width * ((double) 3 /10)), (int) (this.height * ((double) 45 /100))));
 
         previewPanel.add(notesField, BorderLayout.NORTH);
         previewPanel.add(this.inventoryField, BorderLayout.SOUTH);

@@ -5,7 +5,6 @@
  * Das heißt einen Command + Argument (2. Teil)
  */
 public class Parser {
-
     /**
      * Diese Methode teilt die Spielereingabe in zwei Teile, sodass diese vom Programm verarbeitet werden können.
      * Diese Methode erstellt außerdem ein Objekt der Command-Klasse und gibt dieses zurück.

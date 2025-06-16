@@ -21,15 +21,16 @@ public class GameEngine
         this.location = map.getStartLocation();
         this.inventory = new LinkedList<>();
         this.quiz = new NonPlayerCharacter("")
-                .addInteraction(new NPCInteraction("Seit welchem Jahr ist es Schülerinnen erlaubt am Leibniz Gymnasium zu lernen?\n", Item.EMPTY, Item.EMPTY))
-                .addInteraction(new NPCInteraction("Wie viele Räume hat das Gebäude des Leibniz-Gymnasiums?\n", new Item("1900", ""), Item.EMPTY))
-                .addInteraction(new NPCInteraction("Wie lautet die Zahl 175 im Binärcode\n", new Item("80", ""), Item.EMPTY))
-                .addInteraction(new NPCInteraction("Nach welcher Person, wurde die Schule vor Gottfried Wilhelm Leibniz benannt?\n", new Item("10101111", ""), Item.EMPTY))
-                .addInteraction(new NPCInteraction("Auf welchen Koordinaten befindet sich das Gebäude des Leibniz-Gymnasium?\n", new Item("Robert Koch", ""), Item.EMPTY))
-                .addInteraction(new NPCInteraction("Welchen Namen trug der Architekt des Gebäudes vom Leibniz-Gymnasium?\n", new Item("52° N, 13° O", ""), Item.EMPTY))
-                .addInteraction(new NPCInteraction("Nächste Frage", new Item("Ludwig Hoffmann", ""), Item.EMPTY));
+        .addInteraction(new NPCInteraction("Seit welchem Jahr ist es Schülerinnen erlaubt am Leibniz Gymnasium zu lernen?", Item.EMPTY, Item.EMPTY))
+        .addInteraction(new NPCInteraction("Wie viele Räume hat das Gebäude des Leibniz-Gymnasiums?", new Item("1900", ""), Item.EMPTY))
+        .addInteraction(new NPCInteraction("Wie lautet die Zahl 175 im Binärcode?", new Item("80", ""), Item.EMPTY))
+        .addInteraction(new NPCInteraction("Nach welcher Person, wurde die Schule vor Gottfried Wilhelm Leibniz benannt?", new Item("10101111", ""), Item.EMPTY))
+        .addInteraction(new NPCInteraction("Auf welchen Koordinaten befindet sich das Gebäude des Leibniz-Gymnasium?", new Item("Robert Koch", ""), Item.EMPTY))
+        .addInteraction(new NPCInteraction("Welchen Namen trug der Architekt des Gebäudes vom Leibniz-Gymnasium?", new Item("52° N, 13° O", ""), Item.EMPTY))
+        .addInteraction(new NPCInteraction("Wann wurde das Leibniz-Gymnasium erstmals als MINT-freundliche Schule ausgezeichnet?", new Item("Ludwig Hoffmann", ""), Item.EMPTY))
+        .addInteraction(new NPCInteraction("Nächste Frage", new Item("2013", ""), Item.EMPTY));
         this.isInDevMode = false;
-     }
+    }
 
     /**
      * Führt eingabenspezifische Methoden aus
@@ -57,11 +58,11 @@ public class GameEngine
     }
 
     public String answerQuiz(String input) {
-         if(!this.location.getName().equals("Aula")){
-             return "Du musst in der Aula sein um das Quiz zu machen";
-         } else if (this.quiz.getTimesInteracted() <= 0) {
-             return "Benutze den \"Starte Quiz\"-Befehl um das Quiz zu starten";
-         } else return quiz.talk(new Item(input, "")).outputString();
+        if(!this.location.getName().equals("Aula")){
+            return "Du musst in der Aula sein um das Quiz zu machen";
+        } else if (this.quiz.getTimesInteracted() <= 0) {
+            return "Benutze den \"Starte Quiz\"-Befehl um das Quiz zu starten";
+        } else return quiz.talk(new Item(input, "")).outputString();
     }
 
     /**
@@ -76,6 +77,8 @@ public class GameEngine
                 
                 "Starte neu": um das Spiel von vorne zu beginnen\
                 
+                "Starte Quiz": um das Quiz in der Aula zu starten\
+                
                 "Info": um Informationen über die Spielweise zu erhalten\
                 
                 "Zu <Raum>": um zu einem anderen Ort zu gehen\
@@ -83,6 +86,16 @@ public class GameEngine
                 "Nimm <Gegenstand>": um einen Gegenstand aufzuheben\
                 
                 "Lege <Gegenstand>": um einen Gegenstand abzulegen\
+                
+                "Inspiziere <Gegenstand>": um einen Gegenstand zu untersuchen\
+                
+                "Frag": um mit Personen zu Sprechen\
+                
+                "Gib <Gegenstand>": um mit Personen zu sprechen\
+                
+                "Oeffne <Raum>": um eine Tür zu einem Raum zu öffnen\
+                
+                "Antworte <Antwort>": um eine Frage des Quizes zu beantworten\
                 
                 """;
     }
@@ -131,7 +144,7 @@ public class GameEngine
             return toLocation("Aula");
         } else if(input.equalsIgnoreCase("quiz") && this.location.getName().equals("Aula") && quiz.getTimesInteracted() == 0) {
             return quiz.talk(Item.EMPTY).outputString();
-        } else return "Gebe \"Starte neu/Spiel\" ein um erneut zu beginnen!";
+        } else return "Gebe \"Starte neu/Spiel/Quiz\" ein ";
     }
 
     /**
@@ -164,7 +177,7 @@ public class GameEngine
         Location location = this.location.hasPassageTo(name);
         if(!location.isLocked())
         {
-            if(this.location != location) {
+            if(location != null) {
                 this.location = location;
                 return location.getDescription();
             } else return "Das geht leider nicht!";
@@ -199,7 +212,6 @@ public class GameEngine
         }
         return "Du hast keinen solchen Gegenstand in deinem Inventar!";
     }
-
 
     /**
      * Versucht verschlossene Türen zu öffnen, wenn der Spieler einen Schlüssel hat.
