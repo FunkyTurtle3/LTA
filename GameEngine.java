@@ -54,7 +54,7 @@ public class GameEngine
             case SUDODEVELOPERMODE -> {this.isInDevMode = true; output = "Du bist jetzt im Entwickler-Modus";}
         }
 
-        return "\nDu: " + input + "\n \n" + output + "\n";
+        return "\nDu: " + input + "\n \n" + output + "\n\n";
     }
 
     public String answerQuiz(String input) {
