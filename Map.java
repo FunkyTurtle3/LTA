@@ -173,11 +173,10 @@ public class Map
                         .addInteraction(new NPCInteraction("Bringe mir zunächst die Farbe mit der man zusätzlich zu Blau, Grün mischen kann", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Super! Jetzt besorg mir doch bitte eine Farbe, die eigentlich gar keine ist.", new Item("Gelbe Farbtube"), Item.EMPTY))
                         .addInteraction(new NPCInteraction("Perfekt! Der Architekt unseres Gebäudes hieß mit Vornamen Ludwig", new Item("Schwarze Farbtube"), Item.EMPTY)),
-                "Du befindest dich in Raum S16.");
-                NonPlayerCharacter.EMPTY,
                 "Du befindest dich in Raum S16.\n" +
                         "Das ist einer der Kunsträume in dem gemalt, gezeichnet\n" +
                         "oder gebastelt wird.");
+                ;
 
         SOG2 = new Location(
                 "2.Stock-Süd",
@@ -195,15 +194,16 @@ public class Map
                 NonPlayerCharacter.EMPTY,
                 "Du befindest dich in Raum S22.");
 
-        S23 = new Location(
-                "S23",
-                NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S23.");
+        //S23 = new Location(
+        //        "S23",
+        //        NonPlayerCharacter.EMPTY,
+        //        "Du befindest dich in Raum S23.");
 
-        S24 = new Location(
-                "S24",
-                NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S24.");
+        //S24 = new Location(
+        //        "S24",
+        //        NonPlayerCharacter.EMPTY,
+        //        "Du befindest dich in Raum S24.");
+        //Existenskrise
 
         S25 = new Location(
                 "S25",
@@ -229,8 +229,6 @@ public class Map
                         .addInteraction(new NPCInteraction("Hol als erstes die Komplementärfarbe von Orange", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Dankeschön! Jetzt brauche ich noch die Farbe für die das \"R\" im RGB-Farbsystem steht", new Item("Blaue Farbtube"), Item.EMPTY))
                         .addInteraction(new NPCInteraction("Toll! Der Nachname des Architekten lautet Hoffmann", new Item("Rote Farbtube"), Item.EMPTY)),
-                "Du befindest dich in Raum S29.");
-                NonPlayerCharacter.EMPTY,
                 "Du befindest dich in Raum S29.\n" +
                         "Dieser Raum ist dient dem Kunstunterricht und wird\n" +
                         "durch große Fenster mit Licht geflutet.");
@@ -414,13 +412,13 @@ public class Map
         SOG1.addPassage(S11).addPassage(S12).addPassage(S13).addPassage(S14).addPassage(S15).addPassage(S16).addPassage(SERDGESCHOSS).addPassage(SOG2).addPassage(TERRASSE);
         S21.addPassage(SOG2);
         S22.addPassage(SOG2);
-        S23.addPassage(SOG2);
-        S24.addPassage(SOG2);
+        //S23.addPassage(SOG2);
+        //S24.addPassage(SOG2);
         S25.addPassage(SOG2);
         S26.addPassage(SOG2);
         S27.addPassage(SOG2);
         S29.addPassage(SOG2);
-        SOG2.addPassage(S21).addPassage(S22).addPassage(S23).addPassage(S24).addPassage(S25).addPassage(S26).addPassage(S27).addPassage(S29).addPassage(SOG1);
+        SOG2.addPassage(S21).addPassage(S22).addPassage(S25).addPassage(S26).addPassage(S27).addPassage(S29).addPassage(SOG1);//.addPassage(S23).addPassage(S24)
         N01.addPassage(NERDGESCHOSS);
         N02.addPassage(NERDGESCHOSS);
         N03.addPassage(NERDGESCHOSS);
