@@ -29,8 +29,8 @@ public class Map
     public final Location SOG2;
     public final Location S21;
     public final Location S22;
-    public final Location S23;
-    public final Location S24;
+    //public final Location S23;
+    //public final Location S24;
     public final Location S25;
     public final Location S26;
     public final Location S27;
@@ -85,17 +85,22 @@ public class Map
         SCHULHOF = new Location(
                 "Schulhof",
                 new NonPlayerCharacter("Herr Alik"),
-                "Alles grün hier");
+                "Auf dem Schulhof gibt es ein paar Bäume und Gestrüpp.\n" +
+                        "Außerdem sieht man ein Paar Statuen.");
 
         CAFETERIA = new Location(
                 "Cafeteria",
-                new NonPlayerCharacter("Ablas Schwester oder so"),
-                "Schade dass Abla weg ist");
+                new NonPlayerCharacter("Ablas Schwester"),
+                "In der Cafeteria steht ein Tresen.\n" +
+                        "Auf dem Tresen sind ein paar Snacks angerichtet." +
+                        "Hinter dem Tresen brummt ein Kühlfach voll mit Kratzeis.");
 
         TERRASSE = new Location(
                 "Terrasse",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich auf der Terrasse.");
+                "Auf der Terrasse weht eine frische Brise.\n" +
+                        "Es gibt viele Bänke und Stühle um sich zwischen Pflanzen\n" +
+                        "und Kunst zu entspannen.");
 
         SERDGESCHOSS = new Location(
                 "Erdgeschoss-Süd",
@@ -105,17 +110,20 @@ public class Map
         S01 = new Location(
                 "S01",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S01.");
+                "Du befindest dich in Raum S01.\n" +
+                        "Hier ist oft die 7a Klasse untergebracht");
 
         S02 = new Location(
                 "S02",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S02.");
+                "Du befindest dich in Raum S02.\n" +
+                        "Hier ist oft die Klasse 7b untergebracht");
 
         S03 = new Location(
                 "S03",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S03.");
+                "Du befindest dich in Raum S03.\n" +
+                        "Hier ist oft die Klasse 7c untergebracht");
 
         S04 = new Location(
                 "S04",
@@ -124,17 +132,20 @@ public class Map
                         .addInteraction(new NPCInteraction("Gegen einen klitzekleinen Gefallen geb ich dir einen Tipp", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Bring mir einen Kuchen und ich verspreche dir du bekommst was du brauchst", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Hier hast du den Schlüssel zum Lehrerzimmer (N03). Dort liegen alle Lösungen parat", new Item("Apfelkuchen"), new Item("Schlüssel zum Lehrerzimmer", "mit diesem Schlüssel gelangst du ins Lehrerzimmer (N03), aber sei vorsichtig!"))),
-                "Du befindest dich in Raum S04.");
+                "Du befindest dich in Raum S04.\n" +
+                        "Hier ist oft die Klasse 7d untergebracht");
 
         S05 = new Location(
                 "S05",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S05.");
+                "Du befindest dich in Raum S05.\n" +
+                        "Hier ist oft die Klasse 7e untergebracht");
 
         KUK = new Location(
                 "Kunstkeller",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich im Kunstkeller.");
+                "Du befindest dich im Kunstkeller.\n" +
+                        "Hier werden tolle Kunstwerke realisiert!");
 
         SOG1 = new Location(
                 "1.Stock-Süd",
@@ -144,32 +155,39 @@ public class Map
         S11 = new Location(
                 "S11",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S11.");
+                "Du befindest dich in Raum S11.\n" +
+                        "Das ist ein normaler Klassenraum.");
 
         S12 = new Location(
                 "S12",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S12.");
+                "Du befindest dich in Raum S12.\n" +
+                        "Das ist ein normaler Klassenraum.");
 
         S13 = new Location(
                 "S13",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S13.");
+                "Du befindest dich in Raum S13.\n" +
+                        "Das ist ein normaler Klassenraum.");
 
         S14 = new Location(
                 "S14",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S14.");
+                "Du befindest dich in Raum S14.\n" +
+                        "Das ist ein normaler Klassenraum.");
 
         S15 = new Location(
                 "S15",
                 new NonPlayerCharacter("Herr M. Müller"),
-                "Du befindest dich in Raum S15.");
+                "Du befindest dich in Raum S15.\n" +
+                        "Überall stehen Computer, denn das ist ein Computer-Raum!");
 
         S16 = new Location(
                 "S16",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S16.");
+                "Du befindest dich in Raum S16.\n" +
+                        "Das ist einer der Kunsträume in dem gemalt, gezeichnet\n" +
+                        "oder gebastelt wird.");
 
         SOG2 = new Location(
                 "2.Stock-Süd",
@@ -180,43 +198,54 @@ public class Map
         S21 = new Location(
                 "S21",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S21.");
+                "Du befindest dich in Raum S21.\n" +
+                        "Dieser Raum ist sehr klein.");
 
         S22 = new Location(
                 "S22",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S22.");
+                "Du befindest dich in Raum S22.\n" +
+                        "Der Raum ist wirklich lang und besteht\n" +
+                        "zur einen Hälfte aus einem Klassenraum und\n" +
+                        "zur anderen aus einer Theater Bühne. Interessant.");
 
-        S23 = new Location(
-                "S23",
-                NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S23.");
+        //S23 = new Location(
+        //        "S23",
+        //        NonPlayerCharacter.EMPTY,
+        //        "Du befindest dich in Raum S23.");
 
-        S24 = new Location(
-                "S24",
-                NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S24.");
+        //S24 = new Location(
+        //        "S24",
+        //        NonPlayerCharacter.EMPTY,
+        //        "Du befindest dich in Raum S24.");
+        //Ausgegraut wegen Existenzkrise
 
         S25 = new Location(
                 "S25",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S25.");
+                "Du befindest dich in Raum S25.\n" +
+                        "Hier stehen die Zentral-Computer der Schule.\n" +
+                        "Ein Lehrer mag diesen Raum besonders gern!");
 
         S26 = new Location(
                 "S26",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S26.");
+                "Du befindest dich in Raum S26.\n" +
+                        "Hier findet regelmäßig die Robotik AG statt.");
 
         S27 = new Location(
                 "S27",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S27.");
+                "Du befindest dich in Raum S27.\n" +
+                        "Überall stehen Computer, denn das ist ein Computer-Raum!");
 
 
         S29 = new Location(
                 "S29",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S29.");
+                "Du befindest dich in Raum S29.\n" +
+                        "Dieser Raum ist dient dem Kunstunterricht und wird\n" +
+                        "durch große Fenster mit Licht geflutet.");
 
         NERDGESCHOSS = new Location(
                 "Erdgeschoss-Nord",
@@ -226,31 +255,36 @@ public class Map
         N01 = new Location(
                 "N01",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum N01.",
+                "Du befindest dich in Raum N01.\n" +
+                        //"PLATZHALTER BESCHREIBUNG",
                 new Item("Schlüssel"));
 
         N02 = new Location(
                 "N02",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum N02.",
+                "Du befindest dich in Raum N02.\n" +
+                        //"PLATZHALTER BESCHREIBUNG",
                 new Item("Schlüssel"));
 
         N03 = new Location(
                 "N03",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum N03.",
+                "Du befindest dich in Raum N03.\n" +
+                        //"PLATZHALTER BESCHREIBUNG",
                 new Item("Schlüssel zum Lehrerzimmer"));
 
         N04 = new Location(
                 "N04",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum N04.",
+                "Du befindest dich in Raum N04.\n" +
+                        //"PLATZHALTER BESCHREIBUNG",
                 new Item("Schlüssel"));
 
         N05 = new Location(
                 "N05",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum N05.",
+                "Du befindest dich in Raum N05.\n" +
+                        //"Hier befindet sich der Arbeitspaltz der Direktorin.",
                 new Item("Schlüssel"));
 
         NOG1 = new Location(
@@ -261,7 +295,8 @@ public class Map
         N11 = new Location(
                 "N11",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum N11.");
+                "Du befindest dich in Raum N11./n" +
+                        "Dieser Raum ist ein Biologieraum");
 
         N12 = new Location(
                 "N12",
@@ -271,12 +306,16 @@ public class Map
         N13 = new Location(
                 "N13",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum N13.");
+                "Du befindest dich in Raum N13.\n" +
+                        "Hier sollte sich niemand leichtfertig herum treiben,\n" +
+                        "denn hier werden alle Chemikalien aufbewahrt.\n" +
+                        "Auch die, der explosiven Art.");
 
         N14 = new Location(
                 "N14",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum N14.");
+                "Du befindest dich in Raum N14.\n" +
+                        "Er sieht aus wie ein normaler Chemieraum");
 
         N15 = new Location(
                 "N15",
@@ -320,12 +359,15 @@ public class Map
         N26 = new Location(
                 "N26",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum N26.");
+                "Du befindest dich in Raum N26.\n" +
+                        "Hier wird musiziert denn das ist ein Musikraum!");
 
         NEUBAU = new Location(
                 "Neubau",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich im Neubau.");
+                "Du befindest dich im Neubau.\n" +
+                        "Hier ist immer die falsche Temperatur.\n" +
+                        "Außerdem gibt es kleine interessante Zwischenräume");
 
         NB101 = new Location(
                 "101",
@@ -397,13 +439,13 @@ public class Map
         SOG1.addPassage(S11).addPassage(S12).addPassage(S13).addPassage(S14).addPassage(S15).addPassage(S16).addPassage(SERDGESCHOSS).addPassage(SOG2).addPassage(TERRASSE);
         S21.addPassage(SOG2);
         S22.addPassage(SOG2);
-        S23.addPassage(SOG2);
-        S24.addPassage(SOG2);
+        //S23.addPassage(SOG2);
+        //S24.addPassage(SOG2);
         S25.addPassage(SOG2);
         S26.addPassage(SOG2);
         S27.addPassage(SOG2);
         S29.addPassage(SOG2);
-        SOG2.addPassage(S21).addPassage(S22).addPassage(S23).addPassage(S24).addPassage(S25).addPassage(S26).addPassage(S27).addPassage(S29).addPassage(SOG1);
+        SOG2.addPassage(S21).addPassage(S22).addPassage(S25).addPassage(S26).addPassage(S27).addPassage(S29).addPassage(SOG1);//.addPassage(S23).addPassage(S24)
         N01.addPassage(NERDGESCHOSS);
         N02.addPassage(NERDGESCHOSS);
         N03.addPassage(NERDGESCHOSS);

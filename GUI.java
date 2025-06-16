@@ -16,7 +16,7 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
  * Das Graphical User Interface ist dafür zuständig dem Spieler anzuzeigen was die GameEngine (Attribut) ausgibt.
  */
 public class GUI implements KeyListener {
-    private static final String START_DESCRIPTION = "\nWillkommen zum Leibniz Text Abenteuer!\n\nHier lernst du die Schule besser kennen, möchtest du das Spiel starten?\nDann schreibe \"Starte Spiel\" in das Feld unten.\nFür eine generelle Spielinfo schreibe \"Info\".\n";
+    private String startDescription;
     private final GameEngine gameEngine;
     private JFrame frame;
     private JTextField inputField;
@@ -47,8 +47,45 @@ public class GUI implements KeyListener {
         this.height = screenSize.getHeight();
         createWindow();
         setUpLogo();
-        this.outputField.setText(START_DESCRIPTION);
+        setStartDescription();
+        this.outputField.setText(startDescription);
         this.inventoryField.setText("Dein Inventar:\n" + this.gameEngine.getInventoryDescription());
+    }
+
+    private void setStartDescription(){
+         startDescription = """
+                 Willkommen im Leibniz-Text-Adventure!
+                 Du bist AbiturientIn am Leibniz Gymansium und sitzt gerade mit allen
+                 anderen AbiturientInnen in der Aula. Ihr lauscht gespannt der Rede
+                 eurer Direktorin Frau Krollpfeifer-Kuhring.
+                 
+                 Frau Krollpfeifer-Kuhring:
+                 "Liebe Abiturientinnen und Abiturienten,
+                 Kolleginnen und Kollegen,
+                 
+                 heute ist ein ganz besonderer Tag 
+                 für euch, liebe AbiturientInnen, aber auch für uns LehrerInnen
+                 und natürlich für mich als eure Schulleiterin.
+                 
+                 Nach 12 oder 13 Jahren Schule werdet ihr heute
+                 das Abiturzeugnis in der Hand halten – ein Symbol für 
+                 Wissen, Ausdauer, für bestandene Prüfungen, für persönliche Entwicklung 
+                 und unzählige Momente, die euch geprägt haben. 
+                 Herzlichen Glückwunsch zu dieser großartigen Leistung!
+                 
+                 Dieses Jahr wird die Zeugnisverleihung jedoch etwas anders ablaufen! 
+                 Ihr dürft euch in Gruppen oder alleine darin beweisen,
+                 wie gut ihr diese Schule kennt. Im gesamten Gebäude befinden sich
+                 Lehrer, die bereits auf euch warten. Denn heute müsst ihr 
+                 ein Quiz zu dieser Schule beantworten!
+                 Nachdem ihr das erfolgreich getan habt, erhaltet ihr euer Abiturzeugnis.
+                 
+                 Begebt euch zum Starten des Spiels bitte alle auf den Schulhof!
+                 Viel Glück!
+                 
+                 TIPP: Gibst du "Info" in die Befehlszeile ein so werden sämtliche Befehle
+                 die zum Lösen des Quiz relevant sind erläutert.
+                 """;
     }
 
     private void setUpLogo() {
@@ -273,7 +310,7 @@ public class GUI implements KeyListener {
             this.arguments.addFirst(inputField.getText());
             this.argument = 0;
         }
-        if (this.inputField.getText().equalsIgnoreCase("starte neu")) this.outputField.setText(START_DESCRIPTION);
+        if (this.inputField.getText().equalsIgnoreCase("starte neu")) this.outputField.setText(startDescription);
         this.inputField.setText("");
         this.inventoryField.setText("Dein Inventar:\n" + this.gameEngine.getInventoryDescription());
     }
