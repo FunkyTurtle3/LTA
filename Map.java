@@ -162,7 +162,10 @@ public class Map
 
         S15 = new Location(
                 "S15",
-                new NonPlayerCharacter("Herr M. Müller"),
+                new NonPlayerCharacter("Herr Müller") //M. Entfernt da nur einer von beiden im Spiel
+                        .addInteraction(new NPCInteraction("Du kommst sicherlich wegen des Quiz's, oder?", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Wenn du mir eine Lochkarte von Herrn Meinecke geben kannst, dann helfe ich dir weiter.", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Vielen Dank. Hier ist der Schlüssel zu S25, dass ist unser Serverraum.\nDort findest du eine SSD auf der die Zahl 175 im Binärcode steht.\nVielleicht hilf Herr Kempf in N25 dir sie einzulesen.", new Item("Lochkarte"), new Item("Schlüssel für S25", "Mit diesem Schlüssel kannst du den Serverraum N25 aufschließen."))),
                 "Du befindest dich in Raum S15.");
 
         S16 = new Location(
@@ -173,10 +176,11 @@ public class Map
                         .addInteraction(new NPCInteraction("Bringe mir zunächst die Farbe mit der man zusätzlich zu Blau, Grün mischen kann", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Super! Jetzt besorg mir doch bitte eine Farbe, die eigentlich gar keine ist.", new Item("Gelbe Farbtube"), Item.EMPTY))
                         .addInteraction(new NPCInteraction("Perfekt! Der Architekt unseres Gebäudes hieß mit Vornamen Ludwig", new Item("Schwarze Farbtube"), Item.EMPTY)),
-                "Du befindest dich in Raum S16.\n" +
-                        "Das ist einer der Kunsträume in dem gemalt, gezeichnet\n" +
-                        "oder gebastelt wird.");
-                ;
+                """
+                        Du befindest dich in Raum S16.
+                        Das ist einer der Kunsträume in dem gemalt, gezeichnet
+                        oder gebastelt wird.""");
+
 
         SOG2 = new Location(
                 "2.Stock-Süd",
@@ -203,21 +207,27 @@ public class Map
         //        "S24",
         //        NonPlayerCharacter.EMPTY,
         //        "Du befindest dich in Raum S24.");
-        //Existenskrise
+        //Existenzkrise
 
         S25 = new Location(
                 "S25",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S25.");
+                "Du befindest dich in Raum S25.",
+                new Item("Schlüssel zu S25"));
 
         S26 = new Location(
                 "S26",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S26.");
+                "Du befindest dich in Raum S26.\n" +
+                        "Hier ist ein kleiner Informatikraum. Normalerweise findet hier die Robotik AG statt",
+                new Item("Schlüssel zu S26"));
 
         S27 = new Location(
                 "S27",
-                NonPlayerCharacter.EMPTY,
+                new NonPlayerCharacter("Herr Meinecke")
+                        .addInteraction(new NPCInteraction("Du willst wissen wie die Zahl 175 im Binärcode aussieht?", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Dann bring mir doch bitte eine Floppy Disk, da müsste mindestens die Hälfte drinstehen", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Perfekt, hier hast du eine Lochkarte, da habe ich die Hälfte reingeschrieben.\nBring Diese zu Herrn Müller in S15, der kann dir weiterhelfen.", new Item("Floppy Disk"), new Item("Lochkarte", "Geradezu antik das Teil.\nHerr Müller wollte so eine haben."))),
                 "Du befindest dich in Raum S27.");
 
 
@@ -229,9 +239,10 @@ public class Map
                         .addInteraction(new NPCInteraction("Hol als erstes die Komplementärfarbe von Orange", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Dankeschön! Jetzt brauche ich noch die Farbe für die das \"R\" im RGB-Farbsystem steht", new Item("Blaue Farbtube"), Item.EMPTY))
                         .addInteraction(new NPCInteraction("Toll! Der Nachname des Architekten lautet Hoffmann", new Item("Rote Farbtube"), Item.EMPTY)),
-                "Du befindest dich in Raum S29.\n" +
-                        "Dieser Raum ist dient dem Kunstunterricht und wird\n" +
-                        "durch große Fenster mit Licht geflutet.");
+                """
+                        Du befindest dich in Raum S29.
+                        Dieser Raum ist dient dem Kunstunterricht und wird
+                        durch große Fenster mit Licht geflutet.""");
 
         NERDGESCHOSS = new Location(
                 "Erdgeschoss-Nord",
@@ -329,7 +340,10 @@ public class Map
 
         N25 = new Location(
                 "N25",
-                NonPlayerCharacter.EMPTY,
+                new NonPlayerCharacter("Herr Kempf")
+                        .addInteraction(new NPCInteraction("Hast du mir die SSD aus dem Serverraum mitgebracht?\nWenn ja, dann helfe ich dir die Zahl 175 im Binärcode auszulesen.", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Das brauchte ich. Dann lass uns mal gucken.\n Ich lasse die SSD jetzt auslesen.", new Item("SSD"), Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Die Zahl im Binärcode lautet 10101111. Ich hoffe ich konnte dir weiterhelfen.", Item.EMPTY, Item.EMPTY)),
                 "Du befindest dich in Raum N25.");
 
         N26 = new Location(
@@ -457,9 +471,19 @@ public class Map
 
         NB102.addItem(new Item("Stapel Atlanten", "Das ist ein Stapel Atlanten. Herr Türkan in 103 sucht genau so einen."));
         NB202.addItem(new Item("Globus", "Auf dem Globus ist ein Roter Punkt. Darüber steht Leibniz-Gymnasium." +
-                "\nDer Punkt liegt irgendwo zwischen 50° und 60° N und zwischen 10° und 20° O"));
+                "\nDer Punkt liegt irgendwo zwischen 50° und 60° N und zwischen 10° und 20° O."));
                 
         N03.addItem(new Item("Lösungen", ""));
+
+        //Items in den Kunst-Räumen
+        KUK.addItem(new Item("Blaue Farbtube", "Das ist eine blaue Farbtube. Acryl ist da glaube ich drin."));
+        KUK.addItem(new Item("Schwarze Farbtube", "Das ist ein Plastikbehälter mit schwarzer Farbe. Latex ist da vielleicht drin."));
+        S16.addItem(new Item("Rote Farbtube", "Das ist eine Tube mit roter Farbe. Pigment ist da vermutlich drin."));
+        S29.addItem(new Item("Gelbe Farbtube", "Das ist eine gelbe Tube voller Farbe. Öl ist da eventuell drin."));
+
+
+        S25.addItem(new Item("SSD", "Bring dieses Solid-State Drive zu Herrn Kempf in N15"));
+        S15.addItem(new Item("Floppy Disk", "Ein bisschen veraltet die Technik.\nHerr Meinecke sucht genau so eine für seine Robotik AG."));
     }
 
     public Location getStartLocation() {
