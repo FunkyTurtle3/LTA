@@ -15,7 +15,7 @@ public class Location
     private final LinkedList<Location> passages; //Stellt eine Liste zum Speichern von Durchgängen bereit
     private final String description; //Attribut welches zur Beschreibung des Raum/Ort dient
 
-    private boolean locked;//Attribut zur Überprüfung, ob ein Raum verschlossen ist
+    private boolean locked; //Attribut zur Überprüfung, ob ein Raum verschlossen ist
     private final Item unlockItem;
 
     /**

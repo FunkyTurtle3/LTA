@@ -21,16 +21,17 @@ public class GameEngine
         this.location = map.getStartLocation();
         this.inventory = new LinkedList<>();
         this.quiz = new NonPlayerCharacter("")
-        .addInteraction(new NPCInteraction("Seit welchem Jahr ist es Schülerinnen erlaubt am Leibniz Gymnasium zu lernen?", Item.EMPTY, Item.EMPTY))
-        .addInteraction(new NPCInteraction("Wie viele Räume hat das Gebäude des Leibniz-Gymnasiums?", new Item("1900"), Item.EMPTY)) //Hausmeister
-        .addInteraction(new NPCInteraction("Wie lautet die Zahl 175 im Binärcode?", new Item("80"), Item.EMPTY)) //Informatik
-        .addInteraction(new NPCInteraction("Nach welcher Person, wurde die Schule vor Gottfried Wilhelm Leibniz benannt?", new Item("10101111"), Item.EMPTY)) //Geschichte
-        .addInteraction(new NPCInteraction("Auf welchen Koordinaten befindet sich das Gebäude des Leibniz-Gymnasium?", new Item("Robert Koch"), Item.EMPTY)) //Geografie
-        .addInteraction(new NPCInteraction("Welchen Namen trug der Architekt des Gebäudes vom Leibniz-Gymnasium?", new Item("52° N, 13° O"), Item.EMPTY)) //Kunst
-        .addInteraction(new NPCInteraction("Wann wurde das Leibniz-Gymnasium erstmals als MINT-freundliche Schule ausgezeichnet?", new Item("Ludwig Hoffmann"), Item.EMPTY)) //Schulleitung
-        .addInteraction(new NPCInteraction("Mit wie viel Prozent der Stimmen gewann die Parte \"Die Linke\" 2025 die Juniorwahl?", new Item("2013"), Item.EMPTY)) //Politik
-        .addInteraction(new NPCInteraction("Welcher Epoche lässt sich Gottfried Wilhelm Leibniz's Person zuordnen?", new Item("39,8", ""), Item.EMPTY)) //Deutsch
-                .addInteraction(new NPCInteraction("Nächste Frage", new Item("Aufklärung", ""), Item.EMPTY));
+            .addInteraction(new NPCInteraction("Seit welchem Jahr ist es Schülerinnen erlaubt am Leibniz Gymnasium zu lernen?", Item.EMPTY, Item.EMPTY)) //Geschichte? - not solvable
+            .addInteraction(new NPCInteraction("Wie viele Räume hat das Gebäude des Leibniz-Gymnasiums insgesamt?", new Item("1900"), Item.EMPTY)) //Hausmeister - solvable
+            .addInteraction(new NPCInteraction("Wie lautet die Zahl 175 im Binärcode?", new Item("94"), Item.EMPTY)) //Informatik - solvable
+            .addInteraction(new NPCInteraction("Nach welcher Person, wurde die Schule vor Gottfried Wilhelm Leibniz benannt?", new Item("10101111"), Item.EMPTY)) //Geschichte - not solvable
+            .addInteraction(new NPCInteraction("Auf welchen Koordinaten befindet sich das Gebäude des Leibniz-Gymnasium?", new Item("Robert Koch"), Item.EMPTY)) //Geografie - solvable
+            .addInteraction(new NPCInteraction("Welchen Namen trug der Architekt des Gebäudes vom Leibniz-Gymnasium?", new Item("52° N, 13° O"), Item.EMPTY)) //Kunst - solvable
+            .addInteraction(new NPCInteraction("Wann wurde das Leibniz-Gymnasium erstmals als MINT-freundliche Schule ausgezeichnet?", new Item("Ludwig Hoffmann"), Item.EMPTY)) //Schulleitung - not solvable
+            .addInteraction(new NPCInteraction("Mit wie viel Prozent der Stimmen gewann die Parte \"Die Linke\" 2025 die Juniorwahl?", new Item("2013"), Item.EMPTY)) //Politik - not solvable
+            .addInteraction(new NPCInteraction("Welcher Epoche lässt sich Gottfried Wilhelm Leibniz's Person zuordnen?", new Item("39,8", ""), Item.EMPTY)) //Deutsch - solvable
+            .addInteraction(new NPCInteraction("Schreibe die Ordnungszahlen der Chemischen Elemente auf\nmit welchen durch die Anfangsbuchstaben des Elementsymbols das Wort Leibniz gebildet werden kann.\nEs gilt immer die kleinstmögliche Zahl.", new Item("Aufklärung", ""), Item.EMPTY)) //Chemie - solvable
+            .addInteraction(new NPCInteraction("Nächste Frage", new Item("3 63 53 4 7 53 30", ""), Item.EMPTY));
         this.isInDevMode = false;
     }
 
@@ -155,6 +156,7 @@ public class GameEngine
      */
     public String takeItem(String name) {
         Item item = location.takeItem(name);
+        if(item.getName().equals("Beutel voller Termit") && !isInDevMode) System.exit(0);
         if(item != Item.EMPTY) {
             inventory.addLast(item);
             return "Ok!";

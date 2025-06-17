@@ -83,7 +83,23 @@ public class Map
 
         SCHULHOF = new Location(
                 "Schulhof",
-                new NonPlayerCharacter("Herr Alik"),
+                new NonPlayerCharacter("Herr Alik")
+                        .addInteraction(new NPCInteraction("Wenn du mir den Besen aus dem südlichen Erdgeschoss bringst,\ndann erzähle ich dir wie viele Räume wir haben.", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("""
+                                In unserem Gebäude befinden sich an Räumen:
+                                15 im Nordflügel
+                                17 im Südflügel
+                                6 im Neubau
+                                5 Treppenhäuser
+                                6 Flure
+                                3 Kunsträume\s
+                                3 Musikräume
+                                2 Räume bei Sekretariat
+                                3 Räume bei Aula\s
+                                12 Toilettenräume
+                                4 Besenkammern
+                                16 im Kellergewölbe mit Holzwerkstatt
+                                2 Vorräume""", new Item("Besen"), Item.EMPTY)),
                 "Alles grün hier");
 
         CAFETERIA = new Location(
@@ -108,12 +124,17 @@ public class Map
 
         S02 = new Location(
                 "S02",
-                NonPlayerCharacter.EMPTY,
+                new NonPlayerCharacter("Frau Pilin")
+                        .addInteraction(new NPCInteraction("Brauchst du Hilfe beim herausfinden der Epoche, welcher G.F. Leibniz zuzuordnen ist?", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Ein kleiner Tipp, der Zeitraum der Epoche liegt zwischen 1500 n. Chr. und  1765 n. Chr.", Item.EMPTY, Item.EMPTY)),
                 "Du befindest dich in Raum S02.");
 
         S03 = new Location(
                 "S03",
-                NonPlayerCharacter.EMPTY,
+                new NonPlayerCharacter("Herr Herold")
+                        .addInteraction(new NPCInteraction("ZUM MEPHISTO!!! Bist du nicht hier um die Epoche von G.F. Leibniz zu erfahren?", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Ein kleiner Tipp, der Name enthält einen Umlaut (ä/ö/ü).", Item.EMPTY, Item.EMPTY)),
+
                 "Du befindest dich in Raum S03.");
 
         S04 = new Location(
@@ -297,16 +318,35 @@ public class Map
         N13 = new Location(
                 "N13",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum N13.");
+                "Du befindest dich in Raum N13.\nHier werden gefährliche Stoffe für den Chemieunterricht aufgehoben.\nFASSE AUF GAR KEINEN FALL DAS TERMIT AN!!!",
+                new Item("Schlüssel für N13"));
 
         N14 = new Location(
                 "N14",
-                NonPlayerCharacter.EMPTY,
+                new NonPlayerCharacter("Herr Vogler")
+                        .addInteraction(new NPCInteraction("Brauchst du die Lösung für die Chemieaufgabe aus dem Quiz?", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Wenn du Herrn Godowski die Utensilien aus N13 bringst, dann hilft er dir bestimmt.\nHier hast du eine Liste.\nIch glaube aber du brauchst noch einen Schlüssel", Item.EMPTY, new Item("Liste mit Chemieutensilien:\nKupfer\nZink\nBunsenbrenner")))
+                        .addInteraction(new NPCInteraction("Hier hast du den Schlüssel.\nSei aber bloß vorsichtig und lass die Finger von dem Termit", Item.EMPTY, new Item("Schlüssel zu N13", "Öffne N13 mit diesem Schlüssel"))),
                 "Du befindest dich in Raum N14.");
 
         N15 = new Location(
                 "N15",
-                NonPlayerCharacter.EMPTY,
+                new NonPlayerCharacter("Herr Godowski")
+                        .addInteraction(new NPCInteraction("Gib mir zuerst den Bunsenbrenner", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Und jetzt das Kupfer", new Item("Bunsenbrenner"), Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Als letztes das Zink", new Item("Kupferklumpen"), Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Toll! Jetzt kann ich Messing in meinem Unterricht herstellen. Hier hast du die Lösung.", new Item("Behälter mit Zinkpulver"), new Item("Zettel mit Lösung", """
+                                Lösung:
+                                
+                                Lithium (L) mit 3
+                                Europium (E) mit 63
+                                Iod (I) mit 53
+                                Beryllium (B) mit 4
+                                Stickstoff (N) mit 7
+                                Iod (I) mit 53
+                                Zink (Z) mit 30
+                                
+                                3 63 53 4 7 53 30"""))),
                 "Du befindest dich in Raum N15.");
 
         N16 = new Location(
@@ -481,9 +521,35 @@ public class Map
         S16.addItem(new Item("Rote Farbtube", "Das ist eine Tube mit roter Farbe. Pigment ist da vermutlich drin."));
         S29.addItem(new Item("Gelbe Farbtube", "Das ist eine gelbe Tube voller Farbe. Öl ist da eventuell drin."));
 
-
+        //Items für die Informatikfrage
         S25.addItem(new Item("SSD", "Bring dieses Solid-State Drive zu Herrn Kempf in N15"));
         S15.addItem(new Item("Floppy Disk", "Ein bisschen veraltet die Technik.\nHerr Meinecke sucht genau so eine für seine Robotik AG."));
+
+        //Items für die Hausmeisterfrage
+        SERDGESCHOSS.addItem(new Item("Besen", "Du weißt aber was man mit einem Besen macht oder?"));
+
+        //Items für die Chemiefrage
+        N13.addItem(new Item("Behälter mit Zinkpulver", "Naja, wie der Name sagt, da ist Zinkpulver drin."));
+        N13.addItem(new Item("Kupferklumpen", "Ist halt ein Klumpen aus Kupfer."));
+        N13.addItem(new Item("Beutel voller Termit", "Wenn du das hier lesen kannst, dann bist du am schummeln!"));
+        N13.addItem(new Item("Wasserflasche", "Was soll ich sagen?"));
+        N13.addItem(new Item("Bunsenbrenner", "Vorsicht heiß!"));
+        N13.addItem(new Item("Packung mit Magnesiastäbchen", "Stäbchen aus Magnesiumoxid..."));
+
+        //Items für die Deutschfrage
+        S01.addItem(new Item("Arbeitsblatt mit Zeitstrahl", """
+                
+                Mittelalter          860 – 1500
+                Barock          1600 – 1720
+                Aufklärung          1720 – 1800
+                Empfindsamkeit          1740 – 1790
+                Sturm und Drang          1765 – 1790
+                Weimarer Klassik          1786 – 1832
+                Romantik          1795 – 1840
+                Vormärz          1815 – 1848
+                Biedermeier          1815 – 1848
+                Realismus          1848 – 1890
+                Naturalismus          1880 – 1900"""));
     }
 
     public Location getStartLocation() {
