@@ -262,7 +262,7 @@ public class Map
                         .addInteraction(new NPCInteraction("Toll! Der Nachname des Architekten lautet Hoffmann", new Item("Rote Farbtube"), Item.EMPTY)),
                 """
                         Du befindest dich in Raum S29.
-                        Dieser Raum ist dient dem Kunstunterricht und wird
+                        Dieser Raum dient dem Kunstunterricht und wird
                         durch große Fenster mit Licht geflutet.""");
 
         NERDGESCHOSS = new Location(
@@ -352,7 +352,8 @@ public class Map
         N16 = new Location(
                 "N16",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum N16.");
+                "Du befindest dich in Raum N16.\n" +
+                        "Hier stehen viele Instrumente.");
 
         NOG2 = new Location(
                 "2.Stock-Nord",
@@ -394,7 +395,8 @@ public class Map
         NEUBAU = new Location(
                 "Neubau",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich im Neubau.");
+                "Du befindest dich im Neubau.\n" +
+                        "Hier ist es oft zu heiß.");
 
         NB101 = new Location(
                 "101",
