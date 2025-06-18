@@ -6,7 +6,7 @@
 public class Item
 {
     private final String name; //Name des Gegenstands
-    private final String description;
+    private final String description; //Beschreibung des gegenstands
     public static final Item EMPTY = new Item("", "");
 
     /**

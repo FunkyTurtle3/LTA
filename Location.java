@@ -47,6 +47,9 @@ public class Location
         return name;
     }
 
+    /**
+     * gibt das Item fürs Aufschließen zurück
+     */
     public Item getUnlockItem() {
         return this.unlockItem;
     }
@@ -105,8 +108,8 @@ public class Location
     }
 
     /**
-     * Platziert wenn möglich einen Gegenstand im Inventar des Spielers
-     * @author
+     * Nimmt, wenn möglich ein Item aus der Location heraus und gibt sie zurück
+     * @author (LAsse, Leander)
      */
     public Item takeItem(String name) {
         for(int i = 0; i < items.size(); i++) {
@@ -115,6 +118,9 @@ public class Location
         return Item.EMPTY;
     }
 
+    /**
+     * Gibt den NPC der Location zurück
+     */
     public NonPlayerCharacter getNPC() {
         return npc;
     }

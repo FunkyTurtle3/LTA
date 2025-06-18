@@ -6,6 +6,7 @@
  */
 public class Map
 {
+    //Alle Räume als Attribute
     public final Location START_ROOM;
     public final Location AULA;
     public final Location SCHULHOF;
@@ -30,6 +31,7 @@ public class Map
     public final Location S22;
     //public final Location S23;
     //public final Location S24;
+    //Die Räume haben irgendwie eine Existenzkrise, wir wissen nicht ganz wo die sind und was die machen
     public final Location S25;
     public final Location S26;
     public final Location S27;
@@ -163,17 +165,34 @@ public class Map
 
         S11 = new Location(
                 "S11",
-                NonPlayerCharacter.EMPTY,
+                new NonPlayerCharacter("Herr Titel")
+                        .addInteraction(new NPCInteraction("Du möchtest sicherlich wissen nach wem das Leibniz Gymnasium vorher benannt war.", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Hier hast du einen Zettel mit einem Rätsel, wenn du es löst erhältst du den Vornamen.", Item.EMPTY, new Item("Zettel mit Rätsel", "Ruhig ohne bedenken erwacht reine tiefe.\n\nAkrostichon"))),
                 "Du befindest dich in Raum S11.");
 
         S12 = new Location(
                 "S12",
-                NonPlayerCharacter.EMPTY,
+                new NonPlayerCharacter("Herr Kartal")
+                        .addInteraction(new NPCInteraction("Um den Nachnamen für die Benennungsfrage zu bekommen, musst du ein kleines Rätsel lösen.", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("""
+                                Ich arbeite mit Hitze, doch bin kein Schmied,
+                                was ich erschaffe, ist Kunst, die man sieht.
+                                Ich höre oft Brodeln, doch keine Musik,
+                                mein Werk macht satt – und das ziemlich geschickt.
+                                Ich folge dem Rezept, doch geb auch Gefühl,
+                                mein Handwerk verlangt viel Wissen und Stil.
+                                Man ruft nach mir, wenn der Magen spricht –
+                                wer bin ich wohl? Errat mich nicht schlicht.
+                                
+                                Wenn du die Lösung hast, dann kennst du den Nachnamen.
+                                TIPP: Den Namen hat man besonders in der Corona-Pandemie häufig in den Nachrichten gehört.""", Item.EMPTY, Item.EMPTY)),
                 "Du befindest dich in Raum S12.");
 
         S13 = new Location(
                 "S13",
-                NonPlayerCharacter.EMPTY,
+                new NonPlayerCharacter("Herr Schitkowsky")
+                        .addInteraction(new NPCInteraction("Willst du wissen was ein Akrostichon ist?", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Ein Akrostichon ist eine geheime Botschaft in einem Text.\nMan erkennt sie erst wenn man die Anfangsbuchstaben eines Satzes zusammensetzt zu einem Wort", Item.EMPTY, Item.EMPTY)),
                 "Du befindest dich in Raum S13.");
 
         S14 = new Location(
@@ -445,6 +464,7 @@ public class Map
                         .addInteraction(new NPCInteraction("Der Längengrad des Leibniz-Gymnasiums beträgt 13°. Ob Ost oder West musst du selbst herausfinden.\nVielleicht findest du ja irgendwo einen Globus.", Item.EMPTY, Item.EMPTY)),
                 "Du befindest dich in Raum 302.");
 
+        //Durchgänge werden initialisiert
         START_ROOM.addPassage(AULA);
         AULA.addPassage(SCHULHOF).addPassage(CAFETERIA);
         SCHULHOF.addPassage(AULA).addPassage(SERDGESCHOSS).addPassage(NERDGESCHOSS);
@@ -550,7 +570,15 @@ public class Map
                 Biedermeier          1815 – 1848
                 Realismus          1848 – 1890
                 Naturalismus          1880 – 1900"""));
+
+        //Items für die Schulleitungsfrage
+        N05.addItem(new Item("Plakette von 2016", "Plakette für MINT-freundliche Schulen"));
+        N05.addItem(new Item("Plakette von 2014", "Plakette für Schulen mit exzellenter beruflicher Orientierung"));
+        N05.addItem(new Item("Plakette von 2012", "Plakette für MINT-freundliche Schulen"));
+        N05.addItem(new Item("Plakette von 2018", "Plakette für Schulen ohne Rassismus und mit Courage"));
     }
+
+
 
     public Location getStartLocation() {
         return START_ROOM;

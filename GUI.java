@@ -10,6 +10,8 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 /**
  * @author (Lasse, Leander, Victor)
  * @version 1.1.0
+ * Viel Hilfe und inspiration durch https://www.chatgpt.com.
+ * Auch Hilfe bei https://docs.oracle.com.
  * Das Graphical User Interface ist dafür zuständig dem Spieler anzuzeigen was die GameEngine (Attribut) ausgibt.
  */
 public class GUI implements KeyListener {
@@ -22,11 +24,14 @@ public class GUI implements KeyListener {
     private Font fontNormal;
     private Font fontBig;
     private Font fontSmall;
-    private final LinkedList<String> arguments;
-    private int argument;
+    private final LinkedList<String> arguments; //Diese List speicher alle Eingaben um sie wiederverwenden zu können
+    private int argument; //Wird benutzt, um die Argumente nacheinander wiederzufinden
     private final double width;
     private final double height;
 
+    /**
+     * Zum Starten aufgerufene Methode
+     */
     public static void main(String[] args){
         new GUI();
     }
@@ -52,32 +57,33 @@ public class GUI implements KeyListener {
     private void setStartDescription(){
          startDescription = """
                  Willkommen im Leibniz-Text-Adventure!
-                 Du bist AbiturientIn am Leibniz Gymansium und sitzt gerade mit allen
-                 anderen AbiturientInnen in der Aula. Ihr lauscht gespannt der Rede
-                 eurer Direktorin Frau Krollpfeifer-Kuhring.
+                 Du bist AbiturientIn am Leibniz Gymnasium und stehst gerade mit allen
+                 anderen AbiturientInnen auf dem Schulhof. Ihr lauscht gespannt der Rede
+                 eurer Direktorin Frau Krollpfeiffer-Kuhring.
                  
-                 Frau Krollpfeifer-Kuhring:
+                 Frau Krollpfeiffer-Kuhring:
                  "Liebe Abiturientinnen und Abiturienten,
                  Kolleginnen und Kollegen,
                  
-                 heute ist ein ganz besonderer Tag 
+                 heute ist ein ganz besonderer Tag
                  für euch, liebe AbiturientInnen, aber auch für uns LehrerInnen
                  und natürlich für mich als eure Schulleiterin.
                  
                  Nach 12 oder 13 Jahren Schule werdet ihr heute
-                 das Abiturzeugnis in der Hand halten – ein Symbol für 
-                 Wissen, Ausdauer, für bestandene Prüfungen, für persönliche Entwicklung 
-                 und unzählige Momente, die euch geprägt haben. 
+                 das Abiturzeugnis in der Hand halten – ein Symbol für
+                 Wissen, Ausdauer, für bestandene Prüfungen, für persönliche Entwicklung
+                 und unzählige Momente, die euch geprägt haben.
                  Herzlichen Glückwunsch zu dieser großartigen Leistung!
                  
-                 Dieses Jahr wird die Zeugnisverleihung jedoch etwas anders ablaufen! 
+                 Dieses Jahr wird die Zeugnisverleihung jedoch etwas anders ablaufen!
                  Ihr dürft euch in Gruppen oder alleine darin beweisen,
                  wie gut ihr diese Schule kennt. Im gesamten Gebäude befinden sich
-                 Lehrer, die bereits auf euch warten. Denn heute müsst ihr 
-                 ein Quiz zu dieser Schule beantworten!
+                 Lehrer, die bereits auf euch warten. Denn heute müsst ihr
+                 ein Quiz zu dieser Schule und dem diesjährigen Jubiläum beantworten!
                  Nachdem ihr das erfolgreich getan habt, erhaltet ihr euer Abiturzeugnis.
                  
-                 Begebt euch zum Starten des Spiels bitte alle auf den Schulhof!
+                 Begebt euch zum Starten des Spiels bitte alle in die Aula!
+                 (Gib dafür unten "Starte Spiel" ein und klicke auf Eingabe)
                  Viel Glück!
                  
                  TIPP: Gibst du "Info" in die Befehlszeile ein so werden sämtliche Befehle
@@ -85,6 +91,10 @@ public class GUI implements KeyListener {
                  """;
     }
 
+    /**
+     * Verändert das logo des Fenster - rein kosmetisch
+     * Logo kreiert mit https://www.figma.com
+     */
     private void setUpLogo() {
         try {
             InputStream imageStream = GUI.class.getResourceAsStream("/assets/textures/logo.png");
@@ -93,11 +103,13 @@ public class GUI implements KeyListener {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        //Hilfe von https://www.chatgpt.com
     }
 
     /**
      * Macht den importierten "elegantTypewriter" Font für die GUI nutzbar.
      * Die importierte Schriftart ist frei nutzbar für nicht-kommerzielle Zwecke.
+     * Rein kosmetischer Natur
      * @author (Lasse, Victor)
      */private void setUpFont() {
         try {
@@ -109,6 +121,7 @@ public class GUI implements KeyListener {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+        //Hilfe von https://www.chatgpt.com
     }
 
     /**
@@ -160,6 +173,7 @@ public class GUI implements KeyListener {
         inputPanel.add(inputButton, gbc);
         gbc.anchor = GridBagConstraints.LINE_END;
         gbc.gridx = 2;
+        //Grafiken von https://www.chatgpt.com
         inputPanel.add(quitButton, gbc);
         return inputPanel;
     }
@@ -312,12 +326,14 @@ public class GUI implements KeyListener {
         this.inventoryField.setText("Dein Inventar:\n" + this.gameEngine.getInventoryDescription());
     }
 
-    @Override
     public void keyTyped(KeyEvent e) {
-        //nicht benötigt aber durch interface vorgegeben
+        //nicht benötigt aber durch Interface vorgegeben
     }
 
-    @Override
+    /**
+     * Ermöglicht es mit den Pfeiltasten (oben und unten) zwischen vorherigen Eingaben zu wechseln um das Spielgeschehen zu beschleunigen und tippen zu ersparen
+     * @author (LAsse, Leander)
+     */
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == 38 && this.arguments.size() > this.argument) {
             this.inputField.setText(this.arguments.get(this.argument));
@@ -329,8 +345,7 @@ public class GUI implements KeyListener {
         }
     }
 
-    @Override
     public void keyReleased(KeyEvent e) {
-        //nicht benötigt aber durch interface vorgegeben
+        //nicht benötigt aber durch Interface vorgegeben
     }
 }
