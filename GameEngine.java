@@ -17,7 +17,7 @@ public class GameEngine
     /**
      * Konstruktor der GameEngine Klasse
      * @author (Lasse, Leander, Ella, Mila, Victor)
-     */public GameEngine() {
+     */ public GameEngine() {
         this.map = new Map();
         this.location = map.getStartLocation();
         this.inventory = new LinkedList<>();

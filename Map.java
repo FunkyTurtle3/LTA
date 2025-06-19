@@ -43,6 +43,7 @@ public class Map
     public final Location N03;
     public final Location N04;
     public final Location N05;
+    public final Location BIBLIOTHEK;
     public final Location NOG1;
     public final Location N11;
     public final Location N12;
@@ -159,7 +160,9 @@ public class Map
 
         S05 = new Location(
                 "S05",
-                NonPlayerCharacter.EMPTY,
+                new NonPlayerCharacter("Herr Schalow")
+                        .addInteraction(new NPCInteraction("Obwohl ich die Schule bereits verlassen habe,\n konnte ich es mir nicht nehmen Teil dieser tollen Aktion zu werden.", Item.EMPTY, Item.EMPTY))
+                        .addInteraction(new NPCInteraction("Ich war Teil des Politik-Fachbereichs und wenn du wissen magst wie die Juniorwahl 2025 ausging,\ndann schau doch mit diesem Schlüssel hier in der Bibliothek vorbei.", Item.EMPTY, new Item("Bibliotheksschlüssel", "Zur Bibliothek kommst du vom nördlichen EG"))),
                 "Du befindest dich in Raum S05." +
                         "Hier ist oft die Klasse 7e untergebracht");
 
@@ -348,6 +351,13 @@ public class Map
                 "Du befindest dich in Raum N05.",
                 new Item("Schlüssel"));
 
+        BIBLIOTHEK = new Location(
+                "Bibliothek",
+                NonPlayerCharacter.EMPTY,
+                "Der Geruch von vielen Büchern liegt hier in der Luft.",
+                new Item("Bibliotheksschlüssel")
+        );
+
         NOG1 = new Location(
                 "1.Stock-Nord",
                 NonPlayerCharacter.EMPTY,
@@ -501,8 +511,8 @@ public class Map
         START_ROOM.addPassage(AULA);
         AULA.addPassage(SCHULHOF).addPassage(CAFETERIA);
         SCHULHOF.addPassage(AULA).addPassage(SERDGESCHOSS).addPassage(NERDGESCHOSS);
-        TERRASSE.addPassage(SOG1).addPassage(NOG1);
-        CAFETERIA.addPassage(AULA);
+        TERRASSE.addPassage(SOG1).addPassage(NOG1).addPassage(FSRAUM).addPassage(BIBLIOTHEK);
+        CAFETERIA.addPassage(AULA).addPassage(BIBLIOTHEK);
         S01.addPassage(SERDGESCHOSS);
         S02.addPassage(SERDGESCHOSS);
         S03.addPassage(SERDGESCHOSS);
@@ -532,6 +542,7 @@ public class Map
         N03.addPassage(NERDGESCHOSS);
         N04.addPassage(NERDGESCHOSS);
         N05.addPassage(NERDGESCHOSS);
+        BIBLIOTHEK.addPassage(NERDGESCHOSS).addPassage(CAFETERIA).addPassage(TERRASSE);
         NERDGESCHOSS.addPassage(N01).addPassage(N02).addPassage(N03).addPassage(N04).addPassage(N05).addPassage(SCHULHOF).addPassage(NOG1);
         N11.addPassage(NOG1);
         N12.addPassage(NOG1);
@@ -611,6 +622,18 @@ public class Map
         N05.addItem(new Item("Plakette von 2014", "Plakette für Schulen mit exzellenter beruflicher Orientierung"));
         N05.addItem(new Item("Plakette von 2012", "Plakette für MINT-freundliche Schulen"));
         N05.addItem(new Item("Plakette von 2018", "Plakette für Schulen ohne Rassismus und mit Courage"));
+
+        //Items für die Politikfrage
+        BIBLIOTHEK.addItem(new Item("Zettel mit Wahlergebnissen", """
+                1. Linke (39,8 %)
+                2. Grüne (32,7 %)
+                3. SPD (7,7 %)
+                4. Volt (5,3 %)
+                5. Die Partei (3,9 %)
+                6. CDU (3,1 %)
+                7. Tierschutz (2,2 %)
+                8. AfD (1,5 %)
+                """));
     }
 
 
