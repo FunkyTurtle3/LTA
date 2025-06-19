@@ -19,6 +19,7 @@ public class Map
     public final Location S04;
     public final Location S05;
     public final Location KUK;
+    public final Location FSRAUM;
     public final Location SOG1;
     public final Location S11;
     public final Location S12;
@@ -29,8 +30,8 @@ public class Map
     public final Location SOG2;
     public final Location S21;
     public final Location S22;
-    //public final Location S23;
-    //public final Location S24;
+    //public final Location S23.
+    //public final Location S24.
     //Die Räume haben irgendwie eine Existenzkrise, wir wissen nicht ganz wo die sind und was die machen
     public final Location S25;
     public final Location S26;
@@ -99,17 +100,24 @@ public class Map
                                 4 Besenkammern
                                 16 im Kellergewölbe mit Holzwerkstatt
                                 2 Vorräume""", new Item("Besen"), Item.EMPTY)),
-                "Alles grün hier");
+                "Auf dem Schulhof gibt es ein paar Bäume und Gestrüpp.\n" +
+                "Außerdem sieht man ein Paar Statuen.");
 
         CAFETERIA = new Location(
                 "Cafeteria",
                 new NonPlayerCharacter("Ablas Schwester oder so"),
-                "Schade dass Abla weg ist");
+                """
+                        In der Cafeteria steht ein Tresen.
+                        Auf dem Tresen sind ein paar Snacks angerichtet.
+                        Hinter dem Tresen brummt ein Kühlfach voll mit Kratzeis.""");
 
         TERRASSE = new Location(
                 "Terrasse",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich auf der Terrasse.");
+                """
+                        Auf der Terrasse weht eine frische Brise.
+                        Es gibt viele Bänke und Stühle um sich zwischen Pflanzen
+                        und Kunst zu entspannen.""");
 
         SERDGESCHOSS = new Location(
                 "Erdgeschoss-Süd",
@@ -119,14 +127,16 @@ public class Map
         S01 = new Location(
                 "S01",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S01.");
+                "Du befindest dich in Raum S01.\n" +
+                "Hier ist oft die 7a Klasse untergebracht");
 
         S02 = new Location(
                 "S02",
                 new NonPlayerCharacter("Frau Pilin")
                         .addInteraction(new NPCInteraction("Brauchst du Hilfe beim herausfinden der Epoche, welcher G.F. Leibniz zuzuordnen ist?", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Ein kleiner Tipp, der Zeitraum der Epoche liegt zwischen 1500 n. Chr. und  1765 n. Chr.", Item.EMPTY, Item.EMPTY)),
-                "Du befindest dich in Raum S02.");
+                "Du befindest dich in Raum S02."+
+                "Hier ist oft die Klasse 7b untergebracht");
 
         S03 = new Location(
                 "S03",
@@ -134,7 +144,8 @@ public class Map
                         .addInteraction(new NPCInteraction("ZUM MEPHISTO!!! Bist du nicht hier um die Epoche von G.F. Leibniz zu erfahren?", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Ein kleiner Tipp, der Name enthält einen Umlaut (ä/ö/ü).", Item.EMPTY, Item.EMPTY)),
 
-                "Du befindest dich in Raum S03.");
+                "Du befindest dich in Raum S03." +
+                "Hier ist oft die Klasse 7c untergebracht");
 
         S04 = new Location(
                 "S04",
@@ -143,17 +154,25 @@ public class Map
                         .addInteraction(new NPCInteraction("Gegen einen klitzekleinen Gefallen geb ich dir einen Tipp", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Bring mir einen Kuchen und ich verspreche dir du bekommst was du brauchst", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Hier hast du den Schlüssel zum Lehrerzimmer (N03). Dort liegen alle Lösungen parat", new Item("Apfelkuchen"), new Item("Schlüssel zum Lehrerzimmer", "mit diesem Schlüssel gelangst du ins Lehrerzimmer (N03), aber sei vorsichtig!"))),
-                "Du befindest dich in Raum S04.");
+                "Du befindest dich in Raum S04." +
+                        "Hier ist oft die Klasse 7d untergebracht");
 
         S05 = new Location(
                 "S05",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S05.");
+                "Du befindest dich in Raum S05." +
+                        "Hier ist oft die Klasse 7e untergebracht");
 
         KUK = new Location(
                 "Kunstkeller",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich im Kunstkeller.");
+                "Du befindest dich im Kunstkeller.\n" +
+                "Hier werden tolle Kunstwerke realisiert!");
+
+        FSRAUM = new Location(
+                "Fremdsprachen Fachraum",
+                NonPlayerCharacter.EMPTY,
+                "Hier lernen fleißige Englisch-LKs, dass man für das \"th\" die Zunge zwischen die Zähne nehmen muss.");
 
         SOG1 = new Location(
                 "1.Stock-Süd",
@@ -165,7 +184,8 @@ public class Map
                 new NonPlayerCharacter("Herr Titel")
                         .addInteraction(new NPCInteraction("Du möchtest sicherlich wissen nach wem das Leibniz Gymnasium vorher benannt war.", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Hier hast du einen Zettel mit einem Rätsel, wenn du es löst erhältst du den Vornamen.", Item.EMPTY, new Item("Zettel mit Rätsel", "Ruhig ohne bedenken erwacht reine tiefe.\n\nAkrostichon"))),
-                "Du befindest dich in Raum S11.");
+                "Du befindest dich in Raum S11.\n" +
+                "Das ist ein normaler Klassenraum.");
 
         S12 = new Location(
                 "S12",
@@ -183,19 +203,22 @@ public class Map
                                 
                                 Wenn du die Lösung hast, dann kennst du den Nachnamen.
                                 TIPP: Den Namen hat man besonders in der Corona-Pandemie häufig in den Nachrichten gehört.""", Item.EMPTY, Item.EMPTY)),
-                "Du befindest dich in Raum S12.");
+                "Du befindest dich in Raum S12.\n" +
+                        "Das ist ein normaler Klassenraum.");
 
         S13 = new Location(
                 "S13",
                 new NonPlayerCharacter("Herr Schitkowsky")
                         .addInteraction(new NPCInteraction("Willst du wissen was ein Akrostichon ist?", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Ein Akrostichon ist eine geheime Botschaft in einem Text.\nMan erkennt sie erst wenn man die Anfangsbuchstaben eines Satzes zusammensetzt zu einem Wort", Item.EMPTY, Item.EMPTY)),
-                "Du befindest dich in Raum S13.");
+                "Du befindest dich in Raum S13.\n" +
+                        "Das ist ein normaler Klassenraum.");
 
         S14 = new Location(
                 "S14",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S14.");
+                "Du befindest dich in Raum S14.\n" +
+                        "Das ist ein normaler Klassenraum.");
 
         S15 = new Location(
                 "S15",
@@ -203,7 +226,8 @@ public class Map
                         .addInteraction(new NPCInteraction("Du kommst sicherlich wegen des Quiz's, oder?", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Wenn du mir eine Lochkarte von Herrn Meinecke geben kannst, dann helfe ich dir weiter.", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Vielen Dank. Hier ist der Schlüssel zu S25, dass ist unser Serverraum.\nDort findest du eine SSD auf der die Zahl 175 im Binärcode steht.\nVielleicht hilf Herr Kempf in N25 dir sie einzulesen.", new Item("Lochkarte"), new Item("Schlüssel für S25", "Mit diesem Schlüssel kannst du den Serverraum N25 aufschließen."))),
-                "Du befindest dich in Raum S15.");
+                "Du befindest dich in Raum S15." +
+                        "Überall stehen Computer, denn das ist ein Computer-Raum!");
 
         S16 = new Location(
                 "S16",
@@ -228,12 +252,17 @@ public class Map
         S21 = new Location(
                 "S21",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S21.");
+                "Du befindest dich in Raum S21." +
+                "Dieser Raum ist sehr klein.");
 
         S22 = new Location(
                 "S22",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S22.");
+                """
+                        Du befindest dich in Raum S22.
+                        Der Raum ist wirklich lang und besteht
+                        zur einen Hälfte aus einem Klassenraum und
+                        zur anderen aus einer Theater Bühne. Interessant.""");
 
         //S23 = new Location(
         //        "S23",
@@ -249,7 +278,9 @@ public class Map
         S25 = new Location(
                 "S25",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum S25.",
+                "Du befindest dich in Raum S25." +
+                "Hier stehen die Zentral-Computer der Schule.\n" +
+                        "Ein Lehrer mag diesen Raum besonders gern!",
                 new Item("Schlüssel zu S25"));
 
         S26 = new Location(
@@ -265,7 +296,8 @@ public class Map
                         .addInteraction(new NPCInteraction("Du willst wissen wie die Zahl 175 im Binärcode aussieht?", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Dann bring mir doch bitte eine Floppy Disk, da müsste mindestens die Hälfte drinstehen", Item.EMPTY, Item.EMPTY))
                         .addInteraction(new NPCInteraction("Perfekt, hier hast du eine Lochkarte, da habe ich die Hälfte reingeschrieben.\nBring Diese zu Herrn Müller in S15, der kann dir weiterhelfen.", new Item("Floppy Disk"), new Item("Lochkarte", "Geradezu antik das Teil.\nHerr Müller wollte so eine haben."))),
-                "Du befindest dich in Raum S27.");
+                "Du befindest dich in Raum S27.\n" +
+                            "Überall brummt und surrt es, denn das ist ein Computer-Raum");
 
 
         S29 = new Location(
@@ -324,12 +356,14 @@ public class Map
         N11 = new Location(
                 "N11",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum N11.");
+                "Du befindest dich in Raum N11." +
+                "Dieser Raum ist ein Biologieraum, ein großer.");
 
         N12 = new Location(
                 "N12",
                 NonPlayerCharacter.EMPTY,
-                "Du befindest dich in Raum N12.");
+                "Du befindest dich in Raum N12." +
+                        "Dieser Raum ist ein Biologieraum, ein kleiner.");
 
         N13 = new Location(
                 "N13",
@@ -341,8 +375,8 @@ public class Map
                 "N14",
                 new NonPlayerCharacter("Herr Vogler")
                         .addInteraction(new NPCInteraction("Brauchst du die Lösung für die Chemieaufgabe aus dem Quiz?", Item.EMPTY, Item.EMPTY))
-                        .addInteraction(new NPCInteraction("Wenn du Herrn Godowski die Utensilien aus N13 bringst, dann hilft er dir bestimmt.\nHier hast du eine Liste.\nIch glaube aber du brauchst noch einen Schlüssel", Item.EMPTY, new Item("Liste mit Chemieutensilien:\nKupfer\nZink\nBunsenbrenner")))
-                        .addInteraction(new NPCInteraction("Hier hast du den Schlüssel.\nSei aber bloß vorsichtig und lass die Finger von dem Termit", Item.EMPTY, new Item("Schlüssel zu N13", "Öffne N13 mit diesem Schlüssel"))),
+                        .addInteraction(new NPCInteraction("Wenn du Herrn Godowski die Utensilien aus N13 bringst, dann hilft er dir bestimmt.\nHier hast du eine Liste.\nIch glaube aber du brauchst noch einen Schlüssel", Item.EMPTY, new Item("Liste mit Chemieutensilien", "Liste mit Chemieutensilien:\nKupfer\nZink\nBunsenbrenner")))
+                        .addInteraction(new NPCInteraction("Hier hast du den Schlüssel.\nSei aber bloß vorsichtig und lass die Finger von dem Termit", Item.EMPTY, new Item("Schlüssel für N13", "Öffne N13 mit diesem Schlüssel"))),
                 "Du befindest dich in Raum N14.");
 
         N15 = new Location(
@@ -475,7 +509,8 @@ public class Map
         S04.addPassage(SERDGESCHOSS);
         S05.addPassage(SERDGESCHOSS);
         KUK.addPassage(SERDGESCHOSS);
-        SERDGESCHOSS.addPassage(S01).addPassage(S02).addPassage(S03).addPassage(S04).addPassage(S05).addPassage(KUK).addPassage(SCHULHOF).addPassage(SOG1);
+        FSRAUM.addPassage(SERDGESCHOSS).addPassage(TERRASSE);
+        SERDGESCHOSS.addPassage(S01).addPassage(S02).addPassage(S03).addPassage(S04).addPassage(S05).addPassage(KUK).addPassage(FSRAUM).addPassage(SCHULHOF).addPassage(SOG1);
         S11.addPassage(SOG1);
         S12.addPassage(SOG1);
         S13.addPassage(SOG1);
@@ -503,14 +538,14 @@ public class Map
         N13.addPassage(NOG1);
         N14.addPassage(NOG1);
         N15.addPassage(NOG1);
-        N16.addPassage(NOG1);
+        N16.addPassage(NOG1).addPassage(TERRASSE);
         NOG1.addPassage(N11).addPassage(N12).addPassage(N13).addPassage(N14).addPassage(N15).addPassage(N16).addPassage(NERDGESCHOSS).addPassage(NOG2).addPassage(NEUBAU).addPassage(TERRASSE);
         N21.addPassage(NOG2);
         N22.addPassage(NOG2);
         N23.addPassage(NOG2);
         N24.addPassage(NOG2);
         N25.addPassage(NOG2);
-        N26.addPassage(NOG2);
+        N26.addPassage(NOG2).addPassage(TERRASSE);
         NOG2.addPassage(N21).addPassage(N22).addPassage(N23).addPassage(N24).addPassage(N25).addPassage(N26).addPassage(NOG1).addPassage(NEUBAU);
         NEUBAU.addPassage(NB101).addPassage(NB102).addPassage(NB103).addPassage(NB201).addPassage(NB202).addPassage(NB203).addPassage(NB301).addPassage(NB302).addPassage(NOG1).addPassage(NOG2);
         NB101.addPassage(NEUBAU);
@@ -531,7 +566,8 @@ public class Map
         NB102.addItem(new Item("Stapel Atlanten", "Das ist ein Stapel Atlanten. Herr Türkan in 103 sucht genau so einen."));
         NB202.addItem(new Item("Globus", "Auf dem Globus ist ein Roter Punkt. Darüber steht Leibniz-Gymnasium." +
                 "\nDer Punkt liegt irgendwo zwischen 50° und 60° N und zwischen 10° und 20° O."));
-                
+
+        //Items für das Easter-EGg mit Linnea
         N03.addItem(new Item("Lösungen", ""));
 
         //Items in den Kunst-Räumen

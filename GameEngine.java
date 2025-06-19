@@ -114,7 +114,10 @@ public class GameEngine
      * @author (Lasse, Victor)
      */
     public String talkToNPC() {
-        return location.getNPC().getName() + ": " + location.getNPC().talk(Item.EMPTY).outputString();
+        NonPlayerCharacter nonPlayerCharacter = location.getNPC();
+        NPCInteraction npcInteraction = nonPlayerCharacter.talk(Item.EMPTY);
+        if(npcInteraction.output() != Item.EMPTY) inventory.add(npcInteraction.output());
+        return nonPlayerCharacter.getName() + ": " + npcInteraction.outputString();
     }
 
     /**
@@ -236,19 +239,15 @@ public class GameEngine
      */
     public String openDoor(String name)
     {
-        if(location.hasPassageTo(name).isLocked()) {
+        Location target = location.hasPassageTo(name);
+        if(target == null) return "Du kannst von hier aus nicht an dein Ziel gehen.";
+        else if(target.isLocked()) {
             for(int i = 0; i < inventory.size(); i++) {
-                if(inventory.get(i).getName().equalsIgnoreCase(location.hasPassageTo(name).getUnlockItem().getName())) {
-                    location.hasPassageTo(name).open();
+                if(inventory.get(i).getName().equalsIgnoreCase(target.getUnlockItem().getName())) {
+                    target.open();
                     return "Die Tür ist jetzt geöffnet.";
-                } else return "Fehler in der If-Anweisung";
-            }
-            return "Du hast keinen Schlüssel.";
-        }
-        else if(location.hasPassageTo(name) == null)
-        {
-            return "Du kannst von hier aus nicht an dein Ziel gehen.";
-        }
-        else return "Diese Tür ist nicht verschlossen";
+                }
+            } return "Du hast keinen Schlüssel.";
+        } else return "Diese Tür ist nicht verschlossen";
     }
 }
