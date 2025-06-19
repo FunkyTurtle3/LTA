@@ -98,7 +98,9 @@ public class GameEngine
                 
                 "Inspiziere <Gegenstand>": um einen Gegenstand zu untersuchen\
                 
-                "Frag": um mit Personen zu Sprechen\
+                "Frag": um mit Personen zu Sprechen
+                Manchmal musst du den Befehl mehrfach hintereinander verwenden,
+                um alle Informationen zu bekommen
                 
                 "Gib <Gegenstand>": um mit Personen zu sprechen\
                 

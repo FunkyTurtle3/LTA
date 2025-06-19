@@ -579,7 +579,17 @@ public class Map
                 "\nDer Punkt liegt irgendwo zwischen 50° und 60° N und zwischen 10° und 20° O."));
 
         //Items für das Easter-EGg mit Linnea
-        N03.addItem(new Item("Lösungen", ""));
+        N03.addItem(new Item("Lösungen", """
+                1.) 94
+                2.) 10101111
+                3.) Robert Koch
+                4.) 52° N, 13° O
+                5.) Ludwig Hoffmann
+                6.) 2013
+                7.) 39,8
+                8.) Aufklärung
+                9.) 3 63 53 4 7 53 30
+                """));
 
         //Items in den Kunst-Räumen
         KUK.addItem(new Item("Blaue Farbtube", "Das ist eine blaue Farbtube. Acryl ist da glaube ich drin."));
