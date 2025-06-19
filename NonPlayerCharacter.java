@@ -11,9 +11,8 @@ public class NonPlayerCharacter
     private final String name;
     private final LinkedList<NPCInteraction> interactions;
     private int timesInteracted;
-    public static final NonPlayerCharacter EMPTY = new NonPlayerCharacter("");
-    public NonPlayerCharacter(String name)
-    {
+    public static final NonPlayerCharacter EMPTY = new NonPlayerCharacter("Geheimnisvolle Stimme"); //Im Falle des Frag-Befehls antwortet einfach die geheimnisvolle Stimme
+    public NonPlayerCharacter(String name) {
         this.name = name;
         this.interactions = new LinkedList<>();
         this.timesInteracted = 0;
@@ -38,7 +37,8 @@ public class NonPlayerCharacter
     }
 
     public NPCInteraction talk(Item input) {
-        if (interactions.isEmpty()) return new NPCInteraction("Dieser Charakter kann leider nicht sprechen!\n", input, input);
+        if (interactions.isEmpty()) return new NPCInteraction("Ich kann leider nicht sprechen!\n", input, input);
+        if (interactions.size() == timesInteracted) return new NPCInteraction("Mit mir bist du fertig", input, input);
         if (input.getName().equalsIgnoreCase(interactions.get(timesInteracted).input().getName())) {
             int i = timesInteracted;
             timesInteracted++;
