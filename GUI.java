@@ -84,7 +84,7 @@ public class GUI implements KeyListener {
                  
                  Begebt euch zum Starten des Spiels bitte alle in die Aula!
                  (Gib dafür unten "Starte Spiel" ein und klicke auf Eingabe)
-                 Viel Glück!
+                 Viel Glück!"
                  
                  TIPP: Gibst du "Info" in die Befehlszeile ein so werden sämtliche Befehle
                  die zum Lösen des Quiz relevant sind erläutert.
@@ -331,7 +331,7 @@ public class GUI implements KeyListener {
     }
 
     /**
-     * Ermöglicht es mit den Pfeiltasten (oben und unten) zwischen vorherigen Eingaben zu wechseln um das Spielgeschehen zu beschleunigen und tippen zu ersparen
+     * Ermöglicht es mit den Pfeiltasten (oben und unten) zwischen vorherigen Eingaben zu wechseln, um das Spielgeschehen zu beschleunigen und tippen zu ersparen
      * @author (LAsse, Leander)
      */
     public void keyPressed(KeyEvent e) {

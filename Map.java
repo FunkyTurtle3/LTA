@@ -77,10 +77,7 @@ public class Map
 
         AULA = new Location(
                 "Aula",
-                new NonPlayerCharacter("Frau Thies")
-                        .addInteraction(new NPCInteraction("Möchtest du das Quiz starten?", Item.EMPTY, Item.EMPTY))
-                        .addInteraction(new NPCInteraction("Dann bring mir das goldene Ticket!", Item.EMPTY, Item.EMPTY))
-                        .addInteraction(new NPCInteraction("Los gehts!", new Item("Goldenes Ticket", "Das goldene Ticket ermöglicht dir das Quiz zu starten!"), Item.EMPTY)),
+                new NonPlayerCharacter("Frau Thies"),
                 "Du befindest dich in der Aula");
 
         SCHULHOF = new Location(
@@ -527,10 +524,10 @@ public class Map
 
         AULA.addItem(new Item("Capri Sonne", "Dies ist eine erfrischende Capri-Sonne mit Multivitamin Geschmack"));
         SCHULHOF.addItem(new Item("Stein", "Dies ist ein grauer dreckiger Stein."));
-        CAFETERIA.addItem(new Item("Goldenes Ticket", "Das goldene Ticket ermöglicht dir das Quiz zu starten!"));
         CAFETERIA.addItem(new Item("Apfelkuchen", "Wer wollte nochmal Kuchen haben?"));
         NERDGESCHOSS.addItem(new Item("Schlüssel", "Mit einem Schlüssel kannst du verschlossene Türen aufschließen"));
 
+        //Items für die Geografiefrage
         NB102.addItem(new Item("Stapel Atlanten", "Das ist ein Stapel Atlanten. Herr Türkan in 103 sucht genau so einen."));
         NB202.addItem(new Item("Globus", "Auf dem Globus ist ein Roter Punkt. Darüber steht Leibniz-Gymnasium." +
                 "\nDer Punkt liegt irgendwo zwischen 50° und 60° N und zwischen 10° und 20° O."));

@@ -245,7 +245,7 @@ public class GameEngine
             }
             return "Du hast keinen Schlüssel.";
         }
-        else if(location.hasPassageTo(name)==location)
+        else if(location.hasPassageTo(name) == null)
         {
             return "Du kannst von hier aus nicht an dein Ziel gehen.";
         }

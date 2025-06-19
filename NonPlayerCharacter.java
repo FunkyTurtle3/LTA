@@ -38,7 +38,7 @@ public class NonPlayerCharacter
     }
 
     public NPCInteraction talk(Item input) {
-        if (interactions.isEmpty()) return new NPCInteraction("Dieser Charakter kenn leider nicht sprechen!\n", input, input);
+        if (interactions.isEmpty()) return new NPCInteraction("Dieser Charakter kann leider nicht sprechen!\n", input, input);
         if (input.getName().equalsIgnoreCase(interactions.get(timesInteracted).input().getName())) {
             int i = timesInteracted;
             timesInteracted++;
