@@ -29,8 +29,8 @@ public class GameEngine
             .addInteraction(new NPCInteraction("Auf welchen Koordinaten befindet sich das Gebäude des Leibniz-Gymnasium?", new Item("Robert Koch"), Item.EMPTY)) //Geografie - solvable
             .addInteraction(new NPCInteraction("Welchen Namen trug der Architekt des Gebäudes vom Leibniz-Gymnasium?", new Item("52° N, 13° O"), Item.EMPTY)) //Kunst - solvable
             .addInteraction(new NPCInteraction("Wann wurde das Leibniz-Gymnasium erstmals als MINT-freundliche Schule ausgezeichnet?", new Item("Ludwig Hoffmann"), Item.EMPTY)) //Schulleitung - solvable
-            //.addInteraction(new NPCInteraction("Mit wie viel Prozent der Stimmen gewann die Parte \"Die Linke\" 2025 die Juniorwahl? - 39,8", new Item("2013"), Item.EMPTY)) //Politik - not solvable
-            .addInteraction(new NPCInteraction("Welcher Epoche lässt sich Gottfried Wilhelm Leibniz's Person zuordnen?", new Item("2013", ""), Item.EMPTY)) //Deutsch - solvable
+            .addInteraction(new NPCInteraction("Mit wie viel Prozent der Stimmen gewann die Parte \"Die Linke\" 2025 die Juniorwahl?", new Item("2013"), Item.EMPTY)) //Politik - not solvable
+            .addInteraction(new NPCInteraction("Welcher Epoche lässt sich Gottfried Wilhelm Leibniz's Person zuordnen?", new Item("39,8", ""), Item.EMPTY)) //Deutsch - solvable
             .addInteraction(new NPCInteraction("Schreibe die Ordnungszahlen der Chemischen Elemente auf\nmit welchen durch die Anfangsbuchstaben des Elementsymbols das Wort Leibniz gebildet werden kann.\nEs gilt immer die kleinstmögliche Zahl.", new Item("Aufklärung", ""), Item.EMPTY)) //Chemie - solvable
             .addInteraction(new NPCInteraction("Du hast das Quiz erfolgreich bestanden und dir somit das Abitur redlich verdient.\nVielen Dank fürs Spielen, wir hoffen du hattest große Freude.\nWir hatten die auf jeden Fall", new Item("3 63 53 4 7 53 30", ""), Item.EMPTY));
         this.isInDevMode = false;
