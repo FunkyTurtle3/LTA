@@ -22,6 +22,10 @@ public class NonPlayerCharacter
         return timesInteracted;
     }
 
+    public void setTimesInteracted(int i) {
+        timesInteracted = i;
+    }
+
     /**
      * Gibt den Namen des NPCs zurück
      */public String getName()

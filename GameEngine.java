@@ -18,10 +18,10 @@ public class GameEngine
      * Konstruktor der GameEngine Klasse
      * @author (Lasse, Leander, Ella, Mila, Victor)
      */ public GameEngine() {
-        this.map = new Map();
-        this.location = map.getStartLocation();
-        this.inventory = new LinkedList<>();
-        this.quiz = new NonPlayerCharacter("")
+        this.map = new Map(); //Erstellt eine frische Karte für den Spieler
+        this.location = map.getStartLocation(); //Legt die erste Location für den Spieler fest
+        this.inventory = new LinkedList<>(); //Erstellt das leere Inventar
+        this.quiz = new NonPlayerCharacter("") //Erstellt das Quiz (Ein NPC)
             //.addInteraction(new NPCInteraction("Seit welchem Jahr ist es Schülerinnen erlaubt am Leibniz Gymnasium zu lernen?", Item.EMPTY, Item.EMPTY)) //Geschichte? - not solvable
             .addInteraction(new NPCInteraction("Wie viele Räume hat das Gebäude des Leibniz-Gymnasiums insgesamt?", Item.EMPTY, Item.EMPTY)) //Hausmeister - solvable
             .addInteraction(new NPCInteraction("Wie lautet die Zahl 175 im Binärcode?", new Item("94"), Item.EMPTY)) //Informatik - solvable
@@ -40,10 +40,10 @@ public class GameEngine
      * Führt eingabenspezifische Methoden aus
      * @author (Mila, Ella, Lasse, Leander)
      */public String input(String input) {
-        Command command = Parser.createCommand(input.toLowerCase());
-        String output = "";
+        Command command = Parser.createCommand(input.toLowerCase()); //Speichert den input als Command-Objekt ausgegeben vom Parser
+        String output = ""; //Legt die output Variable fest (um Fehler zu vermeiden im return Statement)
 
-        switch (command.command()) {
+        switch (command.command()) { //Führt eine zum input passende Methode aus
             case ZU -> output = toLocation(command.input());
             case LEGE -> output = dropItem(command.input());
             case NIMM -> output = takeItem(command.input());
@@ -58,7 +58,7 @@ public class GameEngine
             case SUDODEVELOPERMODE -> {this.isInDevMode = true; output = "Du bist jetzt im Entwickler-Modus";}
         }
 
-        return "\nDu: " + input + "\n \n" + output + "\n\n";
+        return "\nDu: " + input + "\n \n" + output + "\n\n"; //Gibt die zugehörige Ausgabe zurück
     }
 
     /**
@@ -66,11 +66,11 @@ public class GameEngine
      * @author (Lasse, Leander)
      */
     public String answerQuiz(String input) {
-        if(!this.location.getName().equals("Aula")){
+        if(!this.location.getName().equals("Aula")) { //Fängt den Fall ab, dass der Spieler nicht in der Aula ist
             return "Du musst in der Aula sein um das Quiz zu machen";
-        } else if (this.quiz.getTimesInteracted() <= 0) {
+        } else if (this.quiz.getTimesInteracted() <= 0) { //Fängt den Fall ab, dass der Spieler das Quiz noch nicht gestartet hat
             return "Benutze den \"Starte Quiz\"-Befehl um das Quiz zu starten";
-        } else return quiz.talk(new Item(input, "")).outputString();
+        } else return quiz.talk(new Item(input, "")).outputString(); //Falls andere Bedingungen erfüllt, wird die Antwort ausgeführt "new Item(input, "")" wird für Funktionsweise benötigt
     }
 
     /**
@@ -108,7 +108,7 @@ public class GameEngine
                 
                 "Antworte <Antwort>": um eine Frage des Quiz's zu beantworten\
                 
-                """;
+                """; //Informationen für Spiel
     }
 
     /**
@@ -116,10 +116,10 @@ public class GameEngine
      * @author (Lasse, Victor)
      */
     public String talkToNPC() {
-        NonPlayerCharacter nonPlayerCharacter = location.getNPC();
-        NPCInteraction npcInteraction = nonPlayerCharacter.talk(Item.EMPTY);
-        if(npcInteraction.output() != Item.EMPTY) inventory.add(npcInteraction.output());
-        return nonPlayerCharacter.getName() + ": " + npcInteraction.outputString();
+        NonPlayerCharacter nonPlayerCharacter = location.getNPC(); //NPC zwischengespeichert
+        NPCInteraction npcInteraction = nonPlayerCharacter.talk(Item.EMPTY); //NPCInteraction zwischengespeichert
+        if(npcInteraction.output() != Item.EMPTY) inventory.add(npcInteraction.output()); //Fügt das output-Item (falls vorhanden) zum Inventar hinzu
+        return nonPlayerCharacter.getName() + ": " + npcInteraction.outputString(); //Gibt den notwendigen output aus
     }
 
     /**
@@ -127,16 +127,15 @@ public class GameEngine
      * @author (Lasse, Victor)
      */
     public String giveNPC(String input) {
-        Item item = Item.EMPTY;
-        int i;
-        for(i = 0; i < inventory.size(); i++) {
+        Item item = Item.EMPTY; //Legt die item Variable fest
+        for(int i = 0; i < inventory.size(); i++) {
             if(inventory.get(i).getName().equalsIgnoreCase(input)) {
                 item = inventory.remove(i);
             }
-        }
-        NPCInteraction interaction = location.getNPC().talk(item);
-        if (interaction.output() != Item.EMPTY) inventory.add(i - 1, interaction.output());
-        return location.getNPC().getName() + ": " + interaction.outputString();
+        } //Sucht Item mit dem Namen input im Inventar und löscht es, falls gefunden
+        NPCInteraction interaction = location.getNPC().talk(item); //Speichert NPCInteraction zwischen
+        if (interaction.output() != Item.EMPTY) inventory.add(interaction.output()); //Fügt das output-Item (falls vorhanden) zum Inventar hinzu. Wenn der NPC das Item nicht will, gibt er es automatisch als output wieder zurück
+        return location.getNPC().getName() + ": " + interaction.outputString(); //Gibt den notwendigen outputString aus
     }
 
     /**
@@ -144,11 +143,11 @@ public class GameEngine
      * @author (Mila, ELla)
      */
     public String getInventoryDescription() {
-        StringBuilder des = new StringBuilder();
+        StringBuilder des = new StringBuilder(); //Speichert einen StringBuilder, um im Folgenden den String aufzubauen
         for (int i = 0; i < this.inventory.size(); i++) {
-            des.append(inventory.get(i).getName()).append("\n");
+            des.append(inventory.get(i).getName()).append("\n"); //Baut den String mit allen Items auf
         }
-        return des.toString();
+        return des.toString(); //gibt den String aus
     }
 
     /**
@@ -157,16 +156,17 @@ public class GameEngine
      */
     public String start(String input) {
         if(input.equalsIgnoreCase("neu")) {
-            this.map = new Map();
-            this.inventory.clear();
-            this.location = map.getStartLocation();
-            this.isInDevMode = false;
+            this.map = new Map(); //Setzt alle Attribut zurück
+            this.inventory.clear(); //Setzt alle Attribut zurück
+            this.location = map.getStartLocation(); //Setzt alle Attribut zurück
+            this.isInDevMode = false; //Setzt alle Attribut zurück
+            this.quiz.setTimesInteracted(0); //Setzt alle Attribut zurück
             return "";
         } else if(input.equalsIgnoreCase("spiel") && this.location.getName().equals("Start_Room")) {
-            return toLocation("Aula");
+            return toLocation("Aula"); //Startet das Spiel, indem der Spieler zur Aula geht
         } else if(input.equalsIgnoreCase("quiz") && this.location.getName().equals("Aula") && quiz.getTimesInteracted() == 0) {
-            return quiz.talk(Item.EMPTY).outputString();
-        } else return "Gebe \"Starte neu/Spiel/Quiz\" ein ";
+            return quiz.talk(Item.EMPTY).outputString(); //Startet das Spiel, indem es mit dem NPC redet
+        } else return "Gebe \"Starte neu/Spiel/Quiz\" ein "; //Default Ausgabe, falls keine der Bedingungen erfüllt
     }
 
     /**
@@ -174,12 +174,12 @@ public class GameEngine
      * @author (Lasse, Leander)
      */
     public String takeItem(String name) {
-        Item item = location.takeItem(name);
-        if(item.getName().equals("Beutel voller Termit") && !isInDevMode) System.exit(0);
+        Item item = location.takeItem(name); //Speichert das gefundene Item zwischen
+        if(item.getName().equals("Beutel voller Termit") && !isInDevMode) System.exit(0); //Easter-Egg ausgeführt, falls der Spieler sich anmaßt das Termit aufheben zu können
         if(item != Item.EMPTY) {
-            inventory.addLast(item);
-            return "Ok!";
-        } else return "Da ist kein solcher Gegenstand!";
+            inventory.addLast(item); //Fügt das Item zum Inventar hinzu, falls vorhanden
+            return "Ok!\n\n" + location.getDescription(); //Gibt den output aus
+        } else return "Da ist kein solcher Gegenstand!"; //Wird gezeigt, falls Item nicht vorhanden
     }
 
     /**
@@ -189,21 +189,21 @@ public class GameEngine
     public String toLocation(String name) {
         if (isInDevMode) {
             try {
-                Field feld = this.map.getClass().getField(name.toUpperCase());  //Sucht nur public Felder deshalb "public final verwendet"
-                Object wert = feld.get(map);
-                this.location = (Location) wert;
-                return location.getDescription();
+                Field feld = this.map.getClass().getField(name.toUpperCase());  //Sucht nur public Felder deshalb "public final verwendet" Field-Klasse vorgeschlagen von ChatGPT
+                Object wert = feld.get(map); //Methode von ChatGPT ausgegeben
+                this.location = (Location) wert; //Ändert Location zum gefundenen Wert
+                return location.getDescription(); //Gibt den output aus
             } catch (Exception e) {
-                System.out.println("Location '" + name + "' existiert nicht oder ist nicht public.");
+                System.out.println("Location '" + name + "' existiert nicht oder ist nicht public."); //Wird ausgeführt, falls Location nicht gefunden
             }
         } //Hilfe durch https://chatgpt.com
-        Location location = this.location.hasPassageTo(name);
-        if(location != null) {
-            if(!location.isLocked()) {
-                this.location = location;
-                return location.getDescription();
-            } else return "Der Raum ist verschlossen!";
-        } else return "Das geht leider nicht!";
+        Location location = this.location.hasPassageTo(name); //Falls nicht im DevMode oder Loc nicht gefunden zwischengespeichert
+        if(location != null) { //Prüft, ob Durchgang möglich
+            if(!location.isLocked()) { //Prüft ob Tür verschlossen
+                this.location = location; //Wechselt Location
+                return location.getDescription(); // Gibt die Beschreibung aus
+            } else return "Der Raum ist verschlossen!"; //Falls Raum verschlossen
+        } else return "Das geht leider nicht!"; //Falls Durchgang nicht vorhanden
     }
 
     /**
@@ -212,12 +212,12 @@ public class GameEngine
      */
     public String dropItem(String name) {
         for(int i = 0; i < inventory.size(); i++) {
-            if(inventory.get(i).getName().equalsIgnoreCase(name)) {
-                location.addItem(inventory.remove(i));
-                return "Ok!";
+            if(inventory.get(i).getName().equalsIgnoreCase(name)) { //Sucht nach Item im Inventar
+                location.addItem(inventory.remove(i)); //Löscht Item aus Inv und gibt es der Location
+                return "Ok!\n\n" + location.getDescription();
             }
         }
-        return "Du hast keinen solchen Gegenstand in deinem Inventar!";
+        return "Du hast keinen solchen Gegenstand in deinem Inventar!"; //Falls Gegenstand nicht im Inventar
     }
 
     /**
@@ -227,12 +227,11 @@ public class GameEngine
     public String getItemDescription(String name)
     {
         for(int i = 0; i < inventory.size(); i++) {
-            if(inventory.get(i).getName().equalsIgnoreCase(name))
-            {
-                return inventory.get(i).getDescription();
+            if(inventory.get(i).getName().equalsIgnoreCase(name)) { //Sucht nach Item im Inventar
+                return inventory.get(i).getDescription(); //Gibt Beschreibung des Items zurück
             }
         }
-        return "Du hast keinen solchen Gegenstand in deinem Inventar!";
+        return "Du hast keinen solchen Gegenstand in deinem Inventar!"; //Falls Gegenstand nicht im Inventar
     }
 
     /**
@@ -241,15 +240,15 @@ public class GameEngine
      */
     public String openDoor(String name)
     {
-        Location target = location.hasPassageTo(name);
-        if(target == null) return "Du kannst von hier aus nicht an dein Ziel gehen.";
-        else if(target.isLocked()) {
+        Location target = location.hasPassageTo(name); //Speichert Ziel-Location zwischen
+        if(target == null) return "Du kannst von hier aus nicht an dein Ziel gehen."; //Wird ausgeführt falls Durchgang nicht vorhanden
+        else if(target.isLocked()) { //Prüft, ob Durchgang überhaupt verschlossen ist
             for(int i = 0; i < inventory.size(); i++) {
-                if(inventory.get(i).getName().equalsIgnoreCase(target.getUnlockItem().getName())) {
-                    target.open();
+                if(inventory.get(i).getName().equalsIgnoreCase(target.getUnlockItem().getName())) { //Sucht nach notwendigem Schlüssel im Inventar
+                    target.open(); //Wenn gefunden wird Durchgang geöffnet
                     return "Die Tür ist jetzt geöffnet.";
                 }
-            } return "Du hast keinen Schlüssel.";
-        } else return "Diese Tür ist nicht verschlossen";
+            } return "Du hast keinen Schlüssel."; //Falls Schlüssel nicht vorhanden
+        } else return "Diese Tür ist nicht verschlossen"; //Falls Tür nicht verschlossen
     }
 }

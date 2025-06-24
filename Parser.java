@@ -14,8 +14,13 @@ public class Parser {
         String command;
         String adress = "";
         try {
-            command = input.split(" ")[0] != null ? input.split(" ")[0] : input;
-            adress = command.length() < input.length() ? input.substring(command.length()).trim() : "";
+            if(input.split(" ")[0] != null) {
+                command = input.split(" ")[0];
+            } else command = input;
+
+            if (command.length() < input.length()) {
+                adress = input.substring(command.length()).trim();
+            } else adress = "";
             return new Command(Commands.valueOf(command.toUpperCase()), adress);
         } catch (Exception e){
             return new Command(Commands.INVALIDINPUT, adress);
