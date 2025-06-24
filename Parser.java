@@ -1,13 +1,14 @@
 /**
  * @author (Lasse, Leander, Victor)
  * @version 1.1.0
- * Der Parser wird von der Game Engine dafür verwendet eine Eingabe in das Eingabefeld in einen verwendbare Command umzuwandeln.
- * Das heißt einen Command + Argument (2. Teil)
+ * Der Parser wird von der Game Engine dafür verwendet eine Eingabe aus dem Eingabefeld in ein Obejekt umzuwandeln.
+ * Dieses Objekt wird dann genutzt um Eingabe spezifische Methoden aufzurufen.
+ * Das Objekt ist ein Command-Objekt welches eine Enum und einen String speichert.
  */
 public class Parser {
     /**
-     * Diese Methode teilt die Spielereingabe in zwei Teile, sodass diese vom Programm verarbeitet werden können.
-     * Diese Methode erstellt außerdem ein Objekt der Command-Klasse und gibt dieses zurück.
+     * Diese Methode teilt die Spielereingabe so auf das ein entsprechendes Command-Objekt erstellt werden kann.
+     * Dieses Command-Objekt wird der GameEngine zurückgegeben um verarbeitet zu werden.
      * @author (Leander, Victor, Lasse)
      */
     public static Command createCommand(String input){

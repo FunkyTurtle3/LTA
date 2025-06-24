@@ -72,6 +72,19 @@ public class Map
      * @author (Mila, Ella, Lasse, Leander)
      */
     public Map() {
+
+        //  Beispiel Generation:
+        //  Beispielraum = new Location(
+        //        "Beispielraum", <- Navigations Name
+        //        new NonPlayerCharacter("Dummy") <- Im Raum positionierter Charakter
+        //                .addInteraction(new NPCInteraction("erste Sprachausgabe", Item1, Item2))
+        //                      "Item1" Ist im Spiel nötig um die erste Sprachausgabe zu starten.
+        //                      "Item2" wird beim Aktivieren der ersten Sprachausgabe dem Spieler übergeben.
+        //                 .addInteraction(new NPCInteraction("zweite Sprachausgabe", Item.EMPTY, Item.EMPTY)),
+        //                      Die Reihenfolge der Sprachausgaben wird im Spielgeschehen wie hier von oben nach unten ausgegeben.
+        //        "Du befindest dich im Beispielraum. Der Raum ist komplett weiß und leer.");
+        //                      Dieser String wird jedes Mal ausgegeben wenn der Spieler den Raumbetritt.
+
         START_ROOM = new Location(
                 "Start_Room",
                 NonPlayerCharacter.EMPTY,
@@ -267,17 +280,6 @@ public class Map
                         zur einen Hälfte aus einem Klassenraum und
                         zur anderen aus einer Theater Bühne. Interessant.""");
 
-        //S23 = new Location(
-        //        "S23",
-        //        NonPlayerCharacter.EMPTY,
-        //        "Du befindest dich in Raum S23.");
-
-        //S24 = new Location(
-        //        "S24",
-        //        NonPlayerCharacter.EMPTY,
-        //        "Du befindest dich in Raum S24.");
-        //Existenzkrise
-
         S25 = new Location(
                 "S25",
                 NonPlayerCharacter.EMPTY,
@@ -373,7 +375,7 @@ public class Map
                 "N12",
                 NonPlayerCharacter.EMPTY,
                 "Du befindest dich in Raum N12." +
-                        "Dieser Raum ist ein Biologieraum, ein kleiner.");
+                        "Dieser Raum ist ein kleiner Biologieraum.");
 
         N13 = new Location(
                 "N13",
@@ -507,7 +509,8 @@ public class Map
                         .addInteraction(new NPCInteraction("Der Längengrad des Leibniz-Gymnasiums beträgt 13°. Ob Ost oder West musst du selbst herausfinden.\nVielleicht findest du ja irgendwo einen Globus.", Item.EMPTY, Item.EMPTY)),
                 "Du befindest dich in Raum 302.");
 
-        //Durchgänge werden initialisiert
+        //Im folgenden Abschnitt werden jedem Raum alle seine Ausgänge zugewiesen.
+
         START_ROOM.addPassage(AULA);
         AULA.addPassage(SCHULHOF).addPassage(CAFETERIA);
         SCHULHOF.addPassage(AULA).addPassage(SERDGESCHOSS).addPassage(NERDGESCHOSS);
@@ -567,6 +570,8 @@ public class Map
         NB203.addPassage(NEUBAU);
         NB301.addPassage(NEUBAU);
         NB301.addPassage(NEUBAU);
+
+        //Im folgenden Abschnitt werden alle Gegenstände in den Räumen generiert.
 
         AULA.addItem(new Item("Capri Sonne", "Dies ist eine erfrischende Capri-Sonne mit Multivitamin Geschmack"));
         SCHULHOF.addItem(new Item("Stein", "Dies ist ein grauer dreckiger Stein."));
@@ -645,8 +650,6 @@ public class Map
                 8. AfD (1,5 %)
                 """));
     }
-
-
 
     public Location getStartLocation() {
         return START_ROOM;
